@@ -1,3 +1,8 @@
+
+
+
+
+
 import serial
 from serial.tools import list_ports
 
@@ -14,7 +19,7 @@ def list_of_ports(port_to_skip=[],timeout_given=3,bit_rate=115200):
     for  current_port in list_of_ports:
         current_port=current_port[0]
 
-        if data_flow in port_to_skip:
+        if current_port in port_to_skip:
             print("skipping port",data_flow)
             continue
             print("try to open port ",data_flow)
@@ -43,9 +48,9 @@ def list_of_ports(port_to_skip=[],timeout_given=3,bit_rate=115200):
 
 
         except Exception as inst:
-            print("can't open port ",current_port)
-            print (type(inst))
-            print (inst.args)
-            print (inst)
+            print("1 can't open port ",current_port)
+            print ("2 ",type(inst))
+            print ("3 ",inst.args)
+            print ("4 ",inst)
             print()
     return(list_of_usible_ports)
