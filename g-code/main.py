@@ -66,6 +66,9 @@ class g_code_send:
             line = connecton_objet.readline()
 
             x = line.decode("utf-8")
+
+
+
             print(x)
             print(type(x))
 
