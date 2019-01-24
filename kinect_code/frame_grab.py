@@ -43,6 +43,7 @@ for row in range(len(frame_array[q])-1):
 print(type(avarave_frame))
 while 1:
     array = avarave_frame.astype(np.uint8)
+    np.save("numpyarray",array)
     cv2.imshow('Depth image',array)
     #in array each vaule is type <type 'numpy.uint8'>
 
