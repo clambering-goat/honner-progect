@@ -6,8 +6,11 @@ win = GraphWin(width=200,height=200)
 
 
 
-file=open("bar teast.gcode","r")
+#file=open("bar teast.gcode","r")
 
+
+#file=open("gear.gcode","r")
+file=open("gear2.gcode","r")
 
 g_code=file.readlines()
 
@@ -16,41 +19,100 @@ x_old=-1
 y_old=-1
 
 
-array_of_points=[]
 
 
+list_of_points = []
 
 
 def line_equation(x1,y1,x2,y2):
 
-    m=(y2-y1)/(x2-x1)
+    x1=float(x1)
+    x2 = float(x2)
+    y1 = float(y1)
+    y2 = float(y2)
+
+
+    vaule_x=(x2-x1)
+    vaule_y=(y2-y1)
+
+    leanth_of_line=0.5**(vaule_x**2+vaule_y**2)
+
+
+    #add start and end points
+    list_of_points.append((x1,y1))
+    list_of_points.append((x2,y2))
+
+    #get the diffence between the 2 points
+    vaule_x=(x2-x1)
+    vaule_y=(y2-y1)
+
+
+    #dealt with hozontial line and vertic lines
+    if vaule_y==0:
+
+        # y is a constant and x changes
+        #round down
+        scan1=int(x1)
+        #round up
+        scan2=round(x2)
+        for x in range(scan1,scan2):
+            list_of_points.append((x,y1))
+
+
+        return
+
+
+    if vaule_x==0:
+
+        #x is constant y changes
+        #round down
+        scan1=int(y1)
+        #round up
+        scan2=round(y2)
+        for y in range(scan1,scan2):
+            list_of_points.append((x1,y))
+
+
+        return
+
+
+
+
+
+    m=vaule_y/vaule_x
 
     c=y1-(m*x1)
 
 
-    x_leanth=(y2-y1)
-    y_leanth=(x2-x1)
 
-    leanth_of_line=0.5**(x_leanth**2+y_leanth**2)
-    print("line leanth",leanth_of_line)
 
-    moving_factor=0.1
+
 
     #to add scan in x xies
     #use start point of line as start and end as end
 
 
+    #round down
+    scan1=int(x1)
+    #round up
+    scan2=round(x2)
 
 
-    #to add scan in y  xies
+    if scan2< scan1:
+        temp=scan1
+        scan1=scan2
+        scan2=temp
+
+    for x in range(scan1,scan2):
+
+        y=m*x+c
+        x=float(x)
+        list_of_points.append((x,y))
 
 
-   # array_of_points
+    return
 
 
-
-
-    #y=mx+c
 
 
 
@@ -62,7 +124,8 @@ for g_code_lines in  g_code:
     if g_code_lines[0:7]==";LAYER:":
         print(g_code_lines)
 
-
+    if g_code_lines[0:8] == ";LAYER:1":
+        break
 
     line_breack=g_code_lines.split(" ")
 
@@ -96,26 +159,27 @@ for g_code_lines in  g_code:
         continue
 
 
-    pt1 = Point(x_old,y_old)
-    pt2=Point(x_point,y_point)
+
+
+    line_equation(x_old, y_old, x_point, y_point)
 
 
 
 
-
-
-    line = Line(pt1,pt2)
 
     x_old=x_point
     y_old=y_point
 
 
+# random point aperar need to make code to look for ups in point clould
+#need to remove tranion of print head from g code
+print("drawing point cloud ")
+for q in list_of_points:
 
-    if x_old==0:
-        print("?")
-    #updates screen
-    line.draw(win)
-    #time.sleep(0.01)
+    pix=Point(q[0],q[1])
+    pix.draw(win)
+    #print(q)
+    #time.sleep(0.1)
 print("done")
 
-input("press enter to close ")
+
