@@ -94,3 +94,5 @@ g28 home
 g1 move use given speen
 
 g0 move as fast as posible
+
+m205 is set max accrating spped 

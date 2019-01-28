@@ -9,8 +9,8 @@ win = GraphWin(width=200,height=200)
 #file=open("bar teast.gcode","r")
 
 
-#file=open("gear.gcode","r")
-file=open("gear2.gcode","r")
+file=open("gear.gcode","r")
+#file=open("gear2.gcode","r")
 
 g_code=file.readlines()
 
@@ -31,6 +31,9 @@ def line_equation(x1,y1,x2,y2):
     y1 = float(y1)
     y2 = float(y2)
 
+
+    START_POINTS_1=x1,y1
+    ENDPOINTS_1=x2,y2
     #get the diffence between the 2 points
 
     vaule_x=(x2-x1)
@@ -56,6 +59,8 @@ def line_equation(x1,y1,x2,y2):
         for x in range(scan1,scan2):
             # simple step to nemove negitve numbers
             if x > 0 and y1 > 0:
+                if y1>130:
+                    print("?")
                 list_of_points.append((x,y1))
 
 
@@ -72,6 +77,8 @@ def line_equation(x1,y1,x2,y2):
         for y in range(scan1,scan2):
             # simple step to nemove negitve numbers
             if x1 > 0 and y > 0:
+                if y>130:
+                    print("?")
                 list_of_points.append((x1,y))
 
 
@@ -110,11 +117,13 @@ def line_equation(x1,y1,x2,y2):
     while x2>x1:
         x1=x1+0.1
         y=m*x1+c
-
+        if x2 < x1:
+            break
         #simple step to nemove negitve numbers
         if x1 > 0 and y > 0:
             list_of_points.append((x1,y))
-
+            if y > 130:
+                print("?")
 
 
     return
@@ -144,9 +153,13 @@ for g_code_lines in  g_code:
 
     x_point=-1
     y_point=-1
+    #use to remove move commadnt where to filemtn is being deposited
+    E_found=False
     for q in line_breack:
         if len(q)<1:
             continue
+        if q[0]=="E":
+            E_found=True
         if q[0]=="X":
             x_point=q[1:]
         if q[0]=="Y":
@@ -158,6 +171,13 @@ for g_code_lines in  g_code:
         x_old = x_point
         y_old = y_point
         continue
+
+    #remove the move comands from g code
+    if E_found==False:
+       x_old = x_point
+       y_old = y_point
+       continue
+
 
 #here to make skip a line if no x vaule is found
     # here to remove the end line command the switch the print move mode the relitive and move the -20 ,-20
