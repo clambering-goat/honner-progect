@@ -31,6 +31,7 @@ def line_equation(x1,y1,x2,y2):
     y1 = float(y1)
     y2 = float(y2)
 
+    #get the diffence between the 2 points
 
     vaule_x=(x2-x1)
     vaule_y=(y2-y1)
@@ -42,9 +43,6 @@ def line_equation(x1,y1,x2,y2):
     list_of_points.append((x1,y1))
     list_of_points.append((x2,y2))
 
-    #get the diffence between the 2 points
-    vaule_x=(x2-x1)
-    vaule_y=(y2-y1)
 
 
     #dealt with hozontial line and vertic lines
@@ -56,7 +54,9 @@ def line_equation(x1,y1,x2,y2):
         #round up
         scan2=round(x2)
         for x in range(scan1,scan2):
-            list_of_points.append((x,y1))
+            # simple step to nemove negitve numbers
+            if x > 0 and y1 > 0:
+                list_of_points.append((x,y1))
 
 
         return
@@ -70,7 +70,9 @@ def line_equation(x1,y1,x2,y2):
         #round up
         scan2=round(y2)
         for y in range(scan1,scan2):
-            list_of_points.append((x1,y))
+            # simple step to nemove negitve numbers
+            if x1 > 0 and y > 0:
+                list_of_points.append((x1,y))
 
 
         return
@@ -92,22 +94,27 @@ def line_equation(x1,y1,x2,y2):
     #use start point of line as start and end as end
 
 
-    #round down
-    scan1=int(x1)
-    #round up
-    scan2=round(x2)
+    # scan need to be with in the points
 
 
-    if scan2< scan1:
-        temp=scan1
-        scan1=scan2
-        scan2=temp
 
-    for x in range(scan1,scan2):
 
-        y=m*x+c
-        x=float(x)
-        list_of_points.append((x,y))
+
+
+
+    if x2< x1:
+        temp=x1
+        x1=x2
+        x2=temp
+
+    while x2>x1:
+        x1=x1+0.1
+        y=m*x1+c
+
+        #simple step to nemove negitve numbers
+        if x1 > 0 and y > 0:
+            list_of_points.append((x1,y))
+
 
 
     return
@@ -174,12 +181,70 @@ for g_code_lines in  g_code:
 # random point aperar need to make code to look for ups in point clould
 #need to remove tranion of print head from g code
 print("drawing point cloud ")
+
+
+#grouping function
+
+
+''' 
+group=[]
+count=-1
+
+scan_size=10
+while len(list_of_points)>0:
+    count = count + 1
+    x, y = list_of_points[0]
+
+    bond_max_x = x + scan_size
+    bond_max_y = y + scan_size
+
+    bond_min_x = x - scan_size
+    bond_min_y = y - scan_size
+    group.append([])
+    print(len(list_of_points))
+    list_of_point_to_remove=[]
+    for q in list_of_points:
+        x,y=q
+
+        if x<0 or y<0:
+            print("? help ")
+            print(x,y)
+            exit()
+
+        if x>bond_min_x and x<bond_max_x and y>bond_min_y and y<bond_max_y:
+            group[count].append((x,y))
+            list_of_point_to_remove.append((x,y))
+    for q in list_of_point_to_remove:
+        list_of_points.remove(q)
+print(len(group)," groups where found with a prosimity of ",scan_size)
+
+'''
+
+import matplotlib.pyplot as plt
+x_list=[]
+y_list=[]
+for q in list_of_points:
+
+    x_list.append(q[0])
+    y_list.append(q[1])
+plt.plot(x_list, y_list, 'ro')
+plt.axis([50, 200, 50, 200])
+plt.show()
+
+
+
+
+
+
+
+'''
 for q in list_of_points:
 
     pix=Point(q[0],q[1])
     pix.draw(win)
     #print(q)
     #time.sleep(0.1)
+'''
+
+input("press to close")
 print("done")
-
-
