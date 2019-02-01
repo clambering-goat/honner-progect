@@ -2,7 +2,7 @@
 import time
 from graphics import *
 
-win = GraphWin(width=200,height=200)
+#win = GraphWin(width=200,height=200)
 
 
 
@@ -31,7 +31,7 @@ def line_equation(x1,y1,x2,y2):
     y1 = float(y1)
     y2 = float(y2)
 
-
+    scan_size=0.01
     START_POINTS_1=x1,y1
     ENDPOINTS_1=x2,y2
     #get the diffence between the 2 points
@@ -52,16 +52,15 @@ def line_equation(x1,y1,x2,y2):
     if vaule_y==0:
 
         # y is a constant and x changes
-        #round down
-        scan1=int(x1)
-        #round up
-        scan2=round(x2)
-        for x in range(scan1,scan2):
+
+        while x2>x1:
+            x1=x1+scan_size
+            if x2 < x1:
+                break
             # simple step to nemove negitve numbers
-            if x > 0 and y1 > 0:
-                if y1>130:
-                    print("?")
-                list_of_points.append((x,y1))
+            if x1 > 0 and y1 > 0:
+
+                list_of_points.append((x1,y1))
 
 
         return
@@ -70,16 +69,14 @@ def line_equation(x1,y1,x2,y2):
     if vaule_x==0:
 
         #x is constant y changes
-        #round down
-        scan1=int(y1)
-        #round up
-        scan2=round(y2)
-        for y in range(scan1,scan2):
+        while y2>y1:
+            y1=y1+scan_size
+            if y2<y1:
+                break
             # simple step to nemove negitve numbers
-            if x1 > 0 and y > 0:
-                if y>130:
-                    print("?")
-                list_of_points.append((x1,y))
+            if x1 > 0 and y1 > 0:
+
+                list_of_points.append((x1,y1))
 
 
         return
@@ -115,7 +112,7 @@ def line_equation(x1,y1,x2,y2):
         x2=temp
 
     while x2>x1:
-        x1=x1+0.1
+        x1=x1+scan_size
         y=m*x1+c
         if x2 < x1:
             break
@@ -257,13 +254,13 @@ plt.show()
 
 
 
-file = open("point_cloud_out_old_working", "w")
+file = open("point_cloud_out_old_working.xyz", "w")
 for q in list_of_points:
 
     data = str(q[0]) + " " + str(q[1])+ " 0 ""\n"
     file.write(data)
-    pix=Point(q[0],q[1])
-    pix.draw(win)
+    #pix=Point(q[0],q[1])
+    #pix.draw(win)
     #print(q)
     #time.sleep(0.1)
 file.close()

@@ -11,6 +11,7 @@ if __name__ == "__main__":
     print(np.asarray(pcd.points))
     draw_geometries([pcd])
 
+
     print("Downsample the point cloud with a voxel of 0.05")
     downpcd = voxel_down_sample(pcd, voxel_size = 0.05)
     draw_geometries([downpcd])
