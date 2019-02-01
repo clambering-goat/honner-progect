@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1980cbc0-be3a-49e3-ba1a-c65fbd450f44" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/current work/honner  project progress.docx" beforeDir="false" afterPath="$PROJECT_DIR$/current work/honner  project progress.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/g-code/notes/g code notes" beforeDir="false" afterPath="$PROJECT_DIR$/g-code/notes/g code notes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,9 +15,12 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/honner_progect$line_to_cloud.coverage" NAME="line_to_cloud Coverage Results" MODIFIED="1548557592049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$scatter3d_demo.coverage" NAME="scatter3d_demo Coverage Results" MODIFIED="1548988994109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
     <SUITE FILE_PATH="coverage/honner_progect$temp.coverage" NAME="temp Coverage Results" MODIFIED="1548641383917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$point_cloud_veuw.coverage" NAME="point_cloud-veuw Coverage Results" MODIFIED="1548991324039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$visulatior_mark2.coverage" NAME="visulatior mark2 Coverage Results" MODIFIED="1548472147047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
-    <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud.coverage" NAME="g_code_to_point_cloud Coverage Results" MODIFIED="1548659097429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud.coverage" NAME="g_code_to_point_cloud Coverage Results" MODIFIED="1548992229330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud_clean.coverage" NAME="g_code_to_point_cloud_clean Coverage Results" MODIFIED="1548992315844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$visulation_mark1.coverage" NAME="visulation mark1 Coverage Results" MODIFIED="1547433520635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
   </component>
   <component name="FileEditorManager">
@@ -25,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/visulation mark1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="15" column="7" selection-end-line="52" />
+            <state relative-caret-position="631">
+              <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -37,44 +40,61 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/bar teast.gcode">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109565">
+            <state relative-caret-position="926">
               <caret line="6445" column="33" selection-start-line="6445" selection-end-line="6446" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-12">
-              <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
+            <state relative-caret-position="852">
+              <caret line="268" column="12" selection-start-line="268" selection-start-column="12" selection-end-line="268" selection-end-column="12" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
-                <element signature="e#279#1715#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/KiteOnboarding.py">
+        <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud_out.xyz">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model_to_point_cloud/temp.py">
+        <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="10" />
+              <folding>
+                <element signature="e#48#66#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/g-code/smalled_move_in_g_code.py">
+        <entry file="file://$USER_HOME$/Downloads/scatter3d_demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1904">
-              <caret line="113" column="6" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="18" />
+            <state relative-caret-position="68">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,13 +125,15 @@
         <option value="$PROJECT_DIR$/g-code/g_code_vislarre.py/visulatior mark2.py" />
         <option value="$PROJECT_DIR$/model_to_point_cloud/line_to_cloud.py" />
         <option value="$PROJECT_DIR$/model_to_point_cloud/temp.py" />
+        <option value="$USER_HOME$/Downloads/scatter3d_demo.py" />
+        <option value="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" />
+        <option value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" />
         <option value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="704" />
-    <option name="y" value="317" />
+    <option name="x" value="-7" />
     <option name="width" value="1294" />
     <option name="height" value="1407" />
   </component>
@@ -149,7 +171,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/model_to_point_cloud" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="kite.configurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -172,7 +194,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.g_code_to_point_cloud">
+  <component name="RunManager" selected="Python.g_code_to_point_cloud_clean">
     <configuration name="g_code_to_point_cloud" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -195,7 +217,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="line_to_cloud" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="g_code_to_point_cloud_clean" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -208,7 +230,51 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_to_point_cloud/line_to_cloud.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="point_cloud-veuw" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="honner-progect" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model_to_point_cloud" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scatter3d_demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="honner-progect" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/scatter3d_demo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -239,57 +305,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="visulation mark1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="honner-progect" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/g-code/g_code_vislarre.py/visulation mark1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="visulatior mark2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="honner-progect" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/g-code/g_code_vislarre.py/visulatior mark2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.g_code_to_point_cloud_clean" />
         <item itemvalue="Python.g_code_to_point_cloud" />
+        <item itemvalue="Python.point_cloud-veuw" />
+        <item itemvalue="Python.scatter3d_demo" />
         <item itemvalue="Python.temp" />
-        <item itemvalue="Python.line_to_cloud" />
-        <item itemvalue="Python.visulatior mark2" />
-        <item itemvalue="Python.visulation mark1" />
       </list>
     </recent_temporary>
   </component>
@@ -310,37 +332,62 @@
       <workItem from="1548557152149" duration="2316000" />
       <workItem from="1548640124558" duration="5113000" />
       <workItem from="1548657072323" duration="2489000" />
+      <workItem from="1548982061731" duration="6987000" />
+      <workItem from="1548990096272" duration="2270000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20247000" />
+    <option name="totallyTimeSpent" value="29504000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="704" y="317" width="1294" height="1407" extended-state="0" />
+    <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21717991" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2884927" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8930308" weight="0.51892555" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48290938" weight="0.5050663" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89222044" weight="0.22684458" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48290938" weight="0.5086342" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10696921" side_tool="true" visible="true" weight="0.33359498" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10777958" side_tool="true" weight="0.3524333" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32967034" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.024311183" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10810811" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89222044" weight="0.22759159" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.48290938" visible="true" weight="0.5050663" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10777958" side_tool="true" weight="0.3524333" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.17666127" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.08664547" />
       <window_info anchor="right" id="Database" order="4" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -380,7 +427,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py</url>
-          <line>263</line>
+          <line>265</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -397,6 +444,11 @@
           <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py</url>
           <line>62</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py</url>
+          <line>253</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -431,20 +483,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/visulation mark1.py">
+    <entry file="file://$USER_HOME$/KiteOnboarding.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="15" column="7" selection-end-line="52" />
-          <folding>
-            <element signature="e#1#12#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-1143" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/bar teast.gcode">
+    <entry file="file://$PROJECT_DIR$/g-code/smalled_move_in_g_code.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109565">
-          <caret line="6445" column="33" selection-start-line="6445" selection-end-line="6446" />
+        <state relative-caret-position="1904">
+          <caret line="113" column="6" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -455,23 +502,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/g-code/smalled_move_in_g_code.py">
+    <entry file="file://$USER_HOME$/Downloads/scatter3d_demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="113" column="6" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="18" />
+        <state relative-caret-position="68">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/KiteOnboarding.py">
+    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/bar teast.gcode">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="926">
+          <caret line="6445" column="33" selection-start-line="6445" selection-end-line="6446" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud_out.xyz">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="10" />
+          <folding>
+            <element signature="e#48#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/visulation mark1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
+        <state relative-caret-position="852">
+          <caret line="268" column="12" selection-start-line="268" selection-start-column="12" selection-end-line="268" selection-end-column="12" />
           <folding>
             <element signature="e#1#12#0" expanded="true" />
-            <element signature="e#279#1715#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

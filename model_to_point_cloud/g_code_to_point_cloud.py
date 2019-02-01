@@ -206,7 +206,7 @@ print("drawing point cloud ")
 #grouping function
 
 
-''' 
+'''
 group=[]
 count=-1
 
@@ -239,7 +239,7 @@ while len(list_of_points)>0:
 print(len(group)," groups where found with a prosimity of ",scan_size)
 
 '''
-
+'''
 import matplotlib.pyplot as plt
 x_list=[]
 y_list=[]
@@ -252,19 +252,20 @@ plt.axis([50, 200, 50, 200])
 plt.show()
 
 
-
-
-
-
-
 '''
+
+
+
+
+file = open("point_cloud_out_old_working", "w")
 for q in list_of_points:
 
+    data = str(q[0]) + " " + str(q[1])+ " 0 ""\n"
+    file.write(data)
     pix=Point(q[0],q[1])
     pix.draw(win)
     #print(q)
     #time.sleep(0.1)
-'''
-
+file.close()
 input("press to close")
 print("done")
