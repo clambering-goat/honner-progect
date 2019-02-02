@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1980cbc0-be3a-49e3-ba1a-c65fbd450f44" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_to_point_cloud/point_cloud_out_new_not_working" beforeDir="false" afterPath="$PROJECT_DIR$/model_to_point_cloud/point_cloud_out_new_not_working" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +17,10 @@
     <SUITE FILE_PATH="coverage/honner_progect$line_to_cloud.coverage" NAME="line_to_cloud Coverage Results" MODIFIED="1548557592049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$scatter3d_demo.coverage" NAME="scatter3d_demo Coverage Results" MODIFIED="1548988994109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
     <SUITE FILE_PATH="coverage/honner_progect$temp.coverage" NAME="temp Coverage Results" MODIFIED="1548641383917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
-    <SUITE FILE_PATH="coverage/honner_progect$point_cloud_veuw.coverage" NAME="point_cloud-veuw Coverage Results" MODIFIED="1548991324039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$point_cloud_veuw.coverage" NAME="point_cloud-veuw Coverage Results" MODIFIED="1549065411318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$visulatior_mark2.coverage" NAME="visulatior mark2 Coverage Results" MODIFIED="1548472147047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
     <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud.coverage" NAME="g_code_to_point_cloud Coverage Results" MODIFIED="1548992229330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
-    <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud_clean.coverage" NAME="g_code_to_point_cloud_clean Coverage Results" MODIFIED="1548992315844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud_clean.coverage" NAME="g_code_to_point_cloud_clean Coverage Results" MODIFIED="1549065370625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$visulation_mark1.coverage" NAME="visulation mark1 Coverage Results" MODIFIED="1547433520635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
   </component>
   <component name="FileEditorManager">
@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/visulation mark1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="631">
-              <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+            <state relative-caret-position="663">
+              <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -40,7 +40,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/bar teast.gcode">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="926">
+            <state relative-caret-position="109565">
               <caret line="6445" column="33" selection-start-line="6445" selection-end-line="6446" />
             </state>
           </provider>
@@ -49,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="852">
-              <caret line="268" column="12" selection-start-line="268" selection-start-column="12" selection-end-line="268" selection-end-column="12" />
+            <state relative-caret-position="4505">
+              <caret line="265" column="12" selection-start-line="265" selection-start-column="12" selection-end-line="265" selection-end-column="12" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -58,13 +58,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+            <state relative-caret-position="872">
+              <caret line="234" selection-start-line="234" selection-end-line="234" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#748#2820#0" />
               </folding>
             </state>
           </provider>
@@ -75,11 +76,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="10" />
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="e#48#66#0" expanded="true" />
               </folding>
@@ -127,8 +128,8 @@
         <option value="$PROJECT_DIR$/model_to_point_cloud/temp.py" />
         <option value="$USER_HOME$/Downloads/scatter3d_demo.py" />
         <option value="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" />
-        <option value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" />
         <option value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py" />
+        <option value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" />
       </list>
     </option>
   </component>
@@ -142,6 +143,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,7 +165,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -194,7 +195,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.g_code_to_point_cloud_clean">
+  <component name="RunManager" selected="Python.point_cloud-veuw">
     <configuration name="g_code_to_point_cloud" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -307,9 +308,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.point_cloud-veuw" />
         <item itemvalue="Python.g_code_to_point_cloud_clean" />
         <item itemvalue="Python.g_code_to_point_cloud" />
-        <item itemvalue="Python.point_cloud-veuw" />
         <item itemvalue="Python.scatter3d_demo" />
         <item itemvalue="Python.temp" />
       </list>
@@ -334,16 +335,17 @@
       <workItem from="1548657072323" duration="2489000" />
       <workItem from="1548982061731" duration="6987000" />
       <workItem from="1548990096272" duration="2270000" />
+      <workItem from="1549064420388" duration="1080000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29504000" />
+    <option name="totallyTimeSpent" value="30584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2884927" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29335493" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -427,28 +429,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py</url>
-          <line>265</line>
+          <line>262</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py</url>
-          <line>125</line>
+          <line>122</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py</url>
-          <line>80</line>
+          <line>77</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py</url>
-          <line>62</line>
+          <line>61</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py</url>
-          <line>253</line>
-          <option name="timeStamp" value="30" />
+          <line>245</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py</url>
+          <line>121</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py</url>
+          <line>78</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -502,6 +519,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/visulation mark1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/bar teast.gcode">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109565">
+          <caret line="6445" column="33" selection-start-line="6445" selection-end-line="6446" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud_out.xyz">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$USER_HOME$/Downloads/scatter3d_demo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -512,40 +549,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/bar teast.gcode">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="926">
-          <caret line="6445" column="33" selection-start-line="6445" selection-end-line="6446" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud_out.xyz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="10" />
-          <folding>
-            <element signature="e#48#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/g-code/g_code_vislarre.py/visulation mark1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-          <folding>
-            <element signature="e#1#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="852">
-          <caret line="268" column="12" selection-start-line="268" selection-start-column="12" selection-end-line="268" selection-end-column="12" />
+        <state relative-caret-position="4505">
+          <caret line="265" column="12" selection-start-line="265" selection-start-column="12" selection-end-line="265" selection-end-column="12" />
           <folding>
             <element signature="e#1#12#0" expanded="true" />
           </folding>
@@ -554,10 +561,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+        <state relative-caret-position="872">
+          <caret line="234" selection-start-line="234" selection-end-line="234" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#748#2820#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#48#66#0" expanded="true" />
           </folding>
         </state>
       </provider>

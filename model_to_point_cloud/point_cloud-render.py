@@ -5,12 +5,23 @@ from open3d  import *
 
 if __name__ == "__main__":
 
-    print("Load a ply point cloud, print it, and render it")
-    pcd = read_point_cloud("point_cloud_out_old_working.xyz")
-    print(pcd)
-    print(np.asarray(pcd.points))
-    draw_geometries([pcd])
+    try:
+        print("Load a ply point cloud, print it, and render it")
+        pcd = read_point_cloud("point_cloud_out_old_working.xyz")
+        print(pcd)
+        print(np.asarray(pcd.points))
+        draw_geometries([pcd])
+    except:
+        print("error in block 1")
 
+    try:
+        print("Load a ply point cloud, print it, and render it")
+        pcd = read_point_cloud("point_cloud_out_new_not_working.xyz")
+        print(pcd)
+        print(np.asarray(pcd.points))
+        draw_geometries([pcd])
+    except:
+        print("error in block 1")
 
     print("Downsample the point cloud with a voxel of 0.05")
     downpcd = voxel_down_sample(pcd, voxel_size = 0.05)

@@ -45,7 +45,7 @@ class g_code_send:
             if not out=="":
 
 
-                #SPLEIALC CHAR DONE COUNT AS ARRAY POSTIONS
+                #SPLEIALC CHAR do not  COUNT AS ARRAY POSTIONS
 
                 if out[-1]==" ":
                     out=out[0:-1]
