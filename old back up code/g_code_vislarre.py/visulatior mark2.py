@@ -12,8 +12,8 @@ file=open("bar teast.gcode","r")
 g_code=file.readlines()
 
 
-x_old=0
-y_old=0
+x_old=-1
+y_old=-1
 
 for g_code_lines in  g_code:
 
@@ -35,13 +35,29 @@ for g_code_lines in  g_code:
     x_point=-1
     y_point=-1
     for q in line_breack:
+        if len(q)<1:
+            continue
         if q[0]=="X":
             x_point=q[1:]
         if q[0]=="Y":
             y_point=q[1:]
 
-    if x_point==-1 or y_point==-1:
+
+#here to make skip a line if no x vaule is found
+    # here to remove the end line command the switch the print move mode the relitive and move the -20 ,-20
+
+    if float(x_point)<0 or float(y_point)<0:
         continue
+
+
+
+
+# to slove the cold start promble and remove the line from 0,0
+    if x_old==-1 or y_old==-1:
+        x_old = x_point
+        y_old = y_point
+        continue
+
 
 
     pt1 = Point(x_old,y_old)
