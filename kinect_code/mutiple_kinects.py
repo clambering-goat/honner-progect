@@ -5,33 +5,6 @@ if your system can't handle it (will get very low FPS but it should work).
 This will keep trying indeces until it finds one that doesn't work, then it
 starts from 0.
 """
-<<<<<<< HEAD
-import freenect
-import cv2 as cv
-import frame_convert
-
-
-ind = 1
-print('%s\nPress ESC to stop' % __doc__)
-
-
-while 1:
-    print(ind)
-    try:
-	(freenect.sync_get_depth(0)[0])
-	print("got file 1")
-    except TypeError:
-
-	print("faile to get data from 1 ")
-    freenect.sync_stop()
-    try:
-	(freenect.sync_get_depth(1)[0])
-	print("got file 2")
-    except TypeError:
-
-	print("faile to get data from 2 ")
-    freenect.sync_stop()
-=======
 
 
 import freenect
@@ -65,5 +38,4 @@ while 1:
     cv2.imshow('Video', video)
     if cv2.waitKey(10) == 27:
         break
->>>>>>> bd71dfc6d0ad9d3b9e214a4da72f9b5d45b09cee
     #freenect.sync_stop()  # NOTE: Uncomment if your machine can't handle it
