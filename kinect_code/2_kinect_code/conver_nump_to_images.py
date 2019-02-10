@@ -14,4 +14,6 @@ for q in os.listdir("./"):
         print(q)
         image=np.load(q)
         name=q[:-4]+"_image.png"
+        image=(image,cv2.COLOR_GRAY2RGB)
+        image = image.astype(np.uint8)
         cv2.imwrite(name,image)
