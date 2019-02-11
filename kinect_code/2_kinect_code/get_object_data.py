@@ -1,7 +1,7 @@
 
 
 
-#the opbebes is about 15cm from center
+#the object edge  is about 15cm from center
 import numpy as np
 import cv2
 import os

@@ -12,7 +12,7 @@ def big_swap(v1,v2):
     return(v1,v2)
 
 
-v1,v2=big_swap(600,500)
+v1,v2=big_swap(-50,500)
 
 for q in range (v1,v2):
     print(q)
