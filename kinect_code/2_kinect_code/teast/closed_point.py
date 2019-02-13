@@ -1,5 +1,5 @@
 import numpy as np
-import cv2
+
 import os
 
 list_of_vaule=[]
@@ -21,7 +21,7 @@ for q in os.listdir("./"):
                     d2d_to_1d.append(x)
                     #print(x)
                     if vaule>x:# and x>10:
-                        print("new vaule given ",x)
+                        #print("new vaule given ",x)
                         vaule=x
                     if not x in list_of_vaule:
                         list_of_vaule.append(x)
@@ -33,11 +33,23 @@ for q in os.listdir("./"):
 
 
             list_of_vaule=sorted(list_of_vaule)
-
+            groups=[]
+            member_count=50
+            avarge=0
             for vaule_found in list_of_vaule:
-                print(vaule_found,d2d_to_1d.count(vaule_found))
+                #print(vaule_found,d2d_to_1d.count(vaule_found)
+                avarge=avarge+d2d_to_1d.count(vaule_found)
+            print("pre devid avarge ",avarge)
+            avarge=avarge/ 255
+            for vaule_found in list_of_vaule:
 
+                if d2d_to_1d.count(vaule_found)>avarge:
+                    groups.append(vaule_found)
 
+            print(" ")
+            print("group with move than ",avarge ," members ")
+            for q in groups:
+                print(q)
             # print(type(image))
             # name=q[:-4]+"_image.png"
             # #image=(image,cv2.COLOR_GRAY2RGB)

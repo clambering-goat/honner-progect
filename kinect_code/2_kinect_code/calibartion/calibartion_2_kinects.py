@@ -97,7 +97,7 @@ def scan_for_object(sensor_to_use):
 
             if vaule_from_scan>last_scan_vaule+error_to_accept or  vaule_from_scan<last_scan_vaule-error_to_accept:
                 max_up=point_to_look_at-1
-                print("set max_right to ", max_up,"with vaule ",last_scan_vaule)
+                print("set max_up to ", max_up,"with vaule ",last_scan_vaule)
                 print("vaule of next point", vaule_from_scan)
                 print()
                 break
@@ -122,7 +122,8 @@ def scan_for_object(sensor_to_use):
 
             if vaule_from_scan>last_scan_vaule+error_to_accept or  vaule_from_scan<last_scan_vaule-error_to_accept:
                 max_right=point_to_look_at-1
-                print("set max_up to ",max_right,"with vaule ",last_scan_vaule)
+
+                print("set max_right to ",max_right,"with vaule ",last_scan_vaule)
                 print("vaule of next point", vaule_from_scan)
                 print()
                 break
@@ -135,10 +136,10 @@ def scan_for_object(sensor_to_use):
         for scan_vaule in range(200):
             point_to_look_at=start_point-scan_vaule
             vaule_from_scan=sensor_depth[constant_scan][point_to_look_at]
-
+            print(last_scan_vaule)
             if vaule_from_scan>last_scan_vaule+error_to_accept or  vaule_from_scan<last_scan_vaule-error_to_accept:
                 max_left=point_to_look_at+1
-                print("set max_down to ",max_left,"with vaule ",last_scan_vaule)
+                print("set max_left to ",max_left,"with vaule ",last_scan_vaule)
                 print("vaule of next point", vaule_from_scan)
                 print()
                 break
@@ -191,7 +192,7 @@ print("object y range sensor 1",sensor_1_object_y_range)
 print("object x range sensor 2",sensor_2_object_x_range)
 print("object y range sensor 2",sensor_2_object_y_range)
 
-#grafic_veiw()
+grafic_veiw()
 
 
 
@@ -203,7 +204,7 @@ def get_angle_to_target_x_axies(sensor_object,sensor):
     for q in range(sensor_object[0],sensor_object[1]):
 
         temp.append(q)
-        print((sensor[1][mid_y][q]))
+        #print((sensor[1][mid_y][q]))
         point_in_sacn.append(sensor[1][mid_y][q])
 
 
@@ -229,7 +230,7 @@ def get_angle_to_target_y_axies(sensor_object,sensor):
 
 
         temp.append(q)
-        print("adding vauel main ",sensor[1][q][mid_x])
+        #print("adding vauel main ",sensor[1][q][mid_x])
         point_in_sacn.append(sensor[1][q][mid_x])
 
 
