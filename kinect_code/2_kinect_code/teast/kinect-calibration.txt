@@ -1,8 +1,8 @@
 sensor 1
-angle_x -1.80251097477 y intercept 77.18870729265835
-angle_y 5.50922018396 y intercept 42.2930340599087
+angle_x 6.01683623121e-15 y intercept 254.99999999999997
+angle_y 1.56565632874e-14 y intercept 254.99999999999991
 depth_vaule 67
 sensor 2
-angle_x 0.0 y intercept 0.0
-angle_y -4.24645798864 y intercept 149.22708456534616
-depth_vaule 158
+angle_x 2.85256688709e-14 y intercept 254.99999999999986
+angle_y 2.21041801682e-13 y intercept 254.99999999999886
+depth_vaule 112
