@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1980cbc0-be3a-49e3-ba1a-c65fbd450f44" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion_2_kinects.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py" beforeDir="false" afterPath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/depth1.npy" beforeDir="false" afterPath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/depth1.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/kinect-calibration.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/kinect-calibration.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/depth1.npy" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +50,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="136">
               <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
             </state>
           </provider>
@@ -57,13 +59,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="288" column="49" selection-start-line="288" selection-start-column="49" selection-end-line="288" selection-end-column="49" />
+            <state relative-caret-position="759">
+              <caret line="191" column="56" lean-forward="true" selection-start-line="191" selection-start-column="56" selection-end-line="191" selection-end-column="56" />
               <folding>
                 <element signature="e#2#20#0" expanded="true" />
-                <element signature="e#3741#4324#0" />
                 <element signature="e#4882#5512#0" />
-                <element signature="e#5542#6174#0" />
               </folding>
             </state>
           </provider>
@@ -108,7 +108,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1273" />
+    <option name="x" value="420" />
+    <option name="y" value="716" />
     <option name="width" value="1294" />
     <option name="height" value="1407" />
   </component>
@@ -138,6 +139,13 @@
             <path>
               <item name="honner-progect" type="b2602c69:ProjectViewProjectNode" />
               <item name="honner-progect" type="462c0819:PsiDirectoryNode" />
+              <item name="kinect_code" type="462c0819:PsiDirectoryNode" />
+              <item name="2_kinect_code" type="462c0819:PsiDirectoryNode" />
+              <item name="calibartion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="honner-progect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="honner-progect" type="462c0819:PsiDirectoryNode" />
               <item name="openni teasting" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -155,12 +163,13 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\back up\Documents\GitHub\honner-progect\model_to_point_cloud" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\back up\Documents\GitHub\honner-progect\model_to_point_cloud" />
       <recent name="C:\Users\cameron\Documents\GitHub\back up\honner-progect\g-code\g_code_vislarre.py" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\back up\Documents\GitHub\honner-progect\kinect_code\2_kinect_code\calibartion" />
+      <recent name="C:\Users\back up\Documents\GitHub\honner-progect\model_to_point_cloud" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -347,16 +356,17 @@
       <workItem from="1549908298274" duration="1709000" />
       <workItem from="1549912791288" duration="5419000" />
       <workItem from="1549928609535" duration="8622000" />
+      <workItem from="1550104658253" duration="652000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63534000" />
+    <option name="totallyTimeSpent" value="64186000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1273" y="0" width="1294" height="1407" extended-state="0" />
+    <frame x="420" y="716" width="1294" height="1407" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07212318" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.541329" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -369,16 +379,16 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.1815235" side_tool="true" visible="true" weight="0.21428572" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.18233387" side_tool="true" visible="true" weight="0.52904236" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32967034" />
-      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.8184765" weight="0.21428572" />
-      <window_info anchor="right" id="Coverage" sideWeight="0.5019802" side_tool="true" weight="0.32949126" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.8176661" visible="true" weight="0.52904236" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.48708922" weight="0.2591415" />
-      <window_info anchor="right" id="Database" order="4" sideWeight="0.4985015" weight="0.671799" />
-      <window_info anchor="right" x="0" y="0" width="273" height="1207" id="Documentation" order="5" sideWeight="0.5014985" side_tool="true" weight="0.671799" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.48604268" visible="true" weight="0.43354943" />
+      <window_info anchor="right" id="Database" order="4" sideWeight="0.49753696" weight="0.6665342" />
+      <window_info anchor="right" x="0" y="0" width="273" height="1207" id="Documentation" order="5" sideWeight="0.5139573" side_tool="true" weight="0.2591415" />
+      <window_info anchor="right" id="Coverage" order="6" sideWeight="0.5019802" side_tool="true" weight="0.32949126" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10810811" />
@@ -578,20 +588,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="136">
           <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="288" column="49" selection-start-line="288" selection-start-column="49" selection-end-line="288" selection-end-column="49" />
+        <state relative-caret-position="759">
+          <caret line="191" column="56" lean-forward="true" selection-start-line="191" selection-start-column="56" selection-end-line="191" selection-end-column="56" />
           <folding>
             <element signature="e#2#20#0" expanded="true" />
-            <element signature="e#3741#4324#0" />
             <element signature="e#4882#5512#0" />
-            <element signature="e#5542#6174#0" />
           </folding>
         </state>
       </provider>

@@ -191,7 +191,7 @@ print("object y range sensor 1",sensor_1_object_y_range)
 print("object x range sensor 2",sensor_2_object_x_range)
 print("object y range sensor 2",sensor_2_object_y_range)
 
-#grafic_veiw()
+grafic_veiw()
 
 
 
