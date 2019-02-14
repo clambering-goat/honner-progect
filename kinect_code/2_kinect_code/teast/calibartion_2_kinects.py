@@ -18,6 +18,7 @@ for q in os.listdir("./"):
         if q[0]=="c":
             image_data.append(data)
         if q[0]=="d":
+            print("file loading ",q)
             depth_data.append(data)
 
 
@@ -122,7 +123,6 @@ def scan_for_object(sensor_to_use):
 
             if vaule_from_scan>last_scan_vaule+error_to_accept or  vaule_from_scan<last_scan_vaule-error_to_accept:
                 max_right=point_to_look_at-1
-
                 print("set max_right to ",max_right,"with vaule ",last_scan_vaule)
                 print("vaule of next point", vaule_from_scan)
                 print()
@@ -136,7 +136,7 @@ def scan_for_object(sensor_to_use):
         for scan_vaule in range(200):
             point_to_look_at=start_point-scan_vaule
             vaule_from_scan=sensor_depth[constant_scan][point_to_look_at]
-            print(last_scan_vaule)
+
             if vaule_from_scan>last_scan_vaule+error_to_accept or  vaule_from_scan<last_scan_vaule-error_to_accept:
                 max_left=point_to_look_at+1
                 print("set max_left to ",max_left,"with vaule ",last_scan_vaule)
@@ -159,18 +159,20 @@ def scan_for_object(sensor_to_use):
 
 
 def grafic_veiw():
-    cv2.line(sensor_1[1],(mid_x,sensor_1_object_y_range[0]),(mid_x,sensor_1_object_y_range[1]),(125,0,125),5)
-    cv2.line(sensor_1[1],(sensor_1_object_x_range[0],mid_y),(sensor_1_object_x_range[1],mid_y),(125,0,125),5)
+    line_clour=(255,255,255)
+    cv2.line(sensor_1[1],(mid_x,sensor_1_object_y_range[0]),(mid_x,sensor_1_object_y_range[1]),line_clour,5)
+    cv2.line(sensor_1[1],(sensor_1_object_x_range[0],mid_y),(sensor_1_object_x_range[1],mid_y),line_clour,5)
 
     cv2.imshow('image',sensor_1[1])
     cv2.waitKey(0)
 
 
 
-    cv2.line(sensor_2[1],(mid_x,sensor_2_object_y_range[0]),(mid_x,sensor_2_object_y_range[1]),(125,0,125),5)
-    cv2.line(sensor_2[1],(sensor_2_object_x_range[0],mid_y),(sensor_2_object_x_range[1],mid_y),(125,0,125),5)
+    cv2.line(sensor_2[1],(mid_x,sensor_2_object_y_range[0]),(mid_x,sensor_2_object_y_range[1]),line_clour,5)
+    cv2.line(sensor_2[1],(sensor_2_object_x_range[0],mid_y),(sensor_2_object_x_range[1],mid_y),line_clour,5)
+    print("line for senor 2 ",(sensor_2_object_x_range[0],mid_y),(sensor_2_object_x_range[1],mid_y))
 
-    cv2.imshow('image',sensor_2[1])
+    cv2.imshow('image2',sensor_2[1])
     cv2.waitKey(0)
 
 
@@ -204,7 +206,7 @@ def get_angle_to_target_x_axies(sensor_object,sensor):
     for q in range(sensor_object[0],sensor_object[1]):
 
         temp.append(q)
-        #print((sensor[1][mid_y][q]))
+
         point_in_sacn.append(sensor[1][mid_y][q])
 
 
@@ -320,4 +322,3 @@ file.write(data)
 
 
 file.close()
-
