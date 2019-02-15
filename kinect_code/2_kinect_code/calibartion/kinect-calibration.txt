@@ -1,5 +1,4 @@
-sensor 1
-<<<<<<< HEAD
+
 angle_x 2.13942516532084e-14 y intercept 124.99999999999989
 angle_y 7.073337653817039e-14 y intercept 124.99999999999964
 depth_vaule 112
