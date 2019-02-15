@@ -29,7 +29,7 @@ class kinect_claibration():
         print("size of the y_axies is ", self.y_axies_size)
         print(" ")
 
-        self.size_of_error_to_acept=10
+        self.size_of_error_to_acept=5
         print("size_of_error_to_acept",self.size_of_error_to_acept)
         print(" ")
 
@@ -343,7 +343,7 @@ class kinect_claibration():
         return()
 
 
-temp=kinect_claibration("depth1.npy")
+temp=kinect_claibration("numpyarray.npy")
 temp.point_selection()
 temp.scan_around_point()
 temp.calulat_rotation()
