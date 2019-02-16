@@ -46,4 +46,4 @@ while 1:
     name="clouer_image"+str(ind)
     np.save(name,array)
 
-    #freenect.sync_stop()  # NOTE: Uncomment if your machine can't handle it
+    freenect.sync_stop()  # NOTE: Uncomment if your machine can't handle it
