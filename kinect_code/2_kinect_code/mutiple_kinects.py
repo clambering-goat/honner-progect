@@ -15,7 +15,7 @@ import numpy as np
 ind = 0
 print('%s\nPress ESC to stop' % __doc__)
 
-
+print("device fond ",len(freenect.sync_get_depth(ind)))
 def get_depth(ind):
     return (freenect.sync_get_depth(ind)[0])
 
@@ -28,7 +28,10 @@ while 1:
     if ind ==2:
         break
     print(ind)
+    freenect.init()
+    #freenect.start_video()
     try:
+
         depth = get_depth(ind)
         video = get_video(ind)
 
