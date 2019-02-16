@@ -9,7 +9,7 @@ starts from 0.
 
 import freenect
 import cv2
-import frame_convert2
+#import frame_convert2
 import numpy as np
 
 ind = 0
