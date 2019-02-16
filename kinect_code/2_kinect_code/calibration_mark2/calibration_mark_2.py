@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import os
-from  math import tan ,degrees
+from  math import tan ,degrees,radians,sin,cos
 
 
 
@@ -341,6 +341,28 @@ class kinect_claibration():
 
         print(" ")
         return()
+
+
+
+    def point_move_x(self):
+        angle = self.x_rotation
+        angle = radians(angle)
+        s = sin(angle)
+        c = cos(angle)
+
+
+        y_count=-1
+        for l1 in self.file_data :
+            y_count+=1
+            x_count = -1
+            for l2 in l1:
+                x_count+=1
+            x =x_count
+            y =l2
+
+            # math from roation
+            x1 = (x * c) - (y * s)
+            y1 = (x * s) + (y * c)
 
 
 temp=kinect_claibration("numpyarray.npy")
