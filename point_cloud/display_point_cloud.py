@@ -32,8 +32,8 @@ else:
 file_to_load=list_of_point_cloud_found[choise]
 try:
     pcd = read_point_cloud(file_to_load)
-    print(pcd)
-    print(np.asarray(pcd.points))
+    #print(pcd)
+    #print(np.asarray(pcd.points))
     draw_geometries([pcd])
 except:
     print("error in block 1")
