@@ -365,7 +365,7 @@ class kinect_claibration():
             y1 = (x * s) + (y * c)
 
 
-temp=kinect_claibration("numpyarray.npy")
+temp=kinect_claibration("depth2.npy")
 temp.point_selection()
 temp.scan_around_point()
 temp.calulat_rotation()
