@@ -2,7 +2,7 @@ import numpy as np
 
 from math import radians,sin,cos
 import os
-from open3d import *
+from open3d import  *
 file_working_with="calibration_depth1"
 class converter():
     def __init__(self,idex_to_use=0,set_position_angle=0):
@@ -105,9 +105,9 @@ class converter():
         c = cos(angle)
         count=-1
         v1=len(self.point_could_data)
-        v2=len(self.point_could_data[0])
-        print("vaul;e ",v1,v2)
-        corected_point_could=np.zeros((v1*v2,3))
+
+        print("vaul;e ",v1)
+        corected_point_could=np.zeros((v1,3))
         for l1 in self.point_could_data:
             x,y,z=l1
             count+=1
@@ -127,32 +127,42 @@ class converter():
                 y1=(x*s)+(y*c)
                 z1=z
 
-            corected_point_could[count]=((x,y,z))
+            corected_point_could[count]=((x1,y1,z1))
 
         return(corected_point_could)
 temp=converter()
-vaule=temp.roatation(0,"x")
-print(len(vaule))
+#base line
+vaule_1=temp.roatation(0,"x")
 
-file=open("rotaion.xyz","w")
+#x rotata
+#vaule_2=temp.roatation(180,"x")
 
-
-for q in vaule:
-    data=str(q[0])+" "+str(q[1])+" "+str(q[2])+"\n"
-    file.write(data)
-
+#y roat
+vaule_2=temp.roatation(180,"y")
 
 
-for q in temp.point_could_data:
-    data=str(q[0])+" "+str(q[1])+" "+str(q[2])+"\n"
-    file.write(data)
+
+v1=len(vaule_1)+len(vaule_2)
+vaule_to_render=np.zeros((v1,3))
+
+for q in range(len(vaule_1)-1):
+    vaule_to_render[q]=vaule_1[q]
+
+for q in range(len(vaule_2)-1):
+    count=q+len(vaule_1)
+    vaule_to_render[count]=vaule_2[q]
+
 
 
 #numpy to array
+
 pcd = PointCloud()
-pcd.points = Vector3dVector(vaule)
-
-draw_geometries([pcd])
+pcd.points = Vector3dVector(vaule_to_render)
 
 
-file.close()
+mesh_frame = create_mesh_coordinate_frame(size=50, origin=[0, 0, 0])
+
+draw_geometries([mesh_frame,pcd])
+
+#draw_geometries([mesh_frame])
+

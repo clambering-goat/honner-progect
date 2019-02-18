@@ -1,36 +1,42 @@
-import copy
+# examples/Python/Tutorial/Basic/visualization.py
+
 import numpy as np
 from open3d import *
 
 if __name__ == "__main__":
+    #
+    # print("Load a ply point cloud, print it, and render it")
+    # pcd = read_point_cloud("../../TestData/fragment.ply")
+    # draw_geometries([pcd])
 
-    # generate some neat n times 3 matrix using a variant of sync function
-    x = np.linspace(-3, 3, 401)
-    mesh_x, mesh_y = np.meshgrid(x,x)
-    z = np.sinc((np.power(mesh_x,2)+np.power(mesh_y,2)))
-    z_norm = (z-z.min())/(z.max()-z.min())
-    xyz = np.zeros((np.size(mesh_x),3))
-    xyz[:,0] = np.reshape(mesh_x,-1)
-    xyz[:,1] = np.reshape(mesh_y,-1)
-    xyz[:,2] = np.reshape(z_norm,-1)
-    print('xyz')
-    print(xyz)
+    print("Let\'s draw some primitives")
+    # mesh_box = create_mesh_box(width = 1.0, height = 1.0, depth = 1.0)
+    # mesh_box.compute_vertex_normals()
+    # mesh_box.paint_uniform_color([0.9, 0.1, 0.1])
+    # mesh_sphere = create_mesh_sphere(radius = 1.0)
+    # mesh_sphere.compute_vertex_normals()
+    # mesh_sphere.paint_uniform_color([0.1, 0.1, 0.7])
+    # mesh_cylinder = create_mesh_cylinder(radius = 0.3, height = 4.0)
+    # mesh_cylinder.compute_vertex_normals()
+    # mesh_cylinder.paint_uniform_color([0.1, 0.9, 0.1])
+    mesh_frame = create_mesh_coordinate_frame(size = 0.6, origin = [-2, -2, -2])
 
-    # Pass xyz to Open3D.PointCloud and visualize
-    pcd = PointCloud()
-    pcd.points = Vector3dVector(xyz)
-    write_point_cloud("./sync.ply", pcd)
+    print("We draw a few primitives using collection.")
+    #draw_geometries([mesh_box, mesh_sphere, mesh_cylinder, mesh_frame])
 
-    # Load saved point cloud and visualize it
-    pcd_load = read_point_cloud("./sync.ply")
-    draw_geometries([pcd_load])
-
-    # convert Open3D.PointCloud to numpy array
-    xyz_load = np.asarray(pcd_load.points)
-    print('xyz_load')
-    print(xyz_load)
-
-    # save z_norm as an image (change [0,1] range to [0,255] range with uint8 type)
-    img = Image((z_norm*255).astype(np.uint8))
-    write_image("./sync.png", img)
-    draw_geometries([img])
+    draw_geometries([mesh_frame])
+    # print("We draw a few primitives using + operator of mesh.")
+    # draw_geometries([mesh_box + mesh_sphere + mesh_cylinder + mesh_frame])
+    #
+    # print("Let\'s draw a cubic using LineSet")
+    # points = [[0,0,0],[1,0,0],[0,1,0],[1,1,0],
+    #           [0,0,1],[1,0,1],[0,1,1],[1,1,1]]
+    # lines = [[0,1],[0,2],[1,3],[2,3],
+    #          [4,5],[4,6],[5,7],[6,7],
+    #          [0,4],[1,5],[2,6],[3,7]]
+    # colors = [[1, 0, 0] for i in range(len(lines))]
+    # line_set = LineSet()
+    # line_set.points = Vector3dVector(points)
+    # line_set.lines = Vector2iVector(lines)
+    # line_set.colors = Vector3dVector(colors)
+    # draw_geometries([line_set])
