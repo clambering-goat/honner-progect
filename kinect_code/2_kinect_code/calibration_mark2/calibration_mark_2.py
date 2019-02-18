@@ -17,7 +17,7 @@ class kinect_claibration():
         self.file_data=np.load(file_to_use)
 
 
-
+        self.sacn_range=300
 
         print("file loaded ",file_to_use,"\n")
 
@@ -65,14 +65,14 @@ class kinect_claibration():
             constant_scan =  self.x_point_chosen
 
             last_scan_vaule = self.file_data[self.y_point_chosen][self.x_point_chosen]
-            max_down = 0
+            max_down = -1
 
-            for loop_vaule in range(200):
+            for loop_vaule in range(self.sacn_range):
 
                 point_to_look_at = start_point - loop_vaule
                 vaule_from_scan = self.file_data[point_to_look_at][constant_scan]
 
-                if vaule_from_scan > last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan < last_scan_vaule - self.size_of_error_to_acept:
+                if vaule_from_scan >=last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan <= last_scan_vaule - self.size_of_error_to_acept:
                     max_down = point_to_look_at + 1
 
                     print("set max_down to ", max_down, "with vaule ", last_scan_vaule)
@@ -80,17 +80,19 @@ class kinect_claibration():
                     print()
                     break
                 last_scan_vaule = vaule_from_scan
-
+            if max_down==-1:
+                print("errot in down scan")
+                exit()
             last_scan_vaule = self.file_data[self.y_point_chosen][self.x_point_chosen]
 
-            max_up = 0
+            max_up = 1
 
-            for loop_vaule in range(200):
+            for loop_vaule in range(self.sacn_range):
 
                 point_to_look_at = start_point + loop_vaule
                 vaule_from_scan = self.file_data[point_to_look_at][constant_scan]
 
-                if vaule_from_scan > last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan < last_scan_vaule - self.size_of_error_to_acept:
+                if vaule_from_scan >= last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan <= last_scan_vaule - self.size_of_error_to_acept:
                     max_up = point_to_look_at - 1
                     print("set max_up to ", max_up, "with vaule ", last_scan_vaule)
                     print("vaule of next point", vaule_from_scan)
@@ -98,7 +100,9 @@ class kinect_claibration():
                     break
 
                 last_scan_vaule = vaule_from_scan
-
+            if max_up==-1:
+                print("error in up scan")
+                exit()
             return ((max_up,constant_scan),(max_down,constant_scan))
 
         def hozontail_scan():
@@ -107,16 +111,16 @@ class kinect_claibration():
             start_point = self.x_point_chosen
             constant_scan = self.y_point_chosen
             last_scan_vaule = self.file_data[self.y_point_chosen][self.x_point_chosen]
-            max_right = 0
+            max_right = -1
 
 
-            for scan_vaule in range(200):
+            for scan_vaule in range(self.sacn_range):
 
 
                 point_to_look_at = start_point + scan_vaule
                 vaule_from_scan = self.file_data[constant_scan][point_to_look_at]
 
-                if vaule_from_scan > last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan < last_scan_vaule - self.size_of_error_to_acept:
+                if vaule_from_scan >= last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan <= last_scan_vaule - self.size_of_error_to_acept:
                     max_right = point_to_look_at - 1
 
                     print("set max_right to ", max_right, "with vaule ", last_scan_vaule)
@@ -125,21 +129,23 @@ class kinect_claibration():
                     break
                 last_scan_vaule = vaule_from_scan
 
-
+            if max_right==-1:
+                print("error in right scan")
+                exit()
 
 
             last_scan_vaule = self.file_data[self.y_point_chosen][self.x_point_chosen]
-            max_left = 0
+            max_left = -1
 
 
-            for scan_vaule in range(200):
+            for scan_vaule in range(self.sacn_range):
 
 
                 point_to_look_at = start_point - scan_vaule
                 vaule_from_scan = self.file_data[constant_scan][point_to_look_at]
 
 
-                if vaule_from_scan > last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan < last_scan_vaule - self.size_of_error_to_acept:
+                if vaule_from_scan >= last_scan_vaule + self.size_of_error_to_acept or vaule_from_scan <= last_scan_vaule - self.size_of_error_to_acept:
                     max_left = point_to_look_at + 1
                     print("set max_left to ", max_left, "with vaule ", last_scan_vaule)
                     print("vaule of next point", vaule_from_scan)
@@ -148,22 +154,24 @@ class kinect_claibration():
 
                 last_scan_vaule = vaule_from_scan
 
-
+            if max_left==-1:
+                print("error in left sacn ")
+                exit()
             return ((constant_scan,max_right),(constant_scan,max_left))
 
 
-        self.y__vertiacl_scan_max_point,self.y_vertiacl_scan_min_point=vertial_scan()
+        self.vertiacl_scan_max_point, self.vertiacl_scan_min_point=vertial_scan()
 
 
 
-        self.x_horzontal_scan_max_point,self.x_horzonatl_scan_min_point=hozontail_scan()
+        self.horzontal_scan_max_point, self.horzonatl_scan_min_point=hozontail_scan()
 
 
-        print("y__vertiacl_scan_max_point ",self.y__vertiacl_scan_max_point)
-        print("y_vertiacl_scan_min_point ",self.y_vertiacl_scan_min_point)
+        print("vertiacl_scan_max_point ", self.vertiacl_scan_max_point)
+        print("vertiacl_scan_min_point ", self.vertiacl_scan_min_point)
 
-        print("x_horzontal_scan_max_point",self.x_horzontal_scan_max_point)
-        print("x_horzonatl_scan_min_point",self.x_horzonatl_scan_min_point)
+        print("horzontal_scan_max_point", self.horzontal_scan_max_point)
+        print("horzonatl_scan_min_point", self.horzonatl_scan_min_point)
         print("")
 
 
@@ -178,8 +186,8 @@ class kinect_claibration():
         def swap(vaue):
             return((vaue[1],vaue[0]))
 
-        cv2.line(image_of_point_slection, swap(self.x_horzonatl_scan_min_point), swap(self.x_horzontal_scan_max_point), line_coloer,5)
-        cv2.line(image_of_point_slection, swap(self.y_vertiacl_scan_min_point),swap(self.y__vertiacl_scan_max_point), line_coloer,5)
+        cv2.line(image_of_point_slection, swap(self.horzonatl_scan_min_point), swap(self.horzontal_scan_max_point), line_coloer, 5)
+        cv2.line(image_of_point_slection, swap(self.vertiacl_scan_min_point), swap(self.vertiacl_scan_max_point), line_coloer, 5)
 
 
         cv2.imshow('image',image_of_point_slection)
@@ -194,17 +202,17 @@ class kinect_claibration():
 
         def x_rotation():
             print("caulationthe x rotation ")
-            if self.x_horzontal_scan_max_point[0] != self.x_horzonatl_scan_min_point[0]:
+            if self.horzontal_scan_max_point[0] != self.horzonatl_scan_min_point[0]:
                 print("error the the line looking along ")
                 exit()
             list_of_points = []
             filer_axies=[]
 
-            for l1 in range(self.x_horzonatl_scan_min_point[1],self.x_horzontal_scan_max_point[1]):
+            for l1 in range(self.horzonatl_scan_min_point[1], self.horzontal_scan_max_point[1]):
 
 
 
-                vaule_from_line=self.file_data[self.x_horzonatl_scan_min_point[0]][l1]
+                vaule_from_line=self.file_data[self.horzonatl_scan_min_point[0]][l1]
 
                 list_of_points.append(vaule_from_line)
                 filer_axies.append(l1)
@@ -220,17 +228,17 @@ class kinect_claibration():
 
         def y_rotation():
             print("caulating the y rotation ")
-            if self.y__vertiacl_scan_max_point[1] != self.y_vertiacl_scan_min_point[1]:
+            if self.vertiacl_scan_max_point[1] != self.vertiacl_scan_min_point[1]:
                 print("error the the line looking along ")
                 exit()
             list_of_points = []
             filer_axies=[]
 
-            for l1 in range(self.y_vertiacl_scan_min_point[0],self.y__vertiacl_scan_max_point[0]):
+            for l1 in range(self.vertiacl_scan_min_point[0], self.vertiacl_scan_max_point[0]):
 
 
 
-                vaule_from_line=self.file_data[self.y_vertiacl_scan_min_point[1]][l1]
+                vaule_from_line=self.file_data[self.vertiacl_scan_min_point[1]][l1]
 
                 list_of_points.append(vaule_from_line)
                 filer_axies.append(l1)
@@ -278,7 +286,11 @@ class kinect_claibration():
         print("min vaule found on line is ", y_min_vaule_found)
         print(" ")
 
-    def point_selection(self):
+    def point_selection(self,point_to_use="nothing"):
+
+        if point_to_use !="nothing":
+            self.y_point_chosen,self.x_point_chosen, =point_to_use
+            return()
         print("start point select")
         print("double left clik to slect point")
         print("doule right click to get the point vaule ")
@@ -344,29 +356,45 @@ class kinect_claibration():
 
 
 
-    def point_move_x(self):
-        angle = self.x_rotation
-        angle = radians(angle)
-        s = sin(angle)
-        c = cos(angle)
+    def save_config(self):
+        print("saving data")
+        name=self.file_name.split(".")
+        name=name[0]
+        file=open("calibration_"+name,"w")
+        print("fiel name is ","calibration_" +name)
+        data="y rotation "+str(self.y_rotation)+"\n"
+        file.write(data)
+
+        data="y displacment "+str(self.y_c_displcment)+"\n"
+        file.write(data)
+
+        data = "x rotation "+ str(self.x_rotation)+"\n"
+        file.write(data)
+
+        data = "x displacment "+ str(self.x_c_displamnet)+"\n"
+        file.write(data)
+
+        data = "horzonatl_scan_min_point " + str(self.horzonatl_scan_min_point[0])+" "+str(self.horzonatl_scan_min_point[1]) + "\n"
+        file.write(data)
 
 
-        y_count=-1
-        for l1 in self.file_data :
-            y_count+=1
-            x_count = -1
-            for l2 in l1:
-                x_count+=1
-            x =x_count
-            y =l2
-
-            # math from roation
-            x1 = (x * c) - (y * s)
-            y1 = (x * s) + (y * c)
+        data = "horzontal_scan_max_point " + str(self.horzontal_scan_max_point[0])+" "+ str(self.horzontal_scan_max_point[1]) + "\n"
+        file.write(data)
 
 
-temp=kinect_claibration("depth2.npy")
-temp.point_selection()
+        data = "vertiacl_scan_min_point " + str(self.vertiacl_scan_min_point[0])+" "+str(self.vertiacl_scan_min_point[1]) + "\n"
+        file.write(data)
+
+
+        data = "vertiacl_scan_max_point " + str(self.vertiacl_scan_max_point[0])+" "+str(self.vertiacl_scan_max_point[1]) + "\n"
+        file.write(data)
+        file.close()
+
+temp=kinect_claibration("depth1.npy")
+#temp.point_selection()
+temp.point_selection((164,303))
 temp.scan_around_point()
-temp.calulat_rotation()
+
 temp.grafic_display_of_bonds()
+temp.calulat_rotation()
+temp.save_config()
