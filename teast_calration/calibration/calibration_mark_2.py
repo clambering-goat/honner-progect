@@ -390,9 +390,9 @@ class kinect_claibration():
         file.write(data)
         file.close()
 
-temp=kinect_claibration("depth1.npy")
+temp=kinect_claibration("depth2.npy")
 #temp.point_selection()
-temp.point_selection((164,303))
+temp.point_selection()
 temp.scan_around_point()
 
 temp.grafic_display_of_bonds()
