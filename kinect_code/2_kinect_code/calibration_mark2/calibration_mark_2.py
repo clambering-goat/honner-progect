@@ -365,13 +365,13 @@ class kinect_claibration():
         data="y rotation "+str(self.y_rotation)+"\n"
         file.write(data)
 
-        data="y displacment "+str(self.y_c_displcment)+"\n"
+        data="y_ydisplacment "+str(self.y_c_displcment)+"\n"
         file.write(data)
 
-        data = "x rotation "+ str(self.x_rotation)+"\n"
+        data = "x_rotation "+ str(self.x_rotation)+"\n"
         file.write(data)
 
-        data = "x displacment "+ str(self.x_c_displamnet)+"\n"
+        data = "x_displacment "+ str(self.x_c_displamnet)+"\n"
         file.write(data)
 
         data = "horzonatl_scan_min_point " + str(self.horzonatl_scan_min_point[0])+" "+str(self.horzonatl_scan_min_point[1]) + "\n"
