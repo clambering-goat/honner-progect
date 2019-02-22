@@ -1,23 +1,24 @@
 
 import freenect
-import numpy
+import numpy as np
+
 import time
-mdev = freenect.open_device(freenect.init(), 0)
-freenect.set_depth_mode(mdev, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_REGISTERED)
-
-
-count=0
 
 
 
-def get_depth(dev,depth,time_stamp):
-    array=depth
-    global count
-    numpy.save(str(count),array)
-    count+=1
-    time.sleep(60)
-    print(len(array),len(array[0]))
+try:
+    #mdev = freenect.open_device(freenect.init(), 0)
+    #freenect.set_depth_mode(mdev, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_REGISTERED)
+    while 1:
 
-freenect.runloop(dev=mdev,depth=get_depth)
 
-print("done")
+        data=freenect.sync_get_depth()
+
+        
+        for q in data:
+            print(type(q))
+
+        print(data[1])
+
+except Exception as e:
+    print(e)
