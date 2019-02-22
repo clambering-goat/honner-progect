@@ -3,11 +3,13 @@ import freenect
 import numpy
 import time
 import cv2
-mdev = freenect.open_device(freenect.init(), 0)
+
+int=freenect.init()
+mdev = freenect.open_device(int, 0)
 freenect.set_depth_mode(mdev, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_REGISTERED)
 
 
-mdev2 = freenect.open_device(freenect.init(), 1)
+mdev2 = freenect.open_device(int, 1)
 freenect.set_depth_mode(mdev2, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_REGISTERED)
 
 count=0
