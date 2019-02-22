@@ -12,8 +12,10 @@ for files in os.listdir():
         list_of_point_cloud_found.append(files)
 
 print("list_of_point_cloud_found")
+count=0
 for point_cloud_found in list_of_point_cloud_found:
-    print("1 ",point_cloud_found)
+    count=count+1
+    print(count," ",point_cloud_found)
 
 
 

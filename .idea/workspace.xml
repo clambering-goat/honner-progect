@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1980cbc0-be3a-49e3-ba1a-c65fbd450f44" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/point_cloud/basic_rotaion.py" beforeDir="false" afterPath="$PROJECT_DIR$/point_cloud/basic_rotaion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py" beforeDir="false" afterPath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/depth1.npy" beforeDir="false" afterPath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/depth1.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/kinect-calibration.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/kinect-calibration.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kinect_code/2_kinect_code/depth1.npy" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,16 +15,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/honner_progect$line_to_cloud.coverage" NAME="line_to_cloud Coverage Results" MODIFIED="1548557592049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
-    <SUITE FILE_PATH="coverage/honner_progect$scatter3d_demo.coverage" NAME="scatter3d_demo Coverage Results" MODIFIED="1548988994109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
-    <SUITE FILE_PATH="coverage/honner_progect$temp.coverage" NAME="temp Coverage Results" MODIFIED="1548641383917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
-    <SUITE FILE_PATH="coverage/honner_progect$point_cloud_veuw.coverage" NAME="point_cloud-veuw Coverage Results" MODIFIED="1549065411318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
-    <SUITE FILE_PATH="coverage/honner_progect$visulatior_mark2.coverage" NAME="visulatior mark2 Coverage Results" MODIFIED="1548472147047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
-    <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud.coverage" NAME="g_code_to_point_cloud Coverage Results" MODIFIED="1548992229330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$display_point_cloud.coverage" NAME="display_point_cloud Coverage Results" MODIFIED="1549164412003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$basic_rotaion.coverage" NAME="basic_rotaion Coverage Results" MODIFIED="1549472907645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud_clean.coverage" NAME="g_code_to_point_cloud_clean Coverage Results" MODIFIED="1549065370625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$calibartion_2_kinects.coverage" NAME="calibartion_2_kinects Coverage Results" MODIFIED="1549944917431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion" />
+    <SUITE FILE_PATH="coverage/honner_progect$find_cent_point.coverage" NAME="find-cent_point Coverage Results" MODIFIED="1549792449077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kinect_code/2_kinect_code" />
+    <SUITE FILE_PATH="coverage/honner_progect$point_cloud_veuw.coverage" NAME="point_cloud-veuw Coverage Results" MODIFIED="1549065411318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$scatter3d_demo.coverage" NAME="scatter3d_demo Coverage Results" MODIFIED="1548988994109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
+    <SUITE FILE_PATH="coverage/honner_progect$visulatior_mark2.coverage" NAME="visulatior mark2 Coverage Results" MODIFIED="1548472147047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
+    <SUITE FILE_PATH="coverage/honner_progect$g_code_to_point_cloud.coverage" NAME="g_code_to_point_cloud Coverage Results" MODIFIED="1548992229330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$line_to_cloud.coverage" NAME="line_to_cloud Coverage Results" MODIFIED="1548557592049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
+    <SUITE FILE_PATH="coverage/honner_progect$temp.coverage" NAME="temp Coverage Results" MODIFIED="1548641383917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model_to_point_cloud" />
     <SUITE FILE_PATH="coverage/honner_progect$visulation_mark1.coverage" NAME="visulation mark1 Coverage Results" MODIFIED="1547433520635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/g-code/g_code_vislarre.py" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="592" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -39,37 +47,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py">
+        <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4199">
-              <caret line="248" selection-start-line="248" selection-end-line="248" />
+            <state relative-caret-position="136">
+              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/point_cloud/display_point_cloud.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="39" />
-              <folding>
-                <element signature="e#48#66#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/2 scan of an object/display_point_cloud.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
+=======
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/point_cloud/basic_rotaion.py">
+        <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/teast/calibartion_2_kinects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+<<<<<<< HEAD
+            <state relative-caret-position="759">
+              <caret line="191" column="56" lean-forward="true" selection-start-line="191" selection-start-column="56" selection-end-line="191" selection-end-column="56" />
+              <folding>
+                <element signature="e#2#20#0" expanded="true" />
+                <element signature="e#4882#5512#0" />
+              </folding>
+=======
+            <state relative-caret-position="-2086">
+              <caret line="178" column="27" lean-forward="true" selection-start-line="178" selection-start-column="27" selection-end-line="178" selection-end-column="27" />
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
             </state>
           </provider>
         </entry>
@@ -106,21 +109,30 @@
         <option value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" />
         <option value="$PROJECT_DIR$/teast.py" />
         <option value="$PROJECT_DIR$/point_cloud/basic_rotaion.py" />
+        <option value="$PROJECT_DIR$/kinect_code/2_kinect_code/find-cent_point.py" />
+        <option value="$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py" />
+        <option value="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1151" />
-    <option name="y" value="53" />
+<<<<<<< HEAD
+  <component name="ProjectFrameBounds">
+    <option name="x" value="420" />
+    <option name="y" value="716" />
     <option name="width" value="1294" />
     <option name="height" value="1407" />
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,7 +143,24 @@
             <path>
               <item name="honner-progect" type="b2602c69:ProjectViewProjectNode" />
               <item name="honner-progect" type="462c0819:PsiDirectoryNode" />
-              <item name="g-code" type="462c0819:PsiDirectoryNode" />
+              <item name="kinect_code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="honner-progect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="honner-progect" type="462c0819:PsiDirectoryNode" />
+              <item name="kinect_code" type="462c0819:PsiDirectoryNode" />
+              <item name="2_kinect_code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="honner-progect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="honner-progect" type="462c0819:PsiDirectoryNode" />
+              <item name="kinect_code" type="462c0819:PsiDirectoryNode" />
+              <item name="2_kinect_code" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+              <item name="calibartion" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="teast" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
             </path>
             <path>
               <item name="honner-progect" type="b2602c69:ProjectViewProjectNode" />
@@ -142,22 +171,25 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/model_to_point_cloud" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="kite.configurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\back up\Documents\GitHub\honner-progect\model_to_point_cloud" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\back up\Documents\GitHub\honner-progect\model_to_point_cloud" />
       <recent name="C:\Users\cameron\Documents\GitHub\back up\honner-progect\g-code\g_code_vislarre.py" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\back up\Documents\GitHub\honner-progect\kinect_code\2_kinect_code\calibartion" />
+      <recent name="C:\Users\back up\Documents\GitHub\honner-progect\model_to_point_cloud" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -172,7 +204,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.basic_rotaion">
+  <component name="RunManager" selected="Python.calibartion_2_kinects (1)">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -217,20 +249,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="display_point_cloud" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="calibartion_2_kinects (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/point_cloud" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kinect_code/2_kinect_code/teast" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/point_cloud/display_point_cloud.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kinect_code/2_kinect_code/teast/calibartion_2_kinects.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -239,29 +268,26 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="g_code_to_point_cloud_clean" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="calibartion_2_kinects" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model_to_point_cloud" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud_clean.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="point_cloud-veuw" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="find-cent_point" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -269,21 +295,21 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model_to_point_cloud" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kinect_code/2_kinect_code" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kinect_code/2_kinect_code/find-cent_point.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="teast" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="honner-progect" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -291,12 +317,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kinect_code/2_kinect_code" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/teast.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -307,11 +333,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.calibartion_2_kinects (1)" />
+        <item itemvalue="Python.calibartion_2_kinects" />
+        <item itemvalue="Python.find-cent_point" />
+        <item itemvalue="Python.temp" />
         <item itemvalue="Python.basic_rotaion" />
-        <item itemvalue="Python.teast" />
-        <item itemvalue="Python.display_point_cloud" />
-        <item itemvalue="Python.point_cloud-veuw" />
-        <item itemvalue="Python.g_code_to_point_cloud_clean" />
       </list>
     </recent_temporary>
   </component>
@@ -340,37 +366,72 @@
       <workItem from="1549316702687" duration="2286000" />
       <workItem from="1549471354153" duration="2830000" />
       <workItem from="1549652916522" duration="709000" />
+      <workItem from="1549764629926" duration="3581000" />
+      <workItem from="1549789327007" duration="5071000" />
+      <workItem from="1549903869347" duration="608000" />
+      <workItem from="1549907320082" duration="645000" />
+      <workItem from="1549908298274" duration="1709000" />
+      <workItem from="1549912791288" duration="5419000" />
+      <workItem from="1549928609535" duration="8622000" />
+<<<<<<< HEAD
+      <workItem from="1550104658253" duration="652000" />
+=======
+      <workItem from="1550073037348" duration="1395000" />
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37879000" />
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="64186000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="420" y="716" width="1294" height="1407" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15143085" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.541329" />
+=======
+    <option name="totallyTimeSpent" value="64929000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23154363" />
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89222044" weight="0.22684458" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48290938" weight="0.5042868" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89149445" weight="0.22992985" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48136142" weight="0.5068871" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32970026" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10777958" side_tool="true" weight="0.3524333" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.18233387" side_tool="true" visible="true" weight="0.52904236" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32967034" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3289166" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.8176661" visible="true" weight="0.52904236" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49361208" visible="true" weight="0.3290938" />
-      <window_info anchor="right" id="Database" order="4" sideWeight="0.49882904" weight="0.3298217" />
-      <window_info anchor="right" x="0" y="0" width="273" height="1207" id="Documentation" order="5" sideWeight="0.50638795" side_tool="true" visible="true" weight="0.3290938" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.48604268" visible="true" weight="0.43354943" />
+      <window_info anchor="right" id="Database" order="4" sideWeight="0.49753696" weight="0.6665342" />
+      <window_info anchor="right" x="0" y="0" width="273" height="1207" id="Documentation" order="5" sideWeight="0.5139573" side_tool="true" weight="0.2591415" />
+=======
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.18322147" side_tool="true" visible="true" weight="0.44334278" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32967034" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" sideWeight="0.81677854" visible="true" weight="0.44334278" />
+      <window_info anchor="bottom" id="Educational.CheckDetails" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.48708922" weight="0.2591415" />
+      <window_info anchor="right" id="Database" order="4" sideWeight="0.4985015" weight="0.671799" />
+      <window_info anchor="right" x="0" y="0" width="273" height="1207" id="Documentation" order="5" sideWeight="0.5014985" side_tool="true" weight="0.671799" />
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
+      <window_info anchor="right" id="Coverage" order="6" sideWeight="0.5019802" side_tool="true" weight="0.32949126" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10810811" />
@@ -447,6 +508,31 @@
           <line>65</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kinect_code/2_kinect_code/find-cent_point.py</url>
+          <line>190</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py</url>
+          <line>210</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py</url>
+          <line>221</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py</url>
+          <line>233</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py</url>
+          <line>224</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -480,15 +566,7 @@
     <entry file="file://$PROJECT_DIR$/model_to_point_cloud/point_cloud-veuw.py" />
     <entry file="file://$PROJECT_DIR$/teast.py" />
     <entry file="file://$USER_HOME$/Downloads/scatter3d_demo.py" />
-    <entry file="file://D:/python vido proget/run_mutible_times.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/python vido proget/run_mutible_times.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="779">
@@ -503,15 +581,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/openni teasting/teast.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/model_to_point_cloud/g_code_to_point_cloud.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4199">
           <caret line="248" selection-start-line="248" selection-end-line="248" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openni teasting/teast.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/point_cloud/display_point_cloud.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -530,6 +608,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/find-cent_point.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="87" column="111" selection-start-line="87" selection-start-column="70" selection-end-line="87" selection-end-column="124" />
+          <folding>
+            <element signature="e#42#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/calibartion/calibartion_2_kinects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
+          <folding>
+            <element signature="e#2#20#0" expanded="true" />
+            <element signature="e#3835#4418#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/temp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kinect_code/2_kinect_code/teast/calibartion_2_kinects.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="759">
+          <caret line="191" column="56" lean-forward="true" selection-start-line="191" selection-start-column="56" selection-end-line="191" selection-end-column="56" />
+          <folding>
+            <element signature="e#2#20#0" expanded="true" />
+            <element signature="e#4882#5512#0" />
+          </folding>
+=======
+        <state relative-caret-position="-2086">
+          <caret line="178" column="27" lean-forward="true" selection-start-line="178" selection-start-column="27" selection-end-line="178" selection-end-column="27" />
+>>>>>>> c0ec7beee3a532654b391d884295bece0987ff9b
         </state>
       </provider>
     </entry>

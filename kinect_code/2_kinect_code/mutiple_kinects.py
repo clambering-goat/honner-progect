@@ -9,33 +9,51 @@ starts from 0.
 
 import freenect
 import cv2
-import frame_convert2
+#import frame_convert2
+import numpy as np
 
-cv2.namedWindow('Depth')
-cv2.namedWindow('Video')
 ind = 0
 print('%s\nPress ESC to stop' % __doc__)
 
-
+print("device fond ",len(freenect.sync_get_depth(ind)))
 def get_depth(ind):
-    return frame_convert2.pretty_depth_cv(freenect.sync_get_depth(ind)[0])
+    return (freenect.sync_get_depth(ind)[0])
 
 
 def get_video(ind):
-    return frame_convert2.video_cv(freenect.sync_get_video(ind)[0])
+    return (freenect.sync_get_video(ind)[0])
 
 
 while 1:
+    if ind ==2:
+        break
     print(ind)
+    freenect.init()
+    #freenect.start_video()
     try:
+
         depth = get_depth(ind)
         video = get_video(ind)
+
     except TypeError:
         ind = 0
         continue
+
     ind += 1
+<<<<<<< HEAD:kinect_code/mutiple_kinects.py
     cv2.imshow('Depth', depth)
     cv2.imshow('Video', video)
     if cv2.waitKey(10) == 27:
         break
+=======
+
+    array = depth.astype(np.uint8)
+    name="depth"+str(ind)
+    np.save(name,array)
+
+    array = video.astype(np.uint8)
+    name="clouer_image"+str(ind)
+    np.save(name,array)
+
+>>>>>>> 5f5ef2ad4cb6ffd6deb2243717f807a805fbd4e1:kinect_code/2_kinect_code/mutiple_kinects.py
     freenect.sync_stop()  # NOTE: Uncomment if your machine can't handle it
