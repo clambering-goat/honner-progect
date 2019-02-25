@@ -1,8 +1,8 @@
-y rotation -211.4529867350097
-y displacment 473.34583462968743
-x rotation -1.043853149261758
-x displacment 125.6253366618614
-horzonatl_scan_min_point 264 213
-horzontal_scan_max_point 264 452
-vertiacl_scan_min_point 150 287
-vertiacl_scan_max_point 300 287
+y rotation 3.501126113388196
+y_ydisplacment 104.83131507346275
+x_rotation -0.9825975705454151
+x_displacment 124.51096911526938
+horzonatl_scan_min_point 252 211
+horzontal_scan_max_point 252 453
+vertiacl_scan_min_point 152 263
+vertiacl_scan_max_point 301 263

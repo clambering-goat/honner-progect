@@ -4,7 +4,6 @@ import os
 from  math import tan ,degrees,radians,sin,cos
 
 
-
 class kinect_claibration():
     def __init__(self,file_to_use):
 
@@ -197,7 +196,7 @@ class kinect_claibration():
 
 
     def calulat_rotation(self):
-
+        error_log = open("data_log.txt", "r+")
 
 
         def x_rotation():
@@ -207,13 +206,15 @@ class kinect_claibration():
                 exit()
             list_of_points = []
             filer_axies=[]
-
+            error_log.write("x scan vaule look at \n")
             for l1 in range(self.horzonatl_scan_min_point[1], self.horzontal_scan_max_point[1]):
 
 
 
                 vaule_from_line=self.file_data[self.horzonatl_scan_min_point[0]][l1]
 
+                data=str(vaule_from_line)+"\n"
+                error_log.write(data)
                 list_of_points.append(vaule_from_line)
                 filer_axies.append(l1)
 
@@ -233,13 +234,14 @@ class kinect_claibration():
                 exit()
             list_of_points = []
             filer_axies=[]
-
+            error_log.write("y scan vaule look at \n")
             for l1 in range(self.vertiacl_scan_min_point[0], self.vertiacl_scan_max_point[0]):
 
 
 
-                vaule_from_line=self.file_data[self.vertiacl_scan_min_point[1]][l1]
-
+                vaule_from_line=self.file_data[l1][self.vertiacl_scan_min_point[1]]
+                data=str(vaule_from_line)+"\n"
+                error_log.write(data)
                 list_of_points.append(vaule_from_line)
                 filer_axies.append(l1)
 
@@ -390,7 +392,11 @@ class kinect_claibration():
         file.write(data)
         file.close()
 
-temp=kinect_claibration("depth1.npy")
+
+
+error_log=open("data_log.txt","w")
+error_log.close()
+temp=kinect_claibration("depth2.npy")
 #temp.point_selection()
 temp.point_selection()
 temp.scan_around_point()
