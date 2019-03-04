@@ -2,7 +2,7 @@
 
 import threading
 import time
-import freenect
+#import freenect
 import numpy as np
 import socket
 exitFlag = 0
@@ -33,25 +33,36 @@ class myThread (threading.Thread):
 
 
 
+ip="localhost"
+port=50080
+sock = socket.socket()
+
+sock.connect((ip,port))
+
+
 def web_server():
     global exitFlag
     global lock
     global data_array
-    ip="localhost"
-    port=50008
-    sock = socket.socket()
-
-    sock.connect((ip,port))
 
 
     while exitFlag==0:
+        count=0
+        data=""
         if lock=="data pushed":
             for x in data_array:
-                sock.send(bytes("new line", 'ascii'))
+
                 for y in x :
+
+                    count+=1
+                    #print(count)
                     out=str(y)
-                    sock.send(bytes(out, 'ascii'))
-                    sock.send(bytes(" ", 'ascii'))
+                    data = data +out
+                    data = data + " "
+                data = data + "\n"
+            sock.sendall(bytes(data, 'ascii'))
+            sock.sendall(bytes("end of data ", 'ascii'))
+            print("data sent ")
             lock = "data pulled"
 
 
@@ -72,7 +83,7 @@ def get_data():
 threadList = ["web_server", "get_data"]
 threads = []
 threadID = 1
-
+lock ="data pulled"
 # Create new threads
 for tName in threadList:
    thread = myThread(threadID, tName)

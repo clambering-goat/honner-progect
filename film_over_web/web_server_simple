@@ -3,36 +3,55 @@
 import socket
 from threading import *
 import time
-serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-host = 'localhost'
-port = 50008
-print (host)
-print (port)
-serversocket.bind((host, port))
+import numpy as np
+import cv2
 
-class client(Thread):
-    def __init__(self, socket, address):
-        Thread.__init__(self)
-        self.sock = socket
-        self.addr = address
-        self.start()
 
-    def run(self):
-        ultimate_buffer=""
-        start_time=time.time()
+def data_to_nump(vaule):
+    data_form_kinect=np.zeros((480, 640))
+
+    print("data got ")
+
+    colums=vaule.split("\n")
+
+
+    y_count=-1
+    for rows in colums:
+        y_count+=1
+        x_count=-1
+
+        rows_in_arrays=rows.split(" ")
+        for indudual_vaule in rows_in_arrays[1:-1]:
+            x_count+=1
+            data_form_kinect[y_count][x_count]=int(indudual_vaule)
+    depth = data_form_kinect.astype(np.uint8)
+    cv2.imshow("frame",depth)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+
+
+
+
+
+HOST = 'localhost'  # Standard loopback interface address (localhost)
+PORT = 50080        # Port to listen on (non-privileged ports are > 1023)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    conn, addr = s.accept()
+    with conn:
+        print('Connected by', addr)
         while True:
-            receiving_buffer = self.sock.recv(1024)
-            if not receiving_buffer: break
-            receiving_buffer=receiving_buffer.decode()
-            ultimate_buffer += receiving_buffer
-        end_time=time.time()
+            ultimate_buffer=" "
+            while True:
+                receiving_buffer = conn.recv(1024)
+                if not receiving_buffer: break
+                receiving_buffer = receiving_buffer.decode()
 
-        print("total time is ", end_time - start_time)
+                if "end of data " in receiving_buffer:
+                    data_to_nump(ultimate_buffer)
+                    break
 
-
-serversocket.listen(5)
-print ('server started and listening')
-while 1:
-    clientsocket, address = serversocket.accept()
-    client(clientsocket, address)
+                ultimate_buffer += receiving_buffer

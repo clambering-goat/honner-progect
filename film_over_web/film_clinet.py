@@ -60,9 +60,9 @@ class web_server():
                 for x in data_array:
                     self.sock.send(bytes("new line", 'ascii'))
                     for y in x :
-                        out=str(y)
+                        out=str(y)+" "
                         self.sock.send(bytes(out, 'ascii'))
-                        self.sock.send(bytes(" ", 'ascii'))
+
                 lock = "data pulled"
 
     def close(self):
