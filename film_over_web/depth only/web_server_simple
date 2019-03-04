@@ -48,11 +48,11 @@ def data_to_nump():
                 data_form_kinect[y_count][x_count]=int(indudual_vaule)
         depth = data_form_kinect.astype(np.uint8)
 
-        loack= "on"
-        while loack=="on":
+
+        if loack=="on":
             cv2.imshow("frame",depth)
             cv2.waitKey(0)
-
+            loack="off"
         cv2.destroyAllWindows()
 
 
@@ -65,7 +65,7 @@ thread1.start()
 
 
 
-HOST = 'localhost'  # Standard loopback interface address (localhost)
+HOST = '192.168.1.156'  # Standard loopback interface address (localhost)
 PORT = 50080        # Port to listen on (non-privileged ports are > 1023)
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
@@ -82,8 +82,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
                 if "end of data " in receiving_buffer:
 
-                    loack="off"
-                    shared_data=ultimate_buffer
+
+                    if loack=="off" :
+                        loack = "on"
+                        shared_data=ultimate_buffer
+
                     break
 
                 ultimate_buffer += receiving_buffer
