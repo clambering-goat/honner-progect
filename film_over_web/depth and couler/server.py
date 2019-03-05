@@ -16,43 +16,65 @@ class myThread (threading.Thread):
       self.counter = counter
    def run(self):
       print ("Starting " + self.name)
-      data_to_nump()
+      if "nump_handel"==self.name:
+        data_to_nump()
+      if "get_input"==self.name:
+          change_mode()
       print ("Exiting " + self.name)
 
 
 
 
+mode="no_save"
 
+def change_mode():
+    while 1:
+        global mode
+        chose=input("pick a mode")
+        if chose =="save":
+            mode="save"
+        elif chose =="no save":
+            mode="no save"
+        else:
+            print("not vaild chose")
 
 loack="off"
 shared_data=[0,0]
 def data_to_nump():
     global loack
     global shared_data
-
+    global mode
+    count_np = 0
     while 1:
         if loack == "on":
+            count_np+=1
             depth=shared_data[0]
-            depth=depth.astype(np.uint8)
+
             couler=shared_data[1]
 
 
-
-
-            print("data got ")
-            cv2.imshow("depth",depth)
+            depth_show=depth.astype(np.uint8)
+            #print("data got ")
+            cv2.imshow("depth",depth_show)
             cv2.imshow("couler", couler)
-            cv2.waitKey(3)
-            print("lock off")
+
+            if mode =="save":
+                np.save("G:/python_data/depth"+str(count_np),depth)
+                np.save("G:/python_data/couler"+str(count_np),couler)
+
+            cv2.waitKey(200)
+            #print("lock off")
             loack="off"
 
-        cv2.destroyAllWindows()
+        #cv2.destroyAllWindows()
 
 
 
-thread1 = myThread(1, "Thread-1", 1)
+thread1 = myThread(1, "nump_handel", 1)
+thread2 = myThread(1, "get_input", 1)
+
 thread1.start()
-
+thread2.start()
 def recv_one_message(sock):
     lengthbuf = recvall(sock, 4)
     length, = struct.unpack('!I', lengthbuf)
@@ -71,14 +93,14 @@ def recvall(sock, count):
 
 
 
-ip="localhost"
+ip="192.168.1.156"
 port=50080      # Port to listen on (non-privileged ports are > 1023)
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((ip, port))
     s.listen()
     conn, addr = s.accept()
     with conn:
-        print('Connected by', addr)
+        #print('Connected by', addr)
         while True:
 
             data=recv_one_message(conn)
