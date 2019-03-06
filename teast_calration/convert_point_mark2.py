@@ -303,8 +303,7 @@ for q in range(len(vaule_1)-1):
 
     x=x
     y=y
-    z1=(z*-1)-z
-    #z1=z1*-1
+    z1=z*-1
 
     vaule_to_render[q]=(x,y,z1)
 
