@@ -40,6 +40,12 @@ while 1:
         continue
 
     ind += 1
+<<<<<<< HEAD:kinect_code/mutiple_kinects.py
+    cv2.imshow('Depth', depth)
+    cv2.imshow('Video', video)
+    if cv2.waitKey(10) == 27:
+        break
+=======
 
     array = depth.astype(np.uint8)
     name="depth"+str(ind)
@@ -49,4 +55,5 @@ while 1:
     name="clouer_image"+str(ind)
     np.save(name,array)
 
+>>>>>>> 5f5ef2ad4cb6ffd6deb2243717f807a805fbd4e1:kinect_code/2_kinect_code/mutiple_kinects.py
     freenect.sync_stop()  # NOTE: Uncomment if your machine can't handle it

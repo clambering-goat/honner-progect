@@ -41,7 +41,8 @@ try:
     #print(pcd)
     print(np.asarray(pcd.points))
     print(type(pcd))
-    draw_geometries([pcd])
+    mesh_frame = create_mesh_coordinate_frame(size=50, origin=[0, 0, 0])
+    draw_geometries([mesh_frame,pcd])
     print("working")
 except:
     print("error in block 1")
