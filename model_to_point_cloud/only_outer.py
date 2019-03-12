@@ -36,14 +36,23 @@ for q in array:
 
 
 
-while True:
 
 
 
-    for q in data[0]:
 
 
-        print(q)
+point_in_range=0.01
+for q in data[0]:
+    x=q[0]
+    y=q[1]
+    z=q[2]
+    #x move
+    for w in data[0]:
+        x2=w[0]
+        y2=w[1]
+        z2=w[2]
+        if x2>x and x2<x+point_in_range:
+
 
 
 
