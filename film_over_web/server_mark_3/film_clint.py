@@ -35,7 +35,7 @@ class myThread (threading.Thread):
 
 
 
-ip="localhost"
+ip="192.168.1.156"
 port=50080
 sock = socket.socket()
 
