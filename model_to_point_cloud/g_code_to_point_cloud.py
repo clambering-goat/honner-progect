@@ -223,7 +223,7 @@ def g_code_to_lines(file_to_open="no_file"):
 
 
 
-rr="gear.gcode"
+rr="box.gcode"
 
 lines=g_code_to_lines(rr)
 
@@ -233,7 +233,7 @@ x_points=[]
 y_points=[]
 z_points=[]
 
-file=open("point_cloud_out_new_not_working.xyz","w")
+file=open("point_cloud.xyz","w")
 
 
 for q in points:

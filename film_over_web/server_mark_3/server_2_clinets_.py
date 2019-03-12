@@ -5,15 +5,16 @@ import struct
 import datetime
 import socket
 import threading
+import os
 
 class ThreadedServer(object):
-    def __init__(self, host, port):
+    def __init__(self, host, port,floder_name):
         self.host = host
         self.port = port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.host, self.port))
-
+        self.floder_name=floder_name
         self.mode="no save"
         self.main_loop=True
 
@@ -31,14 +32,14 @@ class ThreadedServer(object):
 
 
     def recv_one_message(self,sock):
-        lengthbuf = self.recvall(4)
+        lengthbuf = self.recvall(4,sock)
         length, = struct.unpack('!I', lengthbuf)
-        return self.recvall( length)
+        return self.recvall(length,sock)
 
-    def recvall(self, count):
+    def recvall(self, count,client):
         buf = b''
         while count:
-            newbuf = self.sock.recv(count)
+            newbuf = client.recv(count)
             if not newbuf: return None
             buf += newbuf
             count -= len(newbuf)
@@ -62,16 +63,21 @@ class ThreadedServer(object):
                         count+=1
                         depth = data[0]
                         couler = data[1]
-                        np.save("G:/python_data/depth_carmea"+address+"_"+ str(count), depth)
-                        np.save("G:/python_data/couler_carmea"+address+"_"+ str(count), couler)
+                        np.save("G:/python_data/"+self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count), depth)
+                        np.save("G:/python_data/"+self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count), couler)
 
 
                 else:
                     raise Exception('Client disconnected/no data has been give in 60 sec')
-            except:
+            except Exception as inst:
+                print(type(inst))
+                print(type(inst.args))
+                print(inst)
+
+
                 currentDT = datetime.datetime.now()
                 currentDT=str(currentDT)
-                print("closing thred "+address+" at ",currentDT)
+                print("closing thred "+str(address)+" at "+currentDT)
                 client.close()
                 return()
 
@@ -79,7 +85,7 @@ class ThreadedServer(object):
     def input_control(self):
         while 1:
             print("current mode is ",self.mode)
-            chose = input("pick a mode")
+            chose = input("pick a mode \n")
             if chose == "save":
                 self.mode = "save"
             elif chose == "no save":
@@ -96,9 +102,14 @@ class ThreadedServer(object):
 
 
 if __name__ == "__main__":
+    floader_name=input("select the anme of foulder ")
+    newpath = "G:/python_data/"+floader_name
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
+
     ip="192.168.1.156"
     port=50080
     print("starting server")
     print("ip ",ip)
     print("port ",port)
-    ThreadedServer(ip,port).listen()
+    ThreadedServer(ip,port,floader_name).listen()
