@@ -5,7 +5,9 @@ import os
 import cv2
 
 #home="G:/python_data/base_line/"
-home="F:/croped_numpy/"
+#home="F:/croped_numpy/"
+home="G:/python_data/box/cam1/"
+
 
 
 for q in os.listdir(home):

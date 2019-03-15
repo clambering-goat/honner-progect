@@ -63,6 +63,16 @@ def line_to_points(list_of_lines):
             list_of_points[layer].append((x1,y1,z1))
             list_of_points[layer].append((x2,y2,z1))
 
+            if x2 < x1:
+                temp = x1
+                x1 = x2
+                x2 = temp
+
+
+            if y2 <y1:
+                temp=y1
+                y1=y2
+                y2=temp
 
 
             #dealt with hozontial line and vertic lines
@@ -107,10 +117,7 @@ def line_to_points(list_of_lines):
 
             how_far_to_smaple_alone_the_line=0.1
 
-            if x2< x1:
-                temp=x1
-                x1=x2
-                x2=temp
+
 
             while x2>x1:
                 x1=x1+how_far_to_smaple_alone_the_line
@@ -223,7 +230,7 @@ def g_code_to_lines(file_to_open="no_file"):
 
 
 
-rr="box.gcode"
+rr="small_box.gcode"
 
 lines=g_code_to_lines(rr)
 

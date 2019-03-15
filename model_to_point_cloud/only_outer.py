@@ -1,5 +1,5 @@
 
-
+import matplotlib.pyplot as plt
 
 
 file=open("point_cloud.xyz","r")
@@ -37,24 +37,97 @@ for q in array:
 
 
 
+for yyy in range(0,100,10):
+
+
+    amount_to_move=yyy/100
+
+    free_points=[]
 
 
 
 
-point_in_range=0.01
-for q in data[0]:
-    x=q[0]
-    y=q[1]
-    z=q[2]
-    #x move
-    for w in data[0]:
-        x2=w[0]
-        y2=w[1]
-        z2=w[2]
-        if x2>x and x2<x+point_in_range:
+
+    for p1 in data[2]:
+
+
+        x_p_teast = True
+        x_n_teast=True
+        y_p_teast = True
+        y_n_teast = True
+        z_p_teast=True
+        x1=p1[0]
+        y1=p1[1]
+        z1=p1[2]
+
+        #move x
+        x_move_p=x1+amount_to_move
+
+        x_move_n=x1-amount_to_move
+
+        #move y
+
+        y_move_p=y1+amount_to_move
+
+        y_move_n=y1-amount_to_move
 
 
 
+
+        for p2 in data[2]:
+
+
+            x2=p2[0]
+            y2=p2[1]
+            z2=p2[2]
+            if x1==x2 and y1==y2:
+                continue
+
+
+            if   x2>x1   and x2<x_move_p:
+                x_p_teast=False
+
+
+            if   x2>x_move_n   and x2<x1:
+                x_n_teast=False
+
+            if y2>y1 and y2<y_move_p:
+                y_p_teast=False
+
+            if y2>y_move_n and y2<y1:
+                y_n_teast=False
+
+
+        if x_p_teast==True:
+            free_points.append((x1,y1,z1))
+
+        if x_n_teast==True:
+            free_points.append((x1,y1,z1))
+
+        if y_p_teast==True:
+            free_points.append((x1,y1,z1))
+
+        if y_n_teast==True:
+            free_points.append((x1,y1,z1))
+
+
+
+
+
+
+
+    file=open("surface_points"+str(yyy)+".xyz","w")
+
+    for q in free_points:
+
+        x=str(q[0])
+        y=str(q[1])
+        z=str(q[2])
+
+        data_out=x+" "+y+" "+z+"\n"
+        file.write(data_out)
+
+    file.close()
 
 
 
