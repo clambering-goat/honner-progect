@@ -7,6 +7,8 @@ import socket
 import threading
 import os
 
+
+key_board_input_vaules=""
 class ThreadedServer(object):
     def __init__(self, host, port,floder_name):
         self.host = host
@@ -45,13 +47,27 @@ class ThreadedServer(object):
             count -= len(newbuf)
         return buf
 
+    def send_one_message(sock, data):
+        length = len(data)
+        sock.sendall(struct.pack('!I', length))
+        sock.sendall(data)
 
 
 
 
     def listenToClient(self, client, address):
         count =0
+        global key_board_input_vaules
+
         print("connection from ", address)
+        #set up portaion
+
+        data = self.recv_one_message(client)
+        print(data)
+
+
+
+
         while True:
             try:
                 if self.mode == "close":
@@ -83,9 +99,11 @@ class ThreadedServer(object):
 
 
     def input_control(self):
+        global key_board_input_vaules
         while 1:
             print("current mode is ",self.mode)
             chose = input("pick a mode \n")
+            chose=key_board_input_vaules
             if chose == "save":
                 self.mode = "save"
             elif chose == "no save":
@@ -97,7 +115,7 @@ class ThreadedServer(object):
                 self.mode == "close"
 
             else:
-                print("not vaild chose")
+                print("not vaild chose for serveer modes")
 
 
 

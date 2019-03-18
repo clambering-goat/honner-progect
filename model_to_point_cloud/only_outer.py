@@ -37,7 +37,7 @@ for q in array:
 
 
 
-for yyy in range(0,100,10):
+for yyy in range(150,200,10):
 
 
     amount_to_move=yyy/100
