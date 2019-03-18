@@ -121,11 +121,13 @@ class ThreadedServer(object):
 
 if __name__ == "__main__":
     floader_name=input("select the anme of foulder ")
-    newpath = "G:/python_data/"+floader_name
+    #newpath = "G:/python_data/"+floader_name
+    newpath="./"
     if not os.path.exists(newpath):
         os.makedirs(newpath)
 
-    ip="192.168.1.156"
+
+    ip="192.168.1.106"
     port=50080
     print("starting server")
     print("ip ",ip)
