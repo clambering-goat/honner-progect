@@ -8,7 +8,7 @@ import threading
 import os
 
 
-key_board_input_vaules=""
+
 class ThreadedServer(object):
     def __init__(self, host, port,floder_name):
         self.host = host
@@ -57,13 +57,10 @@ class ThreadedServer(object):
 
     def listenToClient(self, client, address):
         count =0
-        global key_board_input_vaules
 
         print("connection from ", address)
         #set up portaion
 
-        data = self.recv_one_message(client)
-        print(data)
 
 
 
@@ -99,11 +96,9 @@ class ThreadedServer(object):
 
 
     def input_control(self):
-        global key_board_input_vaules
         while 1:
             print("current mode is ",self.mode)
             chose = input("pick a mode \n")
-            chose=key_board_input_vaules
             if chose == "save":
                 self.mode = "save"
             elif chose == "no save":
