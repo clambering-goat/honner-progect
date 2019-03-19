@@ -231,7 +231,7 @@ def g_code_to_lines(file_to_open="no_file"):
 
 
 #rr="small_box.gcode"
-rr="gear.gcode"
+rr="small_box.gcode"
 lines=g_code_to_lines(rr)
 
 points=line_to_points(lines)
