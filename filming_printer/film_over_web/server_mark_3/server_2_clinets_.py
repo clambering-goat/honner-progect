@@ -76,8 +76,8 @@ class ThreadedServer(object):
                         count+=1
                         depth = data[0]
                         couler = data[1]
-                        np.save("G:/python_data/"+self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count), depth)
-                        np.save("G:/python_data/"+self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count), couler)
+                        np.save(self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count), depth)
+                        np.save(self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count), couler)
 
 
                 else:
@@ -117,7 +117,7 @@ class ThreadedServer(object):
 if __name__ == "__main__":
     floader_name=input("select the anme of foulder ")
     #newpath = "G:/python_data/"+floader_name
-    newpath="./"
+    newpath="D:/scan_notes/"+floader_name
     if not os.path.exists(newpath):
         os.makedirs(newpath)
 
@@ -127,4 +127,4 @@ if __name__ == "__main__":
     print("starting server")
     print("ip ",ip)
     print("port ",port)
-    ThreadedServer(ip,port,floader_name).listen()
+    ThreadedServer(ip,port,newpath).listen()
