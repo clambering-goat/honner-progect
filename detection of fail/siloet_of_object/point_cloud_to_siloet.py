@@ -89,6 +89,8 @@ for q in data[0]:
         slice_points.append((x,y,z))
 
 
+
+
 #top add in
 for q in data[-1]:
     x=q[0]
@@ -98,6 +100,7 @@ for q in data[-1]:
 
     if x >min_x[0] and x<max_x[0] and y >min_x[1]-slice_size and y<max_x[1]+slice_size:
         slice_points.append((x,y,z))
+
 
 
 file=open("slice.xyz","w")
