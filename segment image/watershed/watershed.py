@@ -1,7 +1,14 @@
 import numpy as np
 import cv2
 
-img = cv2.imread('coins.jpg')
+#img = cv2.imread('coins.jpg')
+#img=cv2.imread("depth_carmea.png")
+
+
+
+img=cv2.imread("image_3.png")
+
+img = cv2.bitwise_not(img)
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 ret, thresh = cv2.threshold(gray,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
@@ -11,10 +18,10 @@ cv2.waitKey()
 
 # noise removal
 kernel = np.ones((3,3),np.uint8)
-opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = 2)
+opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = 4)
 
 # sure background area
-sure_bg = cv2.dilate(opening,kernel,iterations=3)
+sure_bg = cv2.dilate(opening,kernel,iterations=5)
 
 # Finding sure foreground area
 dist_transform = cv2.distanceTransform(opening,cv2.DIST_L2,5)
