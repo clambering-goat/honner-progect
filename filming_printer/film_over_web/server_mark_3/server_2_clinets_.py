@@ -122,7 +122,7 @@ if __name__ == "__main__":
         os.makedirs(newpath)
 
 
-    ip="192.168.1.106"
+    ip="192.168.1.156"
     port=50080
     print("starting server")
     print("ip ",ip)
