@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     try:
         print("Load a ply point cloud, print it, and render it")
-        pcd = read_point_cloud("point_cloud_out_new_not_working.xyz")
+        pcd = read_point_cloud("p1.xyz")
         print(pcd)
         print(np.asarray(pcd.points))
         draw_geometries([pcd])

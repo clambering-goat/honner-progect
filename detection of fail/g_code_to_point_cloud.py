@@ -233,7 +233,7 @@ x_points=[]
 y_points=[]
 z_points=[]
 
-file=open("point_cloud_out_new_not_working.xyz","w")
+file=open("p1.xyz","w")
 
 
 for q in points:

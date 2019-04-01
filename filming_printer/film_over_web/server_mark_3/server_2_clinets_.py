@@ -115,6 +115,7 @@ class ThreadedServer(object):
 
 
 if __name__ == "__main__":
+
     floader_name=input("select the anme of foulder ")
     #newpath = "G:/python_data/"+floader_name
     newpath="D:/scan_notes/"+floader_name
