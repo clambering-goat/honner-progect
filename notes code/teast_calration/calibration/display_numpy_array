@@ -1,0 +1,69 @@
+from  open3d import *
+import os
+
+
+import numpy as np
+
+list_of_point_cloud_found=[]
+for files in os.listdir():
+
+    if files[-4:len(files)]==".npy":
+        list_of_point_cloud_found.append(files)
+
+print("list_of_point_cloud_found")
+for point_cloud_found in list_of_point_cloud_found:
+    print("1 ",point_cloud_found)
+
+
+
+if len(list_of_point_cloud_found)>1:
+    choise=input("pick one using numbers ")
+    choise=int(choise)
+    choise=choise-1
+
+elif len(list_of_point_cloud_found)<1:
+    print(" no data found closing ")
+    exit()
+else:
+    choise=0
+
+
+file_to_load=list_of_point_cloud_found[choise]
+
+
+
+
+
+data=np.load(file_to_load)
+
+size=len(data)*len(data[0])
+print(size)
+
+vaule_to_render=np.zeros((size,3))
+
+
+for q in range(len(data)-1):
+    for w in range(len(data[0])-1):
+
+
+        x=w
+        y=q
+        z=data[q][w]
+
+        vaule_to_render[q+w]=x,y,z
+
+
+
+
+print(len(vaule_to_render))
+pcd = PointCloud()
+
+
+pcd.points = Vector3dVector(vaule_to_render)
+
+
+mesh_frame = create_mesh_coordinate_frame(size=50, origin=[0, 0, 0])
+
+draw_geometries([mesh_frame,pcd])
+
+#draw_geometries([mesh_frame])
