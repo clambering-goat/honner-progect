@@ -1,45 +1,20 @@
 import numpy as np
 import cv2
 import os
-from  math import tan ,degrees,radians,sin,cos
+from  math import atan ,degrees,radians,sin,cos
 
 
 class kinect_claibration():
-    def __init__(self,file_to_use):
+    def __init__(self):
 
 
-        if type(file_to_use)!=type("random_string"):
-            raise Exception("class need to be give a string")
-
-        #laod the nmpy file into the code
-        self.file_name=file_to_use
-        self.file_data=np.load(file_to_use)
-
-
-        self.sacn_range=300
-
-        print("file loaded ",file_to_use,"\n")
-
-        self.x_axies_size=len(self.file_data[0])
-        self.y_axies_size=len(self.file_data)
-
-
-        print("size of the x_axies is ",self.x_axies_size)
-        print("size of the y_axies is ", self.y_axies_size)
-        print(" ")
 
         self.size_of_error_to_acept=5
         print("size_of_error_to_acept",self.size_of_error_to_acept)
         print(" ")
 
 
-        self.x_mid_point=int(self.x_axies_size/2)
-        self.y_mid_point= int(self.y_axies_size/2)
 
-
-        print("useing x_mid point ",self.x_mid_point )
-        print("using y_mid point ", self.y_mid_point)
-        print(" ")
 
 
         self.center_point=0,0
@@ -66,7 +41,7 @@ class kinect_claibration():
             last_scan_vaule = self.file_data[self.y_point_chosen][self.x_point_chosen]
             max_down = -1
 
-            for loop_vaule in range(self.sacn_range):
+            for loop_vaule in range(self.sacn_range_y):
 
                 point_to_look_at = start_point - loop_vaule
                 vaule_from_scan = self.file_data[point_to_look_at][constant_scan]
@@ -86,7 +61,7 @@ class kinect_claibration():
 
             max_up = 1
 
-            for loop_vaule in range(self.sacn_range):
+            for loop_vaule in range(self.sacn_range_y):
 
                 point_to_look_at = start_point + loop_vaule
                 vaule_from_scan = self.file_data[point_to_look_at][constant_scan]
@@ -113,7 +88,7 @@ class kinect_claibration():
             max_right = -1
 
 
-            for scan_vaule in range(self.sacn_range):
+            for scan_vaule in range(self.sacn_range_x):
 
 
                 point_to_look_at = start_point + scan_vaule
@@ -137,7 +112,7 @@ class kinect_claibration():
             max_left = -1
 
 
-            for scan_vaule in range(self.sacn_range):
+            for scan_vaule in range(self.sacn_range_x):
 
 
                 point_to_look_at = start_point - scan_vaule
@@ -265,13 +240,13 @@ class kinect_claibration():
 
         gradint_on_x, x_displament, x_min_vaule_found, x_max_vaule_found=x_rotation()
 
-        convert=tan(gradint_on_y)
+        convert=atan(gradint_on_y)
         convert=degrees(convert)
 
         self.y_rotation=convert
         self.y_c_displcment=y_displament
 
-        convert = tan(gradint_on_x)
+        convert = atan(gradint_on_x)
         convert = degrees(convert)
 
         self.x_rotation = convert
@@ -293,6 +268,62 @@ class kinect_claibration():
         print("max vaule found is ", y_max_vaule_found)
         print("min vaule found on line is ", y_min_vaule_found)
         print(" ")
+
+
+    def nump_data_to_use(self,file_list):
+
+        def pre_array(index):
+            data=np.load(file_list[index])
+            out_data=data.astype(np.uint8)
+            return out_data
+
+        image_of_point_slection = pre_array(0)
+
+        index=0
+        while 1:
+
+            cv2.imshow('image', image_of_point_slection)
+
+            k = cv2.waitKey(0)
+
+
+
+            if k==ord("s"):
+                index+=1
+                if index==len(file_list):
+                    index=0
+                print("file ",index)
+                image_of_point_slection=pre_array(index)
+            if k==ord("f"):
+                break
+
+        cv2.destroyAllWindows()
+
+        # laod the nmpy file into the code
+        self.file_name = file_list[index].split("/")
+        self.file_name =self.file_name[-1]
+        self.file_data = np.load(file_list[index])
+
+
+
+        print("file loaded ", file_list[index], "\n")
+
+        self.x_axies_size = len(self.file_data[0])
+        self.y_axies_size = len(self.file_data)
+
+        print("size of the x_axies is ", self.x_axies_size)
+        print("size of the y_axies is ", self.y_axies_size)
+        print(" ")
+
+        self.x_half_screen_size= int(self.x_axies_size / 2)
+        self.y_half_screen_size = int(self.y_axies_size / 2)
+
+        self.sacn_range_x = self.x_half_screen_size
+        self.sacn_range_y= self.y_half_screen_size
+        return ()
+
+
+
 
     def point_selection(self,point_to_use="nothing"):
 
@@ -372,7 +403,7 @@ class kinect_claibration():
         #name=name[0]
         file=open("calibration_"+name+".txt","w")
         print("fiel name is ","calibration_" +name)
-        data="y rotation "+str(self.y_rotation)+"\n"
+        data="y_rotation "+str(self.y_rotation)+"\n"
         file.write(data)
 
         data="y_ydisplacment "+str(self.y_c_displcment)+"\n"
@@ -411,18 +442,33 @@ class kinect_claibration():
 
 
 
-dir_to_look="./"
+dir_to_look="D:/scan_notes/calibration/"
 count_frames=0
-
+file_list={}
 for files in os.listdir(dir_to_look):
     if files[-4:len(files)]==".npy" and files[0]=="d":
+        key_vaule=files.split("'")
+        key_vaule=(key_vaule[1])
+        file_loaction=dir_to_look+files
+        if key_vaule in file_list.keys():
+            file_list[key_vaule].append(file_loaction)
+        else:
+            file_list[key_vaule]=[]
+            file_list[key_vaule].append(file_loaction)
 
-        temp=kinect_claibration(files)
-        temp.point_selection()
-        temp.scan_around_point()
-        temp.grafic_display_of_bonds()
-        temp.calulat_rotation()
-        temp.save_config()
+
+for q in file_list:
+    print(q)
+    print(file_list[q])
+
+
+    temp=kinect_claibration()
+    temp.nump_data_to_use(file_list[q])
+    temp.point_selection()
+    temp.scan_around_point()
+    temp.grafic_display_of_bonds()
+    temp.calulat_rotation()
+    temp.save_config()
 
 
 

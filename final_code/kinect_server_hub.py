@@ -6,8 +6,8 @@ import datetime
 import socket
 import threading
 import os
-
-
+import cv2
+import traceback
 
 class ThreadedServer(object):
     def __init__(self, host, port,floder_name):
@@ -19,6 +19,8 @@ class ThreadedServer(object):
         self.floder_name=floder_name
         self.mode="no save"
         self.main_loop=True
+
+
 
     def listen(self):
 
@@ -63,8 +65,6 @@ class ThreadedServer(object):
 
 
 
-
-
         while True:
             try:
                 if self.mode == "close":
@@ -79,13 +79,27 @@ class ThreadedServer(object):
                         np.save(self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count), depth)
                         np.save(self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count), couler)
 
+                    if self.mode=="display":
+                        data = pickle.loads(data)
+                        count += 1
+                        depth = data[0]
+                        couler = data[1]
+
+                        name="depth_carmea"+str(address)+"_"+ str(count)+".png"
+                        depth = depth.astype(np.uint8)
+                        cv2.imwrite(name, depth)
+
+                        name="couler_carmea"+str(address)+"_"+ str(count)+".png"
+
+                        cv2.imwrite(name, couler)
 
                 else:
                     raise Exception('Client disconnected/no data has been give in 60 sec')
             except Exception as inst:
-                print(type(inst))
-                print(type(inst.args))
-                print(inst)
+                print(traceback.format_exc())
+                # print(type(inst))
+                # print(type(inst.args))
+                # print(inst)
 
 
                 currentDT = datetime.datetime.now()
@@ -103,11 +117,11 @@ class ThreadedServer(object):
                 self.mode = "save"
             elif chose == "no save":
                 self.mode = "no save"
-            elif chose =="close connection":
-                self.mode == "close"
             elif chose=="shutdown":
                 self.main_loop=False
-                self.mode == "close"
+            elif chose=="display":
+                self.mode="display"
+
 
             else:
                 print("not vaild chose for serveer modes")

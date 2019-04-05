@@ -109,8 +109,9 @@ class converter():
 
         if rotation_axies !="x" and rotation_axies !="y" and rotation_axies!="z":
             raise  Exception(" novalid axies of rortation given")
-        angle=float(angle)
-        angle = radians(angle)
+
+
+
         print("angle", angle)
         s = sin(angle)
         c = cos(angle)
@@ -148,14 +149,21 @@ class converter():
 
     def fix_points(self):
 
+
         start_point_could=self.point_could_data
+
         angle=self.y_rotation
-        point_could_y_rotate=self.roatation(angle,"y",start_point_could)
+        angle=float(angle)
+        angle = radians(angle)
+        point_could_y_rotate=self.roatation(angle,"x",start_point_could)
 
         angle = self.x_rotation
-        point_could_x_rotate=self.roatation(angle,"x",point_could_y_rotate)
+        angle=float(angle)
+        angle = radians(angle)
+        angle = angle * -1
+        point_could_x_rotate=self.roatation(angle,"y",point_could_y_rotate)
 
-        self.point_could_data=point_could_y_rotate
+        self.point_could_data=point_could_x_rotate
 
 
         # point_could_y_shift=[]
@@ -187,7 +195,7 @@ for files in os.listdir(dir_to_look):
 
         temp=converter(file_working_with=files)
 
-        #temp.fix_points()
+        temp.fix_points()
         vaule_1=temp.point_could_data
 
         #vaule_1=temp.roatation(0,"y")

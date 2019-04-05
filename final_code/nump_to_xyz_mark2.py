@@ -8,14 +8,16 @@ import os
 
 
 
-dir_to_look="C:/Users/back up/Documents/GitHub/honner-progect/point _colder for digrasms/numpy_data/"
-count_frames=0
-dir_to_save="C:/Users/back up/Documents/GitHub/honner-progect/point _colder for digrasms/xyz_data/"
+# dir_to_look="C:/Users/back up/Documents/GitHub/honner-progect/point _colder for digrasms/numpy_data/"
+#
+# dir_to_save="C:/Users/back up/Documents/GitHub/honner-progect/point _colder for digrasms/xyz_data/"
 
+dir_to_look="D:/scan_notes/ver_shift/startit_oin/"
+dir_to_save="D:/scan_notes/ver_shift/startit_oin/"
 for files in os.listdir(dir_to_look):
     if files[-4:len(files)]==".npy" and files[0]=="d":
         data=np.load(dir_to_look+files)
-        count_frames+=1
+
         file_name=files[0:-4]
         file_name=dir_to_save+file_name+".xyz"
 
