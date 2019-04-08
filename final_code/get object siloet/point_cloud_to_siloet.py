@@ -10,11 +10,14 @@ file=open(point_could,"r")
 data=file.readlines()
 
 array=[]
+
+
 for q in data:
     temp=q.split(" ")
     x=float(temp[0])
     y=float(temp[1])
     z=float(temp[2])
+    #removes the basic points assmenting the layer hieght is 0.2
     if z>0.2:
 
         array.append((x,y,z))
@@ -40,6 +43,7 @@ for q in array:
 
 
 
+
 print(data[0])
 
 center_point=0,0
@@ -47,6 +51,7 @@ center_point=0,0
 #max x point from center
 
 slice_points = []
+
 for loop1 in data:
     layer_1=loop1
     max_x=[0,0,0]

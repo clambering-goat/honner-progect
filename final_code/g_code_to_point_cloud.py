@@ -1,5 +1,4 @@
-from  graphics import Point,GraphWin
-import matplotlib.pyplot as plt
+
 
 
 
@@ -17,15 +16,7 @@ class grid_draw_2d :
         self.point_list_x.append(x)
         self.point_list_y.append(y)
 
-    def draw(self,layer="no give name"):
 
-        plt.plot(self.point_list_x, self.point_list_y, 'ro')
-        plt.axis([0, 210, 0, 210])
-        plt.title(layer)
-        plt.show()
-        #rest so old point dont show up
-        self.point_list_x=[]
-        self.point_list_y=[]
 
 
 
