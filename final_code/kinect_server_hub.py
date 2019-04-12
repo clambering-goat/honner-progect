@@ -18,9 +18,21 @@ class ThreadedServer(object):
         self.sock.bind((self.host, self.port))
         self.floder_name=floder_name
         self.mode="no save"
+        self.save_type="full"
         self.main_loop=True
+        self.image_data=[]
+        self.is_display_runing=False
 
 
+
+
+    def display_image(self):
+        self.is_display_runing=True
+        while self.mode=="display":
+            cv2.imshow('image',self.image_data)
+            cv2.waitKey(500)
+        cv2.destroyAllWindows()
+        self.is_display_runing=False
 
     def listen(self):
 
@@ -76,23 +88,38 @@ class ThreadedServer(object):
                         count+=1
                         depth = data[0]
                         couler = data[1]
-                        np.save(self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count), depth)
-                        np.save(self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count), couler)
+                        if self.save_type=="full":
+                            np.save(self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count), depth)
+                            np.save(self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count), couler)
+                        if self.save_type == "depth":
+                            np.save(self.floder_name + "/depth_carmea" + str(address) + "_" + str(count), depth)
+                        if self.save_type == "couler":
+                            np.save(self.floder_name + "/couler_carmea" + str(address) + "_" + str(count), couler)
 
-                    if self.mode=="display":
+                    if self.mode=="image_data":
                         data = pickle.loads(data)
                         count += 1
                         depth = data[0]
                         couler = data[1]
-
-                        name="depth_carmea"+str(address)+"_"+ str(count)+".png"
+                        make_dir="./display_data/"
+                        name=make_dir+"depth_carmea"+str(address)+"_"+ str(count)+".png"
                         depth = depth.astype(np.uint8)
                         cv2.imwrite(name, depth)
 
-                        name="couler_carmea"+str(address)+"_"+ str(count)+".png"
+                        name=make_dir+"couler_carmea"+str(address)+"_"+ str(count)+".png"
 
                         cv2.imwrite(name, couler)
 
+                    if self.mode == "display":
+
+
+                        data = pickle.loads(data)
+                        count+=1
+                        depth = data[0]
+                        couler = data[1]
+                        self.image_data=depth.astype(np.uint8)
+                        if self.is_display_runing==False:
+                            threading.Thread(target=self.display_image).start()
                 else:
                     raise Exception('Client disconnected/no data has been give in 60 sec')
             except Exception as inst:
@@ -119,9 +146,17 @@ class ThreadedServer(object):
                 self.mode = "no save"
             elif chose=="shutdown":
                 self.main_loop=False
+            elif chose=="image_data":
+                self.mode="image_data"
             elif chose=="display":
                 self.mode="display"
 
+            elif chose == "depth":
+                self.save_type="depth"
+            elif chose == "full":
+                self.save_type = "full"
+            elif chose == "couler":
+                self.save_type = "couler"
 
             else:
                 print("not vaild chose for serveer modes")

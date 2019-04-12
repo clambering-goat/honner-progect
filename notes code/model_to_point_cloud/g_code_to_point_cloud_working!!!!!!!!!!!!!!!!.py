@@ -259,7 +259,7 @@ x_points=[]
 y_points=[]
 z_points=[]
 
-file=open("point_cloud.xyz","w")
+file=open("point_cloud.xyz","vaules")
 
 
 for q in points:

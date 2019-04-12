@@ -93,8 +93,8 @@ class converter():
         #puts 0,0 in cent of object
         for l1 in point_could_data_not_cented:
             x, y, z = l1
-            x = x - self.mid_x
-            y = y - self.mid_y
+            x = x - self.mid_x+105
+            y = y - self.mid_y+50
             z =  z-self.distance_to_object_from_sensor
             self.point_could_data.append((x, y, z))
 
@@ -102,10 +102,9 @@ class converter():
 
 
 
-    def roatation(self,angle,rotation_axies,point_could="not_given"):
+    def roatation(self,angle,rotation_axies,point_could):
 
-        if point_could=="not_given":
-            point_could=self.point_could_data
+
 
         if rotation_axies !="x" and rotation_axies !="y" and rotation_axies!="z":
             raise  Exception(" novalid axies of rortation given")

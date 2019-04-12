@@ -360,7 +360,7 @@ class kinect_claibration():
         print("saving data")
         name=self.file_name.split(".")
         name=name[0]
-        file=open("calibration_"+name,"w")
+        file=open("calibration_"+name,"vaules")
         print("fiel name is ","calibration_" +name)
         data="y rotation "+str(self.y_rotation)+"\n"
         file.write(data)

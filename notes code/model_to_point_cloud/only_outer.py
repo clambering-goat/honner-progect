@@ -116,7 +116,7 @@ for yyy in range(150,200,10):
 
 
 
-    file=open("surface_points"+str(yyy)+".xyz","w")
+    file=open("surface_points"+str(yyy)+".xyz","vaules")
 
     for q in free_points:
 

@@ -12,8 +12,11 @@ import os
 #
 # dir_to_save="C:/Users/back up/Documents/GitHub/honner-progect/point _colder for digrasms/xyz_data/"
 
-dir_to_look="D:/scan_notes/ver_shift/startit_oin/"
-dir_to_save="D:/scan_notes/ver_shift/startit_oin/"
+#dir_to_look="D:/scan_notes/ver_shift/startit_oin/"
+#dir_to_save="D:/scan_notes/ver_shift/startit_oin/"
+
+dir_to_look="./scan_to_modle/numpy_data/"
+dir_to_save="./scan_to_modle/numpy_data/"
 for files in os.listdir(dir_to_look):
     if files[-4:len(files)]==".npy" and files[0]=="d":
         data=np.load(dir_to_look+files)

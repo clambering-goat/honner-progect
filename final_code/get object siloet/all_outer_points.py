@@ -1,20 +1,34 @@
 
 from math import sin,cos,radians
+
 def rotatin_points(array,angle):
 
     angle=radians(angle)
     s=sin(angle)
     c=cos(angle)
     ration_array = []
-    for loop in array:
-        x = loop[0]
-        y = loop[1]
-        z = loop[2]
-        # math from roation
-        x1 = (x * c) - (y * s)
-        y1 = (x * s) + (y * c)
 
-        ration_array.append((x1, y1, z))
+    set_hight = array[0][2]
+
+    count = -1
+
+    for layer in array:
+        center=find_center(layer)
+        ration_array.append([])
+        count += 1
+        for loop in layer:
+
+
+
+            x = loop[0]-center[0]
+            y = loop[1]-center[1]
+            z = loop[2]
+            # math from roation
+            x1 = (x * c) - (y * s)
+            y1 = (x * s) + (y * c)
+
+            ration_array[count].append((x1, y1, z))
+
     return ration_array
 
 
@@ -28,28 +42,30 @@ def find_center(layer):
     for q in layer:
         x,y,z=q
 
-        if x > max_x[0]:
-            max_x[0] = x
+        if x > max_x:
+            max_x = x
 
 
-        if x < min_x[0]:
-            min_x[0] = x
+        if x < min_x:
+            min_x = x
 
 
-        if y > max_y[0]:
-            max_y[0] = y
+        if y > max_y:
+            max_y = y
 
 
-        if y < min_Y[0]:
-            min_Y[0] = x
+        if y < min_Y:
+            min_Y = x
 
     center_x=min_x+(max_x-min_x)/2
     center_y=min_Y+(max_y-min_Y)/2
     center=center_x,center_y
+
     return center
 
-def get_siloet(array):
-    vaule_found = []
+
+
+def layer_split(array):
     data = [[]]
     count = 0
 
@@ -63,20 +79,19 @@ def get_siloet(array):
             count += 1
             set_hight = q[2]
             data[count].append(q)
-            vaule_found.append(q[2])
+
+    return data
 
 
+def get_siloet(data):
 
 
-    center_point = 0, 0
-
-    # max x point from center
 
     slice_points = []
 
     for loop1 in data:
         layer_1 = loop1
-        max_x = [0, 0, 0]
+        max_x = [-9999999999999999, 0, 0]
         min_x = [999999999999999999999999999, 0, 0]
 
         for q in layer_1:
@@ -100,6 +115,7 @@ def get_siloet(array):
 
     slice_size = 0.1
     # bott add in
+
     for q in data[0]:
         x = q[0]
         y = q[1]
@@ -123,50 +139,55 @@ def get_siloet(array):
 
 
 
+def file_to_array(file_name):
+    point_could=file_name
 
-point_could="point_cloud.xyz"
+    file=open(point_could,"r")
 
+    data=file.readlines()
 
-file=open(point_could,"r")
+    array=[]
 
-data=file.readlines()
-
-array=[]
-
-for q in data:
-    temp=q.split(" ")
-    x=float(temp[0])
-    y=float(temp[1])
-    z=float(temp[2])
-    #removes the basic points assmenting the layer hieght is 0.2
-    if z>0.2:
-
-        array.append((x,y,z))
-
-#get center
+    for q in data:
+        temp=q.split(" ")
+        x=float(temp[0])
+        y=float(temp[1])
+        z=float(temp[2])
+        #removes the basic points assmenting the layer hieght is 0.2
+        if z>0.2:
+            array.append((x,y,z))
+    return array
 
 
 
-file=open("slice.xyz","w")
+angle=0
 
-for angle in range(0,90,10):
+array=file_to_array("point_cloud.xyz")
 
-    array_r=rotatin_points(array,angle)
-    file_2 = open("point_coulder_rotared"+str(angle)+".xyz", "w")
-    for w in array_r:
-        data=str(w[0])+" "+str(w[1])+" "+str(w[2])+"\n"
-        #print(data)
-        file_2.write(data)
+array_later_split=layer_split(array)
 
+array_r=rotatin_points(array_later_split,angle)
+
+silot=get_siloet(array_r)
 
 
 
-    silot=get_siloet(array_r)
+file_2 = open("point_coulder_rotared"+str(angle)+".xyz", "vaules")
 
-    for w in silot:
-        data=str(w[0])+" "+str(w[1])+" "+str(w[2])+"\n"
-        #print(data)
-        file_2.write(data)
+for w in array_r:
+    data=str(w[0])+" "+str(w[1])+" "+str(w[2])+"\n"
+    #print(data)
+    file_2.write(data)
+
+file_2.close()
+
+
+file = open("slice"+str(angle)+".xyz", "vaules")
+
+for w in silot:
+    data=str(w[0])+" "+str(w[1])+" "+str(w[2])+"\n"
+    #print(data)
+    file.write(data)
 
 file.close()
 

@@ -362,7 +362,7 @@ class kinect_claibration():
         print("saving data")
         name=self.file_name.split(".")
         name=name[0]
-        file=open("calibration_"+name,"w")
+        file=open("calibration_"+name,"vaules")
         print("fiel name is ","calibration_" +name)
         data="y rotation "+str(self.y_rotation)+"\n"
         file.write(data)
@@ -394,7 +394,7 @@ class kinect_claibration():
 
 
 
-error_log=open("data_log.txt","w")
+error_log=open("data_log.txt","vaules")
 error_log.close()
 temp=kinect_claibration("depth2.npy")
 #temp.point_selection()

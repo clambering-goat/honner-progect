@@ -7,7 +7,7 @@ data3=np.load("file3.npy")
 
 
 main_data=[data1,data2,data3]
-file=open("kinect_point_cloud.xyz","w")
+file=open("kinect_point_cloud.xyz","vaules")
 
 max_depth_vaule=255
 

@@ -308,7 +308,7 @@ for q in range(len(vaule_2)-1):
 
 
 
-file=open("rotaion.xyz","w")
+file=open("rotaion.xyz","vaules")
 for q in vaule_to_render:
     data=str(q[0])+" "+str(q[1])+" "+str(q[2])+"\n"
     file.write(data)

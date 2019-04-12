@@ -39,11 +39,11 @@ count=0
 for q in depth_data:
     count+=1
     print(count)
-    for w in range(20):
-        print(q[center_h][center_w+w])
+    for vaules in range(20):
+        print(q[center_h][center_w+vaules])
 
-    for w in range(20):
-        print(q[center_h][center_w-w])
+    for vaules in range(20):
+        print(q[center_h][center_w-vaules])
 '''
 
 error_to_accept=4

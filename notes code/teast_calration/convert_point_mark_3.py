@@ -134,7 +134,7 @@ data2=temp2.data_out()
 new_data=data[0],data2[1]
 
 
-file=open("rotaion.xyz","w")
+file=open("rotaion.xyz","vaules")
 for vaule_to_render in new_data:
     for q in vaule_to_render:
         data=str(q[0])+" "+str(q[1])+" "+str(q[2])+"\n"

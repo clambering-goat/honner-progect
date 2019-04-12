@@ -5,7 +5,7 @@ data=np.load("./save data/scan1_buble gum.npy")
 
 
 
-file=open("kinect_point_cloud.xyz","w")
+file=open("kinect_point_cloud.xyz","vaules")
 
 max_depth_vaule=255
 

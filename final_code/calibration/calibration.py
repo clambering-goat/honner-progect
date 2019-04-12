@@ -442,7 +442,7 @@ class kinect_claibration():
 
 
 
-dir_to_look="D:/scan_notes/calibration/"
+dir_to_look="D:/scan_notes/cal_2/"
 count_frames=0
 file_list={}
 for files in os.listdir(dir_to_look):

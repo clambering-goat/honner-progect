@@ -26,9 +26,9 @@ def get_depth():
 
 
 
-# w, h = len(frame_array[q][0]), len(frame_array[q])
+# vaules, h = len(frame_array[q][0]), len(frame_array[q])
 #
-# avarave_frame = np.zeros(shape=(h,w))
+# avarave_frame = np.zeros(shape=(h,vaules))
 #
 # for q in range(50):
 #     for row in range(len(frame_array[q])-1):

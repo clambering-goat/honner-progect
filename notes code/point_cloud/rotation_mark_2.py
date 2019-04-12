@@ -66,7 +66,7 @@ for loop1 in range(0,360,90):
 
 
 
-file=open("360_rotaion.xyz","w")
+file=open("360_rotaion.xyz","vaules")
 for q in base_points:
     data=str(q[0])+" "+str(q[1])+" "+str(q[2])+"\n"
     file.write(data)

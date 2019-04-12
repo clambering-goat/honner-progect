@@ -17,7 +17,7 @@ for files in os.listdir(dir_to_look):
         data=np.load(dir_to_look+files)
         count_frames+=1
 
-        file = open("./xyz_data/kinect_point_cloud_"+str(count_frames)+".xyz", "w")
+        file = open("./xyz_data/kinect_point_cloud_"+str(count_frames)+".xyz", "vaules")
 
         x_p=-1
         y_p=-1

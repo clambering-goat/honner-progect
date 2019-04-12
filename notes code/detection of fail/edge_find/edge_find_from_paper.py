@@ -191,7 +191,7 @@ if len(edge_points)>1 and (len(point_could)*len(point_could[0])) != len(edge_poi
 
 
 
-    file = open("edge points k vaule "+str(K)+"c vaule "+str(c_movidfer)+".xyz", "w")
+    file = open("edge points k vaule "+str(K)+"c vaule "+str(c_movidfer)+".xyz", "vaules")
 
 
     for q in edge_points:

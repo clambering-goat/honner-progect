@@ -233,7 +233,7 @@ x_points=[]
 y_points=[]
 z_points=[]
 
-file=open("p1.xyz","w")
+file=open("p1.xyz","vaules")
 
 
 for q in points:

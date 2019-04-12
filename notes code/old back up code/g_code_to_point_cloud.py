@@ -254,7 +254,7 @@ plt.show()
 
 
 
-file = open("point_cloud_out_old_working.xyz", "w")
+file = open("point_cloud_out_old_working.xyz", "vaules")
 for q in list_of_points:
 
     data = str(q[0]) + " " + str(q[1])+ " 0 ""\n"

@@ -140,7 +140,7 @@ for q in point_could_data:
 
 
 
-file=open("rotaion.xyz","w")
+file=open("rotaion.xyz","vaules")
 for q in roated_point_cloud:
     data=str(q[0])+" "+str(q[1])+" "+str(q[2])+"\n"
     file.write(data)

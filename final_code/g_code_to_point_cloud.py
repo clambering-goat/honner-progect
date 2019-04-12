@@ -23,7 +23,7 @@ class grid_draw_2d :
 
 def line_to_points(list_of_lines):
     list_of_points={}
-    scan_size=0.001
+    scan_size=0.1
     for layer in list_of_lines:
         list_of_points[layer]=[]
         for line in list_of_lines[layer]:
@@ -241,8 +241,12 @@ def g_code_to_lines(file_to_open="no_file"):
 
 #rr="small_box.gcode"
 #rr="gear.gcode"
-rr="small_box.gcode"
-lines=g_code_to_lines(rr)
+#rr="small_box.gcode"
+#rr="hole_box.gcode"
+
+
+file_to_open="./scan_to_modle/thin_wall.gcode"
+lines=g_code_to_lines(file_to_open)
 
 points=line_to_points(lines)
 
@@ -250,7 +254,7 @@ x_points=[]
 y_points=[]
 z_points=[]
 
-file=open("point_cloud.xyz","w")
+file=open("./scan_to_modle/point_cloud.xyz","w")
 
 
 for q in points:

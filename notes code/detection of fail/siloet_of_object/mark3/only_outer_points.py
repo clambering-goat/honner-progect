@@ -153,7 +153,7 @@ verial_line=for_loop_2(v1,v2,0.1)
 
 
 
-file=open("slice.xyz","w")
+file=open("slice.xyz","vaules")
 
 
 
@@ -174,7 +174,7 @@ file.close()
 
 
 
-file=open("box.xyz","w")
+file=open("box.xyz","vaules")
 
 for w in hoz_lines:
     z=box_bond[0][1]

@@ -103,7 +103,7 @@ for q in data[-1]:
 
 
 
-file=open("slice.xyz","w")
+file=open("slice.xyz","vaules")
 
 
 for w in slice_points:

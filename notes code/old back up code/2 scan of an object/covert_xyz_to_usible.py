@@ -6,7 +6,7 @@ file=open("63_final_weraid.xyz","r")
 data=file.readlines()
 file.close()
 
-file_out=open("63_final_fix.xyz","w")
+file_out=open("63_final_fix.xyz","vaules")
 
 
 for q in data:

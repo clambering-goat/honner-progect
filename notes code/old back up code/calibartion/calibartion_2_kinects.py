@@ -264,7 +264,7 @@ angle_sensor_2_y,y_insterpet_sensor_2_y=get_angle_to_target_y_axies(sensor_2_obj
 
 
 
-file=open("kinect-calibration.txt","w")
+file=open("kinect-calibration.txt","vaules")
 
 
 data="sensor 1" +"\n"
