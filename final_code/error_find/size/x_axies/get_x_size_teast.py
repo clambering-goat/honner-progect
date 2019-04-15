@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import freenect
+#import freenect
 import cv2
 import numpy  as np
 cv2.namedWindow('Depth')
@@ -7,36 +7,36 @@ cv2.namedWindow('Depth')
 keep_running = True
 
 
-def display_depth(dev, data_array_depth, timestamp):
-    global keep_running
-
-
-    np.save("raw_data",data_array_depth)
-    data_array_depth = data_array_depth.astype(np.uint8)
-    #cv2.imshow('Depth',data_array_depth)
-    keep_running = False
-    if cv2.waitKey(10) == 27:
-        keep_running = False
-
-
-def display_rgb(dev, data, timestamp):
-
-    pass
-
-
-
-
-
-
-def body(*args):
-    if not keep_running:
-        raise freenect.Kill
-
-
-print('Press ESC in window to stop')
-mdev=freenect.open_device(freenect.init(),0)
-freenect.set_depth_mode(mdev, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_MM)
-freenect.runloop(dev=mdev,depth=display_depth,video=display_rgb,body=body)
+# def display_depth(dev, data_array_depth, timestamp):
+#     global keep_running
+#
+#
+#     np.save("raw_data",data_array_depth)
+#     data_array_depth = data_array_depth.astype(np.uint8)
+#     #cv2.imshow('Depth',data_array_depth)
+#     keep_running = False
+#     if cv2.waitKey(10) == 27:
+#         keep_running = False
+#
+#
+# def display_rgb(dev, data, timestamp):
+#
+#     pass
+#
+#
+#
+#
+#
+#
+# def body(*args):
+#     if not keep_running:
+#         raise freenect.Kill
+#
+#
+# print('Press ESC in window to stop')
+# mdev=freenect.open_device(freenect.init(),0)
+# freenect.set_depth_mode(mdev, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_MM)
+# freenect.runloop(dev=mdev,depth=display_depth,video=display_rgb,body=body)
 
 print("part 2 ")
 np.load("raw_data.npy")

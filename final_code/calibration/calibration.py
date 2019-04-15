@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import os
-from  math import atan ,degrees,radians,sin,cos
+from  math import atan ,degrees
 
 
 class kinect_claibration():
@@ -397,12 +397,32 @@ class kinect_claibration():
 
 
 
+
+    def x_y_offset(self):
+        x,y=self.center_point
+
+
+
+
+        y_edge=self.vertiacl_scan_min_point[0]
+
+        delta_y=y_edge-y
+
+
+        y_c = y*1.64*delta_y
+
+
+        self.center_to_base=y_c
+
+
+
     def save_config(self):
         print("saving data")
         name=self.file_name[0:-4]
         #name=name[0]
         file=open("calibration_"+name+".txt","w")
         print("fiel name is ","calibration_" +name)
+
         data="y_rotation "+str(self.y_rotation)+"\n"
         file.write(data)
 
@@ -436,13 +456,18 @@ class kinect_claibration():
         data="center_distance_is " +str(self.center_point_distance) + "\n"
         file.write(data)
 
+        data="center_to_base " +str(self.center_to_base) + "\n"
+        file.write(data)
+
         data="numpy_file_name_is "+str(self.file_name) + "\n"
         file.write(data)
+
+
         file.close()
 
 
 
-dir_to_look="D:/scan_notes/cal_2/"
+dir_to_look="D:/scan_notes/teast_2/"
 count_frames=0
 file_list={}
 for files in os.listdir(dir_to_look):
@@ -468,6 +493,7 @@ for q in file_list:
     temp.scan_around_point()
     temp.grafic_display_of_bonds()
     temp.calulat_rotation()
+    temp.x_y_offset()
     temp.save_config()
 
 

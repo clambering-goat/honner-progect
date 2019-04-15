@@ -50,14 +50,14 @@ def line_to_points(list_of_lines):
             vaule_x=(x2-x1)
             vaule_y=(y2-y1)
 
-            if x1 > 104 and x1 < 106 and y1 > 100.9 and y1 < 102.7 and z1 >1:
-                print("error point ")
-
-            #add start and end points
-            list_of_points[layer].append((x1,y1,z1))
-
-            if x1 > 104 and x1 < 106 and y1 > 100.9 and y1 < 102.7 and z1 >1:
-                print("error point ")
+            # if x1 > 104 and x1 < 106 and y1 > 100.9 and y1 < 102.7 and z1 >1:
+            #     print("error point ")
+            #
+            # #add start and end points
+            # list_of_points[layer].append((x1,y1,z1))
+            #
+            # if x1 > 104 and x1 < 106 and y1 > 100.9 and y1 < 102.7 and z1 >1:
+            #     print("error point ")
             list_of_points[layer].append((x2,y2,z1))
 
 
@@ -245,7 +245,7 @@ def g_code_to_lines(file_to_open="no_file"):
 #rr="hole_box.gcode"
 
 
-file_to_open="./scan_to_modle/thin_wall.gcode"
+file_to_open="./trangle_up.gcode"
 lines=g_code_to_lines(file_to_open)
 
 points=line_to_points(lines)
@@ -254,7 +254,7 @@ x_points=[]
 y_points=[]
 z_points=[]
 
-file=open("./scan_to_modle/point_cloud.xyz","w")
+file=open("point_cloud.xyz","w")
 
 
 for q in points:

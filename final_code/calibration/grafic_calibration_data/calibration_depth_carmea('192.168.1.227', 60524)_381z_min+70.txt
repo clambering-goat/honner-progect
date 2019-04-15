@@ -1,0 +1,12 @@
+y_rotation -3.7929670982163004
+y_ydisplacment 905.6278137526984
+x_rotation -6.6720574225049205
+x_displacment 927.4647950089114
+horzonatl_scan_min_point 271 318
+horzontal_scan_max_point 271 351
+vertiacl_scan_min_point 247 336
+vertiacl_scan_max_point 293 336
+center_is (334.5, 270.0)
+center_distance_is 887
+center_to_base 29224.799999999996
+numpy_file_name_is depth_carmea('192.168.1.227', 60524)_381.npy
