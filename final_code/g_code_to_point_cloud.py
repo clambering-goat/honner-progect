@@ -245,7 +245,7 @@ def g_code_to_lines(file_to_open="no_file"):
 #rr="hole_box.gcode"
 
 
-file_to_open="./trangle_up.gcode"
+file_to_open="./trangle_faceing_sensor.gcode"
 lines=g_code_to_lines(file_to_open)
 
 points=line_to_points(lines)

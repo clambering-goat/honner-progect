@@ -159,7 +159,7 @@ def make_siltot(in_array,angle):
     #     y = vaules[1]
     #     z = vaules[2]
     #
-    #     if x > min_x[0] and x < max_x[0] and y > min_x[1] - slice_size and y < max_x[1] + slice_size:
+    #     if x > min_x_mm[0] and x < max_x_mm[0] and y > min_x_mm[1] - slice_size and y < max_x_mm[1] + slice_size:
     #         slice_points.append((x, y, z))
     #
     # # top add in
@@ -168,7 +168,7 @@ def make_siltot(in_array,angle):
     #     y = vaules[1]
     #     z = vaules[2]
     #
-    #     if x > min_x[0] and x < max_x[0] and y > min_x[1] - slice_size and y < max_x[1] + slice_size:
+    #     if x > min_x_mm[0] and x < max_x_mm[0] and y > min_x_mm[1] - slice_size and y < max_x_mm[1] + slice_size:
     #         slice_points.append((x, y, z))
 
     return slice_points

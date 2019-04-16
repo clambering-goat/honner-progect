@@ -1,5 +1,5 @@
 
-point_could="trangle_up.xyz"
+point_could="thin_wall.xyz"
 
 
 
