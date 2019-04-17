@@ -25,6 +25,8 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="rotated_object" />
+          <option value="g_code_to_point_cloud" />
+          <option value="point_could_to_x_min_max" />
         </list>
       </option>
     </inspection_tool>
