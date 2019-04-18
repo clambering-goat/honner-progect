@@ -204,7 +204,7 @@ def get_angle_to_target_x_axies(sensor_object,sensor):
     for q in range(sensor_object[0],sensor_object[1]):
 
         temp.append(q)
-        #print((sensor[1][mid_y][q]))
+        #print((sensor[1][mid_y][point]))
         point_in_sacn.append(sensor[1][mid_y][q])
 
 
@@ -230,7 +230,7 @@ def get_angle_to_target_y_axies(sensor_object,sensor):
 
 
         temp.append(q)
-        #print("adding vauel main ",sensor[1][q][mid_x])
+        #print("adding vauel main ",sensor[1][point][mid_x])
         point_in_sacn.append(sensor[1][q][mid_x])
 
 

@@ -166,8 +166,8 @@ class converter():
 
 
         # point_could_y_shift=[]
-        # for q in point_could_x_rotate:
-        #     x,y,z=q
+        # for point in point_could_x_rotate:
+        #     x,y,z=point
         #
         #     x1=x-float(self.x_displacment)
         #     y1=y-float(self.y_displacment)

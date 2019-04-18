@@ -36,14 +36,14 @@ center_h,center_w=240,320
 '''
 
 count=0
-for q in depth_data:
+for point in depth_data:
     count+=1
     print(count)
     for vaules in range(20):
-        print(q[center_h][center_w+vaules])
+        print(point[center_h][center_w+vaules])
 
     for vaules in range(20):
-        print(q[center_h][center_w-vaules])
+        print(point[center_h][center_w-vaules])
 '''
 
 error_to_accept=4
@@ -224,8 +224,8 @@ print("arage point for image 2 ",avarge_2)
 
 
 ''' 
-for q in depth_data:
-    cv2.imshow('image',q)
+for point in depth_data:
+    cv2.imshow('image',point)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     print("size ",size)

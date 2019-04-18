@@ -12,7 +12,7 @@ data_arrarge=np.load(home+"depth3589.npy")
 for q in os.listdir(home):
 
     if q[-4:len(q)]==".npy" and q[0]=="d":
-        #print(q)
+        #print(point)
         file_to_load=home+q
         image=np.load(file_to_load)
 

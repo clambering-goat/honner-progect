@@ -220,8 +220,8 @@ while len(list_of_points)>0:
     group.append([])
     print(len(list_of_points))
     list_of_point_to_remove=[]
-    for q in list_of_points:
-        x,y=q
+    for point in list_of_points:
+        x,y=point
 
         if x<0 or y<0:
             print("? help ")
@@ -231,8 +231,8 @@ while len(list_of_points)>0:
         if x>bond_min_x and x<bond_max_x and y>bond_min_y and y<bond_max_y:
             group[count].append((x,y))
             list_of_point_to_remove.append((x,y))
-    for q in list_of_point_to_remove:
-        list_of_points.remove(q)
+    for point in list_of_point_to_remove:
+        list_of_points.remove(point)
 print(len(group)," groups where found with a prosimity of ",scan_size)
 
 '''
@@ -240,10 +240,10 @@ print(len(group)," groups where found with a prosimity of ",scan_size)
 import matplotlib.pyplot as plt
 x_list=[]
 y_list=[]
-for q in list_of_points:
+for point in list_of_points:
 
-    x_list.append(q[0])
-    y_list.append(q[1])
+    x_list.append(point[0])
+    y_list.append(point[1])
 plt.plot(x_list, y_list, 'ro')
 plt.axis([50, 200, 50, 200])
 plt.show()
@@ -259,9 +259,9 @@ for q in list_of_points:
 
     data = str(q[0]) + " " + str(q[1])+ " 0 ""\n"
     file.write(data)
-    #pix=Point(q[0],q[1])
+    #pix=Point(point[0],point[1])
     #pix.draw(win)
-    #print(q)
+    #print(point)
     #time.sleep(0.1)
 file.close()
 input("press to close")

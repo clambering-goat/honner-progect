@@ -199,7 +199,7 @@ def get_angle_to_target_x_axies(sensor_object,sensor):
     temp=[]
     for q in range(sensor_object[0],sensor_object[1]):
 
-        #print(sensor[1][mid_y][q]," ",mid_y,q)
+        #print(sensor[1][mid_y][point]," ",mid_y,point)
         temp.append(mid_y)
         point_in_sacn.append(sensor[1][mid_y][q])
 
@@ -226,7 +226,7 @@ def get_angle_to_target_y_axies(sensor_object,sensor):
     temp=[]
     for q in range(sensor_object[0],sensor_object[1]):
 
-        #print(sensor[1][mid_y][q]," ",mid_y,q)
+        #print(sensor[1][mid_y][point]," ",mid_y,point)
         temp.append(mid_x)
         point_in_sacn.append(sensor[1][q][mid_x])
 
@@ -261,11 +261,11 @@ get_angle_to_target_y_axies(sensor_2_object_y_range,sensor_2)
 
 # point_in_x_sacn=[]
 # temp=[]
-# for q in range(sensor_1_object_x_range[0],sensor_1_object_x_range[1]):
+# for point in range(sensor_1_object_x_range[0],sensor_1_object_x_range[1]):
 #
-#     print(sensor_1[1][mid_y][q]," ",mid_y,q)
+#     print(sensor_1[1][mid_y][point]," ",mid_y,point)
 #     temp.append(mid_y)
-#     point_in_x_sacn.append(sensor_1[1][mid_y][q])
+#     point_in_x_sacn.append(sensor_1[1][mid_y][point])
 #
 #
 #

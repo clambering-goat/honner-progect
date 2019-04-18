@@ -15,7 +15,7 @@ def get_depth():
 
 
 # frame_array=[]
-# for q in range(50):
+# for point in range(50):
 #
 #     #get a frame from depth sensor
 #     depth = get_depth()
@@ -26,18 +26,18 @@ def get_depth():
 
 
 
-# vaules, h = len(frame_array[q][0]), len(frame_array[q])
+# vaules, h = len(frame_array[point][0]), len(frame_array[point])
 #
 # avarave_frame = np.zeros(shape=(h,vaules))
 #
-# for q in range(50):
-#     for row in range(len(frame_array[q])-1):
-#         for cloum in range(len(frame_array[q][0])-4):
-#             avarave_frame[row][cloum]=avarave_frame[row][cloum]+frame_array[q][row][cloum]
+# for point in range(50):
+#     for row in range(len(frame_array[point])-1):
+#         for cloum in range(len(frame_array[point][0])-4):
+#             avarave_frame[row][cloum]=avarave_frame[row][cloum]+frame_array[point][row][cloum]
 #
 #
-# for row in range(len(frame_array[q])-1):
-#     for cloum in range(len(frame_array[q][0])-4):
+# for row in range(len(frame_array[point])-1):
+#     for cloum in range(len(frame_array[point][0])-4):
 #         avarave_frame[row][cloum]=avarave_frame[row][cloum]/50
 
 #while 1:

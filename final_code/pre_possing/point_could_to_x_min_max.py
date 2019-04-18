@@ -94,7 +94,7 @@ class get_x_min_to_x_max():
 
                 costance_z=q[2]
 
-                if q[0]>self.x_center-0.5and q[0]<self.x_center+0.5:
+                if q[0]>self.x_center-0.2and q[0]<self.x_center+0.2:
                     y_center_points.append(q[1])
 
             for q in layer_1:
@@ -131,7 +131,7 @@ class get_x_min_to_x_max():
             # 85.2 75.2
             # 134.8 3.3
 
-            data=str(max_x[0])+" "+str(max_x[1])+" "+str(min_x[0])+" "+str(min_x[1])+" "+str(y_center_vaule)+" "+str(costance_z)+"\n"
+            data=str(max_x[0])+" "+str(max_x[1])+" "+str(min_x[0])+" "+str(min_x[1])+" "+str(self.x_center)+" "+str(y_center_vaule)+" "+str(costance_z)+"\n"
             file.write(data)
         file.close()
 
