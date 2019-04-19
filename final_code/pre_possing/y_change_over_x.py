@@ -80,15 +80,15 @@ for layer in data:
     max_x=math.ceil(max_x)
     max_x=int(max_x)
     error_margion=0.1
-    for x_point_looking in range(min_x,max_x,0.):
-        y_max = -9999
+    for x_point_looking in range(min_x,max_x,1):
+        y_min = 9999
 
         for point in layer:
             if x_point_looking>point[0]-error_margion and x_point_looking<point[0]+error_margion:
-                if point[1]>=y_max:
-                    y_max=point[1]
-        if y_max !=-9999:
-            data=str(x_point_looking)+" "+str(y_max)+" "+str(higth)+"\n"
+                if point[1]<=y_min:
+                    y_min=point[1]
+        if y_min !=9999:
+            data=str(x_point_looking)+" "+str(y_min)+" "+str(higth)+"\n"
 
             file.write(data)
 
