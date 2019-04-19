@@ -3,6 +3,7 @@
 # set up and math used
 import numpy as np
 import cv2
+import os
 #import math
 
 
@@ -52,14 +53,37 @@ def find_largest_x(array):
 
     return largest_x
 
+
+#file find
+
+numpy_file=""
+MAX_point_file=""
+y_over_x_file=""
+
+for files in os.listdir("./"):
+    if files[0:5]=="chane":
+        y_over_x_file=files
+    if files[-4:len(files)] == ".npy":
+        numpy_file=files
+    if files[0:5]=="x_max":
+        MAX_point_file=files
+
+
+print("nump file ",numpy_file)
+print("y_over_x file ",y_over_x_file)
+print("x max and min file ",MAX_point_file)
+
+
+
+
 printer_center_x=105
 
 
 #find the model 00 poinrts
 
 
-#data_input=np.load("not_at_match_scan.npy")
-data_input=np.load("match_scan.npy")
+data_input=np.load(numpy_file)
+#data_input=np.load("match_scan.npy")
 
 
 couler_vesion_on_data=np.copy(data_input)
@@ -68,7 +92,7 @@ couler_vesion_on_data = cv2.cvtColor(couler_vesion_on_data,cv2.COLOR_GRAY2RGB)
 
 
 
-file=open("chane_y_over_xpoint_cloud_of_changin_in_depth_teast.txt","r")
+file=open(y_over_x_file,"r")
 file_data=file.readlines()
 file.close()
 
@@ -93,7 +117,7 @@ for raw_data in file_data:
 
 
 
-file=open("x_max_minpoint_cloud_of_changin_in_depth_teast.txt","r")
+file=open(MAX_point_file,"r")
 file_data=file.readlines()
 file.close()
 #line exasmeple
@@ -125,7 +149,7 @@ for x_max_data in file_data:
 
 
 
-center_point_x_image=335
+center_point_x_image=340
 center_point_y_image=269
 
 cv2.line(couler_vesion_on_data, (center_point_x_image, center_point_y_image), (center_point_x_image, center_point_y_image - 20), (125, 0, 0), 2)
@@ -213,6 +237,7 @@ x_max_size_mm=abs(X_max_p-x_mid_p)
 offset=0
 start_vaule=x_min_size_mm
 X_min_size_pixels=0
+print("modle x min is mm of center ",start_vaule)
 while True:
     offset+=1
 
@@ -220,16 +245,18 @@ while True:
     x= model_00_point_pixcels[0] - offset
     distance=data_input[y][x]
 
-    start_vaule=start_vaule-y_pixel_to_mm(distance,1)
-    if start_vaule<1:
+    start_vaule=start_vaule-x_pixel_to_mm(distance,1)
+    X_min_size_pixels += 1
+    if start_vaule<0:
         break
-    X_min_size_pixels+=1
+
 
 print("x_min size in pixcels ",X_min_size_pixels)
 
 
 offset=0
 start_vaule=x_max_size_mm
+print("modle x max is mm of center ",start_vaule)
 X_max_size_pixels=0
 while True:
     offset+=1
@@ -237,10 +264,12 @@ while True:
     x= model_00_point_pixcels[0] + offset
     distance=data_input[y][x]
 
-    start_vaule=start_vaule-y_pixel_to_mm(distance,1)
-    if start_vaule<1:
+    x_mm=x_pixel_to_mm(distance, 1)
+    start_vaule=start_vaule-x_mm
+    X_max_size_pixels += 1
+    if start_vaule<0:
         break
-    X_max_size_pixels+=1
+
 
 print("x_max size in pixcels ",X_max_size_pixels)
 
@@ -267,7 +296,6 @@ for points in point_from_model:
     x,y=points
     if x==printer_center_x:
         x_center_point_from_models=points
-        point_from_model.remove(points)
 
         break
 
@@ -279,9 +307,8 @@ x_center_out_x_min=[]
 for points in point_from_model:
     x,y=points
     if x<printer_center_x:
-        point_from_model.remove(points)
-        x_center_out_x_min.append(points)
 
+        x_center_out_x_min.append(points)
 
 
 
@@ -293,9 +320,8 @@ x_center_out_x_max=[]
 for points in point_from_model:
     x,y=points
     if x>printer_center_x:
-        point_from_model.remove(points)
-        x_center_out_x_max.append(points)
 
+        x_center_out_x_max.append(points)
 
 
 
@@ -333,11 +359,13 @@ print("start model from models,x",printer_center_x)
 vaild_y_x_point_found=0
 invasile_y_x_points_found=0
 end_of_x_comare_to_y=False
+round_off_fix=0
 while True:
 
     shift+=1
     y= model_00_point_pixcels[1] - compare_pixle_hight
     x= model_00_point_pixcels[0] + shift
+    print("x,y",x,y)
 
     if x+1>len(data_input[0]):
         print("point out of bond in the x axies ")
@@ -351,6 +379,7 @@ while True:
     if  distance_vaule_from_scan < min_distance or distance_vaule_from_scan > max_distance:
         print("invail depth vaule found at ",x,y)
         print("distance vasule ",distance_vaule_from_scan )
+
         break
 
 
@@ -363,6 +392,7 @@ while True:
     #see if model to big
     if shift>X_max_size_pixels+picels_error_margion:
         print("shift ",shift)
+        print("X_max_size_pixels",X_max_size_pixels)
         over_size=True
 
 
@@ -397,12 +427,19 @@ while True:
 
 
     if change_in_distance>5:
-        distance=change_in_distance/2
+        distance=current_z_pos+change_in_distance/2
     else:
-        distance=change_in_distance
+        distance=current_z_pos
 
-    model_x_distance=model_x_distance-y_pixel_to_mm(distance,1)
+    print("distance",distance)
+    print("one pixel is mm ",x_pixel_to_mm(distance,1))
+    model_x_distance=model_x_distance-x_pixel_to_mm(distance,1)
+
+    #need to fix as one picel is 1.2 mm each loop the models move 1mm the image moves 1.2 ]#
+
+
     if model_x_distance<1:
+        round_off_fix=+round_off_fix+model_x_distance
         move_to_next_point_in_model=True
 
 
@@ -411,16 +448,29 @@ while True:
         print("except change ",model_y_distance)
         print("got change ",total_y_scan_distance)
 
+        print("model point comaper")
+        print(old_point_from_models)
+        print(next_point_from_models)
 
-
-        #add cheek y postion for 
+        #add cheek y postion for
 
 
         if total_y_scan_distance>=model_y_distance-1 and  total_y_scan_distance <=model_y_distance+1:
 
 
+
+            start_point=x,y
+            end_point=x,y-10
+
+            cv2.line(couler_vesion_on_data, start_point,end_point, (0, 255, 0), 2)
+
             vaild_y_x_point_found+=1
         else:
+            start_point=x,y
+            end_point=x,y-10
+
+            cv2.line(couler_vesion_on_data, start_point,end_point, (0, 0, 255), 2)
+
             invasile_y_x_points_found+=1
 
 
@@ -430,7 +480,6 @@ while True:
         else:
             old_point_from_models=next_point_from_models
             next_point_from_models = find_smallest_x(x_center_out_x_max)
-
 
 
             x_center_out_x_max.remove(next_point_from_models)

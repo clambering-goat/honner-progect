@@ -1,11 +1,11 @@
 import g_code_to_point_cloud
 import point_could_to_x_min_max
-
+import y_change_over_x
 
 import os
 
 
-teast_mode=True
+teast_mode=False
 
 #step 1 -file_seletion
 
@@ -52,7 +52,6 @@ elif len(list_of_files)>1:
 
         try:
             user_input=int(user_input)
-            list_of_files[user_input]
             file_selected= user_input - 1
             file_to_open = list_of_files[file_selected]
             break
@@ -60,14 +59,21 @@ elif len(list_of_files)>1:
         except:
             print("invaild input ")
 
-# print("start g code to point cloude convert on: ",file_to_open)
-# step_1=g_code_to_point_cloud.g_code_to_point_cloud(file_to_open)
-# file_name_of_point_could=step_1.get_file_name()
-# print("point could make and saved to file ",file_name_of_point_could)
+
+print("start g code to point cloude convert on: ",file_to_open)
+step_1=g_code_to_point_cloud.g_code_to_point_cloud(file_to_open)
+file_name_of_point_could=step_1.get_file_name()
+print("point could make and saved to file ",file_name_of_point_could)
 
 
-file_name_of_point_could="point_cloud_of_changin_in_depth_teast.xyz"
 print("finding max and min x points ")
 step_2=point_could_to_x_min_max.get_x_min_to_x_max(file_name_of_point_could)
 max_min_x=step_2.get_file_name()
 print("max and min x point found saved to file ",max_min_x)
+
+
+print("get only point visible to sensore ")
+
+step_3=y_change_over_x.get_points(file_name_of_point_could)
+print("file saved as ",step_3)
+
