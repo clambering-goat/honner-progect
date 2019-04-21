@@ -60,7 +60,12 @@ elif len(list_of_files)>1:
             print("invaild input ")
 
 
+
+
+
 print("start g code to point cloude convert on: ",file_to_open)
+
+
 step_1=g_code_to_point_cloud.g_code_to_point_cloud(file_to_open)
 file_name_of_point_could=step_1.get_file_name()
 print("point could make and saved to file ",file_name_of_point_could)

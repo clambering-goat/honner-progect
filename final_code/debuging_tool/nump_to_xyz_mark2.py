@@ -15,8 +15,8 @@ import os
 #dir_to_look="D:/scan_notes/ver_shift/startit_oin/"
 #dir_to_save="D:/scan_notes/ver_shift/startit_oin/"
 
-dir_to_look="D:/scan_notes/faceing_trangle/"
-dir_to_save="./xyz_data/"
+dir_to_look="./"
+dir_to_save="./"
 for files in os.listdir(dir_to_look):
     if files[-4:len(files)]==".npy" and files[0]=="d":
         data=np.load(dir_to_look+files)

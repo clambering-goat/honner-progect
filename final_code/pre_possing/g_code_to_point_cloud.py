@@ -17,7 +17,7 @@ class g_code_to_point_cloud():
         z_points = []
 
 
-        self.out_put_file_name="point_cloud_of_"+file_to_open[0:-6]+".xyz"
+        self.out_put_file_name="point_cloud_of_"+file_to_open[0:-6]+"_.xyz"
 
         file = open(self.out_put_file_name, "w")
 

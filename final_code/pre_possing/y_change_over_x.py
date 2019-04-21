@@ -50,12 +50,12 @@ def get_points(file_to_open):
 
 
     #max x point from center
-    file_out_name="chane_y_over_x"+file_to_open[0:-4]+".txt"
+    file_out_name="chane_y_over_x_"+file_to_open[0:-4]+"_.txt"
 
     file=open(file_out_name,"w")
 
     for layer in data:
-
+        print(" get point for layer ",layer[2][2])
         higth=layer[2][2]
         max_x=0
         min_x=999999999999999999999999999
@@ -80,9 +80,9 @@ def get_points(file_to_open):
         max_x=math.ceil(max_x)
         max_x=int(max_x)
         error_margion=0.1
-        for x_point_looking in range(min_x,max_x,1):
+        for counter in range(min_x,max_x*100,1):
             y_min = 9999
-
+            x_point_looking=counter/100
             for point in layer:
                 if x_point_looking>point[0]-error_margion and x_point_looking<point[0]+error_margion:
                     if point[1]<=y_min:

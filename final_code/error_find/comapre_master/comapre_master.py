@@ -149,10 +149,10 @@ for x_max_data in file_data:
 
 
 
-center_point_x_image=340
+center_point_x_image=357
 center_point_y_image=269
 
-cv2.line(couler_vesion_on_data, (center_point_x_image, center_point_y_image), (center_point_x_image, center_point_y_image - 20), (125, 0, 0), 2)
+cv2.line(couler_vesion_on_data, (center_point_x_image, center_point_y_image), (center_point_x_image, center_point_y_image - 20), (255, 0, 0), 2)
 
 #max distance in the print bed
 max_distance=1065
@@ -267,6 +267,7 @@ while True:
     x_mm=x_pixel_to_mm(distance, 1)
     start_vaule=start_vaule-x_mm
     X_max_size_pixels += 1
+
     if start_vaule<0:
         break
 
@@ -347,6 +348,7 @@ old_point_from_scan= model_00_point_pixcels[0], model_00_point_pixcels[1] - comp
 #cold start problem
 next_point_from_models=x_center_point_from_models
 old_point_from_models=0,0
+
 model_x_distance=0
 model_y_distance=0
 total_y_scan_distance=0
@@ -359,7 +361,8 @@ print("start model from models,x",printer_center_x)
 vaild_y_x_point_found=0
 invasile_y_x_points_found=0
 end_of_x_comare_to_y=False
-round_off_fix=0
+ditace_from_center_mm=printer_center_x
+
 while True:
 
     shift+=1
@@ -433,70 +436,84 @@ while True:
 
     print("distance",distance)
     print("one pixel is mm ",x_pixel_to_mm(distance,1))
-    model_x_distance=model_x_distance-x_pixel_to_mm(distance,1)
+
+
+
+    ditace_from_center_mm=ditace_from_center_mm+x_pixel_to_mm(distance,1)
+
 
     #need to fix as one picel is 1.2 mm each loop the models move 1mm the image moves 1.2 ]#
 
 
-    if model_x_distance<1:
-        round_off_fix=+round_off_fix+model_x_distance
-        move_to_next_point_in_model=True
+
+    for vauls in x_center_out_x_max:
+        x_t,y_t=vauls
+        if  x_t>ditace_from_center_mm-0.01 and  x_t<ditace_from_center_mm+0.01:
+            old_point_from_models = next_point_from_models
+            next_point_from_models=vauls
+            break
 
 
 
-    if move_to_next_point_in_model==True and end_of_x_comare_to_y==False:
-        print("except change ",model_y_distance)
-        print("got change ",total_y_scan_distance)
 
-        print("model point comaper")
-        print(old_point_from_models)
-        print(next_point_from_models)
+    print("except change ",model_y_distance)
+    print("got change ",change_in_distance)
 
-        #add cheek y postion for
-
-
-        if total_y_scan_distance>=model_y_distance-1 and  total_y_scan_distance <=model_y_distance+1:
+    print("model point comaper")
+    print(old_point_from_models)
+    print()
 
 
 
-            start_point=x,y
-            end_point=x,y-10
+    x1,y1=old_point_from_models
+    x2,y2=next_point_from_models
 
-            cv2.line(couler_vesion_on_data, start_point,end_point, (0, 255, 0), 2)
+    model_x_distance=x2-x1
+    #note to cheek
+    model_y_distance=(y2-y1)
+    model_y_distance=(model_y_distance)
 
-            vaild_y_x_point_found+=1
-        else:
-            start_point=x,y
-            end_point=x,y-10
-
-            cv2.line(couler_vesion_on_data, start_point,end_point, (0, 0, 255), 2)
-
-            invasile_y_x_points_found+=1
+    if change_in_distance>=model_y_distance-1 and  change_in_distance <=model_y_distance+1:
 
 
+        start_point=x,y
+        end_point=x,y-10
 
-        if len(x_center_out_x_max)==0:
-            end_of_x_comare_to_y=True
-        else:
-            old_point_from_models=next_point_from_models
-            next_point_from_models = find_smallest_x(x_center_out_x_max)
+        cv2.line(couler_vesion_on_data, start_point,end_point, (0, 255, 0), 1)
 
+        vaild_y_x_point_found+=1
+    else:
+        start_point=x,y
+        end_point=x,y-10
 
-            x_center_out_x_max.remove(next_point_from_models)
+        cv2.line(couler_vesion_on_data, start_point,end_point, (0, 0, 255), 1)
 
-            x1,y1=old_point_from_models
-            x2,y2=next_point_from_models
-
-            model_x_distance=x2-x1
-            #note to cheek
-            model_y_distance=(y2-y1)*10
-            model_y_distance=int(model_y_distance)
-
-            total_y_scan_distance=0
-
-        #print(change_in_distance)
+        invasile_y_x_points_found+=1
 
 
+    #
+    # if len(x_center_out_x_max)==0:
+    #     end_of_x_comare_to_y=True
+    # else:
+    #     old_point_from_models=next_point_from_models
+    #     next_point_from_models = find_smallest_x(x_center_out_x_max)
+    #
+    #
+    #     x_center_out_x_max.remove(next_point_from_models)
+    #
+    #     x1,y1=old_point_from_models
+    #     x2,y2=next_point_from_models
+    #
+    #     model_x_distance=x2-x1
+    #     #note to cheek
+    #     model_y_distance=(y2-y1)
+    #     model_y_distance=int(model_y_distance)
+    #
+    #     total_y_scan_distance=0
+    #
+    # #print(change_in_distance)
+    #
+    #
     old_point_from_scan=current_point
 
 

@@ -67,7 +67,7 @@ class get_x_min_to_x_max():
 
 
         #max x point from center
-        self.file_out_name="x_max_min"+file_to_open[0:-4]+".txt"
+        self.file_out_name="x_max_min_"+file_to_open[0:-4]+"_.txt"
 
         file=open(self.file_out_name,"w")
 
