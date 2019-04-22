@@ -28,7 +28,7 @@ z_dixstance_at_center_mm= (data_input[center_point[1]][center_point[0]])
 distance_to_base_pixels=distance_to_base_mm/(1.64*(z_dixstance_at_center_mm/1000))
 distance_to_base_pixels=round(distance_to_base_pixels)
 
-
+print(distance_to_base_pixels)
 
 def round_and_int(vaule):
     vaule=float(vaule)
