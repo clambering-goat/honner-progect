@@ -216,18 +216,37 @@ class compare:
         print("comapreing at hight of ",hight)
         max_x,min_x,x_center=self.model_size[hight]
         picels_error_margion=5
-        numbner_of_pixels_to_measure_z_change_over=4
+
+
+        def meaning_changins_in_model():
+            number_of_y_chanes=0
+            old_vaule=self.x_scan_across[hight][0]
+            for vaules in self.x_scan_across[hight][1:]:
+
+                x1,y1=vaules
+                x2,y2=old_vaule
+
+
+                if abs(y1-y2)>5:
+                    number_of_y_chanes+=1
+
+
+                old_vaule=vaules
+
+
+            return number_of_y_chanes
+
+
 
         def z_change_compare(p1,p2,change_in_z_from_scan):
-            x1=p1
-            x2=p2
+            p1=p1-3
+            p2=p2+3
 
 
-            print("x _mm",p1,p2)
-            #print(hight)
+            print("x scan range is ",p1,p2)
 
 
-            def findclosests_point(p1):
+            def findclosests_point(p1,excled_list=[]):
 
                 closenst_match=-8
                 z_vaule=0
@@ -237,15 +256,21 @@ class compare:
                     x,z=points
 
                     DITANCE_BETTWEN_POINTS = abs(x - p1)
-                    if DITANCE_BETTWEN_POINTS <min_distance_between_points:
+                    if DITANCE_BETTWEN_POINTS <min_distance_between_points and x not in excled_list:
                         min_distance_between_points=DITANCE_BETTWEN_POINTS
                         closenst_match=x
                         z_vaule=z
 
                 return closenst_match,z_vaule
 
+
+
+
+
             model_x1,model_z1=findclosests_point(p1)
             model_x2,model_z2=findclosests_point(p2)
+
+
             print(p1," cloest points is ", model_x1)
             print("model_z1",model_z1)
             print(p2, " cloest points is ", model_x2)
@@ -254,6 +279,7 @@ class compare:
             model_z_change=model_z2-model_z1
             print("model_z_change ",model_z_change)
             print("change_in_z_from_scan ",change_in_z_from_scan)
+
 
 
             if model_z_change>change_in_z_from_scan-5 and model_z_change<change_in_z_from_scan+5:
@@ -281,6 +307,9 @@ class compare:
 
         while True:
 
+
+
+
             shift=1
 
             scan_old_point=scan_cuurent_point
@@ -290,6 +319,9 @@ class compare:
             z_vaule=self.scan_data[284][scan_cuurent_point[0]+shift]
 
             scan_cuurent_point=scan_old_point[0]+shift,scan_cuurent_point[1],z_vaule
+
+
+
 
             print("scan_cuurent_point",scan_cuurent_point)
             if scan_cuurent_point[2] < self.min_distance or scan_cuurent_point[2] > self.max_distance:
@@ -306,7 +338,7 @@ class compare:
 
             change_in_z_from_scan=z2-z1
 
-            if change_in_z_from_scan>5:
+            if abs(change_in_z_from_scan)>5:
                 distance=z1
             else:
                 distance=z1+change_in_z_from_scan/2
@@ -324,16 +356,17 @@ class compare:
 
 
 
-            if z_change_compare(old_x_in_mm,current_x_mm,change_in_z_from_scan):
-                match+=1
-                self.draw_line(scan_cuurent_point[0:2],(255,0,0))
-                print("match ")
+            if abs(change_in_z_from_scan)>5:
+                print("meaningful change from in scan")
+                print("xmm point",old_x_in_mm,current_x_mm)
+                if z_change_compare(old_x_in_mm,current_x_mm,change_in_z_from_scan):
+                    print("change found in model ")
+                    match+=1
+                else:
+                    no_match+=1
 
 
-            else:
-                no_match+=1
-                self.draw_line(scan_cuurent_point[0:2], (0, 0, 255))
-                print("not a match")
+
 
 
             if current_x_mm > max_x - picels_error_margion and current_x_mm < max_x + picels_error_margion:
@@ -348,33 +381,27 @@ class compare:
 
 
 
-
-
-
-
-
-        #scan left
+        # sacn to the left
         scan_cuurent_point = self.center_point_x_image, 284, self.scan_data[284][self.center_point_x_image]
         current_x_mm = self.printer_center_x
         under_size_l = True
-        over_size_l=False
-
-
-
+        over_size_l = False
         print("SCAN LEFT ")
+
         while True:
 
-            shift = 1
+            shift = -1
+
             scan_old_point = scan_cuurent_point
 
             z_vaule = self.scan_data[284][scan_cuurent_point[0] + shift]
 
             scan_cuurent_point = scan_old_point[0] + shift, scan_cuurent_point[1], z_vaule
 
-            #print("scan_cuurent_point", scan_cuurent_point)
+            print("scan_cuurent_point", scan_cuurent_point)
             if scan_cuurent_point[2] < self.min_distance or scan_cuurent_point[2] > self.max_distance:
-                #print("invail depth vaule found at ", scan_cuurent_point[0:2])
-                #print("distance vasule ", scan_cuurent_point[2])
+                print("invail depth vaule found at ", scan_cuurent_point[0:2])
+                print("distance vasule ", scan_cuurent_point[2])
 
                 break
 
@@ -385,49 +412,49 @@ class compare:
 
             change_in_z_from_scan = z2 - z1
 
-            if change_in_z_from_scan > 5:
+            if abs(change_in_z_from_scan) > 5:
                 distance = z1
             else:
                 distance = z1 + change_in_z_from_scan / 2
 
             old_x_in_mm = current_x_mm
-            current_x_mm = current_x_mm - self.y_pixel_to_mm(distance, 1)
 
-            # to small
+            current_x_mm = current_x_mm + self.y_pixel_to_mm(distance, 1)
 
-            # to big
+            if abs(change_in_z_from_scan) > 5:
+                print("meaningful change from in scan")
+                print("xmm point", old_x_in_mm, current_x_mm)
+                if z_change_compare(old_x_in_mm, current_x_mm, change_in_z_from_scan):
+                    print("change found in model ")
+                    match += 1
+                else:
+                    no_match += 1
 
-            if z_change_compare(old_x_in_mm, current_x_mm, change_in_z_from_scan):
-                match += 1
-                self.draw_line(scan_cuurent_point[0:2], (255, 0, 0))
+            if current_x_mm > max_x - picels_error_margion and current_x_mm < max_x + picels_error_margion:
+                under_size_l= False
 
-            else:
-                no_match += 1
-                self.draw_line(scan_cuurent_point[0:2], (0, 0, 255))
-
-
-            if current_x_mm > min_x - picels_error_margion and current_x_mm < min_x + picels_error_margion:
-                under_size_l = False
-
-            if current_x_mm < min_x - picels_error_margion:
-                over_size_l=True
+            if current_x_mm > max_x + picels_error_margion:
+                over_size_l = True
 
 
 
-            print(" ")
-            print(" ")
-            print(" ")
-
-        #changin in depth omapre
 
 
+        number_of_y_chaing_in_models = meaning_changins_in_model()
+        print("number_of_y_chaing_in_models",number_of_y_chaing_in_models)
 
-        # find match for x scna
+
 
         print("-----")
         print("results ")
         print("match ",match)
         print("no_match ",no_match)
+
+        if number_of_y_chaing_in_models == match + no_match:
+            print("number of changes match up True ")
+        else:
+            print("number of changes match up False ")
+
         print("under_size_l",under_size_l)
         print("under_size_R",under_size_r)
         print("over_size_l",over_size_l)
@@ -456,7 +483,7 @@ class compare:
     def display_data(self,name=""):
         cv2.imshow(name, self.couler_vesion_of_scan)
 
-        cv2.waitKey(0)
+        cv2.waitKey(10)
         cv2.destroyAllWindows()
 
         couler_vesion_of_scan = np.copy(self.scan_data)
