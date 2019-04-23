@@ -246,7 +246,7 @@ class compare:
             print("x scan range is ",p1,p2)
 
 
-            def findclosests_point(p1,excled_list=[]):
+            def findclosests_point(p1):
 
                 closenst_match=-8
                 z_vaule=0
@@ -256,7 +256,7 @@ class compare:
                     x,z=points
 
                     DITANCE_BETTWEN_POINTS = abs(x - p1)
-                    if DITANCE_BETTWEN_POINTS <min_distance_between_points and x not in excled_list:
+                    if DITANCE_BETTWEN_POINTS <min_distance_between_points :
                         min_distance_between_points=DITANCE_BETTWEN_POINTS
                         closenst_match=x
                         z_vaule=z

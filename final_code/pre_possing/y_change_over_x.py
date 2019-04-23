@@ -80,9 +80,9 @@ def get_points(file_to_open):
         max_x=math.ceil(max_x)
         max_x=int(max_x)
         error_margion=0.1
-        for counter in range(min_x,max_x*100,1):
+        for counter in range(min_x,max_x):
             y_min = 9999
-            x_point_looking=counter/100
+            x_point_looking=counter
             for point in layer:
                 if x_point_looking>point[0]-error_margion and x_point_looking<point[0]+error_margion:
                     if point[1]<=y_min:
