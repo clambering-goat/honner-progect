@@ -1,0 +1,59 @@
+
+scan_cuurent_point (378, 284, 791)
+x _mm 128.85708 130.15431999999998
+128.85708  cloest points is  128.86
+model_z1 125.2
+130.15431999999998  cloest points is  130.15
+model_z2 75.2
+model_z_change  -50.0
+change_in_z_from_scan  0
+not a match
+
+
+
+scan_cuurent_point (379, 284, 745)
+x _mm 130.15431999999998 131.41384
+130.15431999999998  cloest points is  130.15
+model_z1 75.2
+131.41384  cloest points is  131.41
+model_z2 75.2
+model_z_change  0.0
+change_in_z_from_scan  -46
+not a match
+
+
+
+
+scan_cuurent_point (389, 284, 742)
+x _mm 142.39118000000005 143.60806000000005
+142.39118000000005  cloest points is  142.39
+model_z1 75.2
+143.60806000000005  cloest points is  143.61
+model_z2 125.2
+model_z_change  50.0
+change_in_z_from_scan  0
+not a match
+
+
+
+scan_cuurent_point (390, 284, 743)
+x _mm 143.60806000000005 144.82576000000006
+143.60806000000005  cloest points is  143.61
+model_z1 125.2
+144.82576000000006  cloest points is  144.83
+model_z2 125.2
+model_z_change  0.0
+change_in_z_from_scan  1
+match
+
+
+
+scan_cuurent_point (391, 284, 793)
+x _mm 144.82576000000006 146.04428000000007
+144.82576000000006  cloest points is  144.83
+model_z1 125.2
+146.04428000000007  cloest points is  146.04
+model_z2 125.2
+model_z_change  0.0
+change_in_z_from_scan  50
+not a match

@@ -13,12 +13,12 @@ class compare:
 
         self.printer_center_x=105
 
-        self.center_point_x_image = 358
+        self.center_point_x_image = 355
         self.center_point_y_image = 269
 
 
-        self.max_distance=1065
-        self.min_distance=655
+        self.max_distance=1020
+        self.min_distance=610
 
         self.distance_to_base_mm=31.58
 
@@ -126,95 +126,38 @@ class compare:
     def find_point_00(self):
         #does not work need fix
 
-        def find_object(self):
-            y_sacn_range = self.max_distance_to_base_in_pixsels - self.min_distance_to_base_in_pixsels
 
 
+        def find_base():
+            start_point_y=self.center_point_y_image
+            start_point_x=self.center_point_x_image
 
-            print("the y_sacn_range ", y_sacn_range)
-
-            start_point=[-8,-8]
-            for y_vaules in range(self.min_distance_to_base_in_pixsels, self.max_distance_to_base_in_pixsels, 1):
-
-                y_point= self.center_point_y_image+y_vaules
-
-                point=(y_point,self.center_point_x_image)
-                if self.point_in_vaid_size_range(point):
-
-                    start_point_x_y=point[1],point[0]
+            shift=0
+            out_point=[0,0]
+            while True:
+                shift+=1
+                point=start_point_y+shift,start_point_x
+                if   self.point_in_vaid_size_range(point):
+                    out_point=point[1],point[0]
                     break
 
+            return out_point
 
 
+        self.start_point=find_base()
+
+        self.draw_line((self.start_point))
+        self.display_data("base point")
 
 
-            print("object found at ", start_point_x_y)
-
-
-
-            self.draw_line(start_point_x_y)
-            self.display_data("object found  ")
-
-            return start_point_x_y
-
-
-
-        #look from the min to make scan from the base plate starting at the hightest vaule and working down
-
-
-        start_point=find_object(self)
-
-
-
-        distance=self.scan_data[start_point[1]][start_point[0]]
-
-
-        #look comapres the max
-        ruff_pixcel_ofset=self.y_mm_to_pixel(distance,self.distance_to_base_mm)
-
-
-        if ruff_pixcel_ofset>self.max_distance_to_base_in_pixsels:
-            print("no object found ")
-            exit()
-
-
-
-        self.scan_00_point_pixcels=self.center_point_x_image,self.center_point_y_image+ruff_pixcel_ofset
-
-        # need to add better pixel off set math
-
-        good_pixcel_offset=0
-
-        # # move up
-        # scan_top_point = [0, 0]
-        # shift = 0
-        # while True:
-        #     shift += 1
-        #     x, y = start_point
-        #     x = x
-        #     y = y - shift
-        #
-        #     if not self.point_in_vaid_size_range((y, x)):
-        #         self.draw_line((x, y))
-        #         self.display_data("top found   ")
-        #         scan_top_point[0] = y - 1
-        #         scan_top_point[1] = x
-        #         break
-
-        print("base is at point ", self.scan_00_point_pixcels)
-        self.draw_line(self.scan_00_point_pixcels)
-        self.display_data("base point ")
-
-
-
-
-
-    def compare(self,layer):
+    def compare(self,layer,y_pixel_scan_point):
 
 
         hight=self.z_point_from_model[layer]
         print("comapreing at hight of ",hight)
         max_x,min_x,x_center=self.model_size[hight]
+
+        print("max_x,min_x",  max_x,min_x)
         picels_error_margion=5
 
 
@@ -299,14 +242,17 @@ class compare:
         no_match = 0
 
         #sacn to the right
-        scan_cuurent_point=self.center_point_x_image, 284,self.scan_data[284][self.center_point_x_image]
+        scan_cuurent_point=self.center_point_x_image, y_pixel_scan_point,self.scan_data[y_pixel_scan_point][self.center_point_x_image]
         current_x_mm =self.printer_center_x
         under_size_r=True
         over_size_r=False
         print("SCAN RIGHT ")
 
+        aount_of_invasild_point_to_take=5
         while True:
 
+            if aount_of_invasild_point_to_take == 0:
+                break
 
 
 
@@ -316,19 +262,22 @@ class compare:
 
 
 
-            z_vaule=self.scan_data[284][scan_cuurent_point[0]+shift]
+            z_vaule=self.scan_data[y_pixel_scan_point][scan_cuurent_point[0]+shift]
 
             scan_cuurent_point=scan_old_point[0]+shift,scan_cuurent_point[1],z_vaule
 
 
 
 
-            print("scan_cuurent_point",scan_cuurent_point)
+            #print("scan_cuurent_point",scan_cuurent_point)
             if scan_cuurent_point[2] < self.min_distance or scan_cuurent_point[2] > self.max_distance:
                 print("invail depth vaule found at ", scan_cuurent_point[0:2])
                 print("distance vasule ", scan_cuurent_point[2])
+                aount_of_invasild_point_to_take-=1
+                continue
 
-                break
+
+
 
             z1=scan_old_point[2]
             z2=scan_cuurent_point[2]
@@ -356,7 +305,7 @@ class compare:
 
 
 
-            if abs(change_in_z_from_scan)>5:
+            if abs(change_in_z_from_scan)>10:
                 print("meaningful change from in scan")
                 print("xmm point",old_x_in_mm,current_x_mm)
                 if z_change_compare(old_x_in_mm,current_x_mm,change_in_z_from_scan):
@@ -375,35 +324,40 @@ class compare:
             if current_x_mm > max_x + picels_error_margion:
                 over_size_r=True
 
-            print(" ")
-            print(" ")
-            print(" ")
+            #print(" ")
+            #print(" ")
+            #print(" ")
 
 
-
+        print("max x vausle found in sacn ",current_x_mm)
         # sacn to the left
-        scan_cuurent_point = self.center_point_x_image, 284, self.scan_data[284][self.center_point_x_image]
+        scan_cuurent_point = self.center_point_x_image, y_pixel_scan_point, self.scan_data[y_pixel_scan_point][self.center_point_x_image]
         current_x_mm = self.printer_center_x
         under_size_l = True
         over_size_l = False
         print("SCAN LEFT ")
-
+        aount_of_invasild_point_to_take = 5
         while True:
+            if aount_of_invasild_point_to_take == 0:
+                break
+
+
+
 
             shift = -1
 
             scan_old_point = scan_cuurent_point
 
-            z_vaule = self.scan_data[284][scan_cuurent_point[0] + shift]
+            z_vaule = self.scan_data[y_pixel_scan_point][scan_cuurent_point[0] + shift]
 
             scan_cuurent_point = scan_old_point[0] + shift, scan_cuurent_point[1], z_vaule
 
-            print("scan_cuurent_point", scan_cuurent_point)
+            #print("scan_cuurent_point", scan_cuurent_point)
             if scan_cuurent_point[2] < self.min_distance or scan_cuurent_point[2] > self.max_distance:
                 print("invail depth vaule found at ", scan_cuurent_point[0:2])
                 print("distance vasule ", scan_cuurent_point[2])
-
-                break
+                aount_of_invasild_point_to_take-=1
+                continue
 
             z1 = scan_old_point[2]
             z2 = scan_cuurent_point[2]
@@ -419,9 +373,9 @@ class compare:
 
             old_x_in_mm = current_x_mm
 
-            current_x_mm = current_x_mm + self.y_pixel_to_mm(distance, 1)
+            current_x_mm = current_x_mm - self.y_pixel_to_mm(distance, 1)
 
-            if abs(change_in_z_from_scan) > 5:
+            if abs(change_in_z_from_scan) > 10:
                 print("meaningful change from in scan")
                 print("xmm point", old_x_in_mm, current_x_mm)
                 if z_change_compare(old_x_in_mm, current_x_mm, change_in_z_from_scan):
@@ -430,16 +384,14 @@ class compare:
                 else:
                     no_match += 1
 
-            if current_x_mm > max_x - picels_error_margion and current_x_mm < max_x + picels_error_margion:
+
+            if current_x_mm > min_x - picels_error_margion and current_x_mm < min_x + picels_error_margion:
                 under_size_l= False
 
-            if current_x_mm > max_x + picels_error_margion:
+            if current_x_mm < min_x - picels_error_margion:
                 over_size_l = True
 
-
-
-
-
+        print("min x vausle found in sacn ", current_x_mm)
         number_of_y_chaing_in_models = meaning_changins_in_model()
         print("number_of_y_chaing_in_models",number_of_y_chaing_in_models)
 
@@ -460,7 +412,7 @@ class compare:
         print("over_size_l",over_size_l)
         print("over_size_r",over_size_r)
 
-        self.display_data("resulst ")
+        return (match,no_match,number_of_y_chaing_in_models,under_size_l,under_size_r,over_size_l,over_size_r)
 
 
 
@@ -471,7 +423,97 @@ class compare:
 
 
 
+    def comapre_hub(self):
 
+        def get_next_scan():
+            file_to_load="./old/scan_part_2_at_angle.npy"
+            self.scan_data = np.load(file_to_load)
+            couler_vesion_of_scan = np.copy(self.scan_data)
+            couler_vesion_of_scan = couler_vesion_of_scan.astype(np.uint8)
+            self.couler_vesion_of_scan = cv2.cvtColor(couler_vesion_of_scan, cv2.COLOR_GRAY2RGB)
+
+
+
+        def find_start_of_object():
+            shift=0
+
+
+            #find bottem
+            y_bottem_y_point=0
+
+            #add bit about dictuce incers
+            max_number_of_bad_points=10
+
+            while True:
+                shift+=1
+                point=self.start_point
+                x,y=point
+                y=y-shift
+                x=x
+
+                if not self.point_in_vaid_size_range((y,x)):
+                    max_number_of_bad_points=max_number_of_bad_points-1
+
+                if max_number_of_bad_points==0:
+
+                    print("no object found ")
+                    break
+
+                if  self.point_in_vaid_size_range((y, x)):
+
+
+                    y_bottem_y_point=y
+                    self.draw_line((x,y_bottem_y_point))
+                    self.display_data("object in  printer ")
+
+                    break
+
+
+            print("y top ",y_bottem_y_point)
+                #self.compare()
+            self.y_bottem_y_point=y_bottem_y_point
+            return True
+    
+    
+    
+            
+        y=find_start_of_object()
+
+
+        get_next_scan()
+        y=find_start_of_object()
+        cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, self.y_bottem_y_point -5),(self.center_point_x_image + 10, self.y_bottem_y_point - 5), (255, 0, 0), 1)
+        self.display_data("compare _ image point ")
+
+        for w in range(0,420,10):
+            for q in range(0,100):
+
+
+                match,no_match,number_of_y_chaing_in_models,under_size_l,under_size_r,over_size_l,over_size_r=self.compare(w,self.y_bottem_y_point-q)
+
+                if under_size_l==False  and over_size_l==False:
+
+                    cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, self.y_bottem_y_point - q),
+                             (self.center_point_x_image - 10, self.y_bottem_y_point - q), (0, 255, 0), 1)
+
+                elif under_size_r==False and over_size_r==False:
+                    cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, self.y_bottem_y_point - q),
+                             (self.center_point_x_image + 10, self.y_bottem_y_point - q), (0, 255, 0), 1)
+
+
+                else:
+                    cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, self.y_bottem_y_point - q),
+                             (self.center_point_x_image + 10, self.y_bottem_y_point - q), (0,0,255), 1)
+                    cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, self.y_bottem_y_point - q),
+                             (self.center_point_x_image - 10, self.y_bottem_y_point - q), (0,0,255), 1)
+
+                if under_size_l==False  and over_size_l==False and under_size_r==False and over_size_r==False:
+                    cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, self.y_bottem_y_point - q),
+                             (self.center_point_x_image + 10, self.y_bottem_y_point - q), (255,0,0), 2)
+
+                    cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, self.y_bottem_y_point - q),
+                             (self.center_point_x_image - 10, self.y_bottem_y_point - q), (255, 0, 0), 1)
+            self.display_data("results")
 
     def draw_line(self,start,couler=(0,0,255),size=1):
 
@@ -483,7 +525,7 @@ class compare:
     def display_data(self,name=""):
         cv2.imshow(name, self.couler_vesion_of_scan)
 
-        cv2.waitKey(10)
+        cv2.waitKey(500)
         cv2.destroyAllWindows()
 
         couler_vesion_of_scan = np.copy(self.scan_data)
@@ -494,4 +536,5 @@ temp=compare()
 temp.load_in_data()
 
 temp.find_point_00()
-temp.compare(35)
+temp.comapre_hub()
+#temp.compare(35)
