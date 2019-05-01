@@ -12,7 +12,7 @@ class compare:
 
         self.printer_center_x=105
 
-        self.center_point_x_image = 355
+        self.center_point_x_image = 274
         self.center_point_y_image = 300
 
 
@@ -56,26 +56,45 @@ class compare:
         for files in os.listdir(where_to_look):
             if files[0:5] == "chane":
                 y_over_x_file = files
-            if files[-4:len(files)] == ".npy":
-                numpy_file = files
+
             if files[0:5] == "x_max":
                 max_point_file = files
 
-        # where_to_look = "D:/scan_notes/full_scan_teast"
-        #
-        #
-        # for files in os.listdir(where_to_look):
-        #
-        #     if files[-4:len(files)] == ".npy":
-        #         numpy_file = files
 
-        numpy_file="D:/scan_notes/ceitale_sacn/depth_carmea('192.168.1.227', 44978)_81.npy"
-        #print("load files ")
-        #print("nump file ", numpy_file)
-        #print("y_over_x file ", max_point_file)
-        #print("x max and min file ", y_over_x_file)
+        def laod_first_scan(where_to_look):
+            fist_scan=9999
+            file_out=""
+            for files in os.listdir(where_to_look):
+
+                if files[-4:len(files)] == ".npy" and files[0]=="d":
+                    scan_number = files.split("_")
+
+                    scan_number = scan_number[-1]
+                    scan_number = scan_number.split(" ")
+                    self.time_stamp = scan_number[1]
+                    self.time_stamp=self.time_stamp.split(".")
+                    self.time_stamp=self.time_stamp[0]
+                    self.time_stamp=int(self.time_stamp[0:-4])
+                    scan_number = int(scan_number[0])
 
 
+                    if scan_number< fist_scan:
+                        fist_scan=scan_number
+                        file_out=files
+
+
+            return where_to_look+file_out
+
+
+
+        self.where_to_look = "D:/scan_notes/time_scan_2/"
+
+
+        numpy_file=laod_first_scan(self.where_to_look)
+        numpy_file=self.where_to_look+"depth_carmea('192.168.1.227', 54460)_13446 1556726735.5440383.npy"
+
+        print("max_point_file",max_point_file)
+        print("y_over_x_file",y_over_x_file)
         #load in the scan daat and make couler copy of data
         self.current_file_name=numpy_file
         self.scan_data=np.load(numpy_file)
@@ -127,8 +146,8 @@ class compare:
 
             self.model_size[current_hight_model] = x_max_point, x_min_point, x_mid_point
 
-        self.draw_line((self.center_point_x_image, self.center_point_y_image), (0, 255, 0),2)
-        self.display_data("center point ")
+        #self.draw_line((self.center_point_x_image, self.center_point_y_image), (0, 255, 0),2)
+        #self.display_data("center point ")
 
 
 
@@ -398,21 +417,21 @@ class compare:
         ##print("number_of_y_chaing_in_models",number_of_y_chaing_in_models)
 
 
-
-        # #print("-----")
-        # #print("results ")
-        # #print("match ",match)
-        # #print("no_match ",no_match)
-        # 
+        #
+        # print("-----")
+        # print("results ")
+        # print("match ",match)
+        # print("no_match ",no_match)
+        #
         # if number_of_y_chaing_in_models == match + no_match:
-        #     #print("number of changes match up True ")
+        #     print("number of changes match up True ")
         # else:
-        #     #print("number of changes match up False ")
-        # 
-        # #print("under_size_l",under_size_l)
-        # #print("under_size_R",under_size_r)
-        # #print("over_size_l",over_size_l)
-        # #print("over_size_r",over_size_r)
+        #     print("number of changes match up False ")
+        #
+        # print("under_size_l",under_size_l)
+        # print("under_size_R",under_size_r)
+        # print("over_size_l",over_size_l)
+        # print("over_size_r",over_size_r)
 
         return (match,no_match,number_of_y_chaing_in_models,under_size_l,under_size_r,over_size_l,over_size_r)
 
@@ -429,34 +448,97 @@ class compare:
 
         def get_next_scan():
 
+            def data_from_file_name(given_string):
+
+                scan_number=given_string.split("_")
+
+                scan_number=scan_number[-1]
+                scan_number=scan_number[0:-4]
+
+                scan_number,time_stamp=scan_number.split(" ")
+
+                time_stamp=time_stamp.split(".")
+                time_stamp=time_stamp[0]
+
+                time_stamp=int(time_stamp)
+
+                scan_number=int(scan_number)
 
 
-            scan_number=self.current_file_name.split("_")
 
-            scan_number=scan_number[-1]
-            scan_number=scan_number[0:-4]
+                return scan_number,time_stamp
 
 
-            scan_number=int(scan_number)
-            scan_number=scan_number+1
-            scan_number=str(scan_number)
-            print("scan_number")
-            print(scan_number)
-            temp_name="D:/scan_notes/ceitale_sacn/depth_carmea('192.168.1.227', 44978)_"
-            self.current_file_name=temp_name+scan_number+".npy"
 
-            #file_to_load="D:/scan_notes/full_scan_teast/depth_carmea('192.168.1.227', 60034)_9621.npy"
+            def current_print_hight():
+
+                file = open("time_layer_data", "r")
+
+                data = file.readlines()
+                file.close()
+
+                temp_store = []
+                for w in data:
+                    for q in w:
+
+                        if q == "Z":
+                            time_stamp = w.split("G")
+                            time_stamp = time_stamp[0]
+                            time_stamp = time_stamp[1:]
+                            time_stamp=time_stamp.split(".")
+                            time_stamp=int(time_stamp[0])
+
+
+                            layer_hight = w.split(" ")
+                            layer_hight = layer_hight[-1]
+                            layer_hight = layer_hight.strip()
+                            layer_hight = layer_hight[1:]
+                            layer_hight = float(layer_hight)
+
+                            # print("name", name, "time_stamp", time_stamp)
+                            temp_store.append((layer_hight, time_stamp))
+                            break
+
+                return (temp_store)
+
+
+
+            m_scan_number,m_time_stamp=data_from_file_name(self.current_file_name)
+            m_scan_number=m_scan_number+1
+            current_time=0
+            for files in os.listdir(self.where_to_look):
+
+                if files[-4:len(files)] == ".npy" and files[0]=="d":
+                    scna_number,current_time=data_from_file_name(files)
+                    if scna_number==m_scan_number:
+                        self.current_file_name=self.where_to_look+files
+                        break
+
+            max_highit_at_time=0
+            for hight_and_time in current_print_hight():
+                highit,time=hight_and_time
+
+                if highit>max_highit_at_time and current_time>time:
+                    max_highit_at_time=highit
+
+
+
+
+
+
+
+
+
 
             file_to_load=self.current_file_name
 
-
+            print("load file ",file_to_load)
 
             self.scan_data = np.load(file_to_load)
             couler_vesion_of_scan = np.copy(self.scan_data)
             couler_vesion_of_scan = couler_vesion_of_scan.astype(np.uint8)
             self.couler_vesion_of_scan = cv2.cvtColor(couler_vesion_of_scan, cv2.COLOR_GRAY2RGB)
-
-
+            return max_highit_at_time
 
         def find_start_of_object():
 
@@ -501,8 +583,8 @@ class compare:
                 if q < lowest_y_point:
                     lowest_y_point=q
 
-            #print("layer 0 found in scan")
-            #print(lowest_y_point)
+            print("layer 0 found in scan")
+            print(lowest_y_point)
 
             return lowest_y_point
 
@@ -512,19 +594,20 @@ class compare:
 
 
 
-        def cheek_layers(y_start,y_scan_range,_y_scan_range_stop):
+        def cheek_layers(y_scan_range,y_scan_range_stop):
             y_scan_range=round(y_scan_range)
-            _y_scan_range_stop=int(_y_scan_range_stop)
+            y_scan_range_stop=int(y_scan_range_stop)
 
             layer_evuation={}
             for layer in range (len(self.z_point_from_model)):
                 pefict_mathch = []
+                bad_match=[]
                 layer_evuation[layer]=False
 
 
 
 
-                for y_scan_point in range(y_start-y_scan_range,y_start+_y_scan_range_stop):
+                for y_scan_point in range(y_scan_range,y_scan_range_stop):
                     match_score = 0
 
                     match,no_match,number_of_y_chaing_in_models,under_size_l,under_size_r,over_size_l,over_size_r=self.compare(layer,y_scan_point)
@@ -548,20 +631,24 @@ class compare:
                     if match_score==6:
                         pefict_mathch.append(y_scan_point)
 
+                    if match_score<6:
+                        bad_match.append((y_scan_point,match,no_match,number_of_y_chaing_in_models,under_size_l,under_size_r,over_size_l,over_size_r))
+
 
 
                 for q in pefict_mathch:
 
-                    distatance_in_pixels=y_start-q
+                    distatance_in_pixels=y_scan_range_stop-q
                     totatl_distance=0
                     for shift in range(distatance_in_pixels):
-                        y=y_start-shift
+                        y=y_scan_range_stop-shift
                         x=self.center_point_x_image
                         distance_1=self.scan_data[y][x]
                         distance_2 = self.scan_data[y-1][x]
                         z1=int(distance_1)
                         z2=int(distance_2)
                         change_in_distance=z1-z2
+
                         totatl_distance=totatl_distance+self.y_pixel_to_mm(z1,1)
 
 
@@ -577,6 +664,7 @@ class compare:
                                               (self.center_point_x_image - 10, q), (255, 0, 0), 1)
 
 
+
                 #print(" ")
             print("later evaulation ")
             matcheee=False
@@ -587,25 +675,33 @@ class compare:
                     print(layer_evuation[q])
                     print(" ")
             if matcheee==True:
-                self.display_data(self.current_file_name,0)
+                self.display_data(self.current_file_name,10)
 
 
-        def current_print_hight():
-            pass
 
-        y_scan_range_start=15
-        _y_scan_range_stop=15
+
+
         while True:
+
+            print("runing")
+
+
+
             y_start=find_start_of_object()
-            get_next_scan()
-
-            if y_start==999999:
-                #print("start point not found ")
+            layer=get_next_scan()
+            print("layer",layer)
+            if layer<10:
+                print("object orint not hight enofe yet")
                 continue
-
-            y_scan_range_start+=0.65
-            _y_scan_range_stop-=0.65
-            cheek_layers(y_start,y_scan_range_start,_y_scan_range_stop)
+            if y_start==999999:
+                print("start point not found ")
+                continue
+            top_of_model_offste=self.y_mm_to_pixel(self.max_distance,layer*10)
+            print("top_of_model_offste",top_of_model_offste)
+            y_scan_range_start=y_start-top_of_model_offste
+            _y_scan_range_stop=y_start
+            print("runing2")
+            cheek_layers(y_scan_range_start,_y_scan_range_stop)
 
 
 

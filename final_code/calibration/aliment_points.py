@@ -95,7 +95,7 @@ class converter():
             x, y, z = l1
             x = x - self.mid_x+105
             y = y - self.mid_y+50
-            z =  z-self.distance_to_object_from_sensor
+            z =  z
             self.point_could_data.append((x, y, z))
 
 

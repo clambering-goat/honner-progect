@@ -11,7 +11,7 @@ from serial.tools import list_ports
 
 
 
-def list_of_ports(port_to_skip=[],timeout_given=3,bit_rate=115200):
+def list_of_ports(port_to_skip=[],timeout_given=3,bit_rate=250000):
     list_of_ports=list_ports.comports()
 
     list_of_usible_ports=[]
@@ -54,3 +54,8 @@ def list_of_ports(port_to_skip=[],timeout_given=3,bit_rate=115200):
             print ("4 ",inst)
             print()
     return(list_of_usible_ports)
+
+
+data=list_of_ports()
+for q in data:
+    print(q)

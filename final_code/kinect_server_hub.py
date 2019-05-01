@@ -8,6 +8,7 @@ import threading
 import os
 import cv2
 import traceback
+import time
 
 class ThreadedServer(object):
     def __init__(self, host, port,floder_name):
@@ -89,10 +90,10 @@ class ThreadedServer(object):
                         depth = data[0]
                         couler = data[1]
                         if self.save_type=="full":
-                            np.save(self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count), depth)
-                            np.save(self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count), couler)
+                            np.save(self.floder_name+"/depth_carmea"+str(address)+"_"+ str(count)+" "+str(time.time()), depth)
+                            np.save(self.floder_name+"/couler_carmea"+str(address)+"_"+ str(count)+" "+str(time.time()), couler)
                         if self.save_type == "depth":
-                            np.save(self.floder_name + "/depth_carmea" + str(address) + "_" + str(count), depth)
+                            np.save(self.floder_name + "/depth_carmea" + str(address) + "_" + str(count)+" "+str(time.time()), depth)
                         if self.save_type == "couler":
                             np.save(self.floder_name + "/couler_carmea" + str(address) + "_" + str(count), couler)
 

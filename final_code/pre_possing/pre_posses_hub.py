@@ -70,7 +70,6 @@ step_1=g_code_to_point_cloud.g_code_to_point_cloud(file_to_open)
 file_name_of_point_could=step_1.get_file_name()
 print("point could make and saved to file ",file_name_of_point_could)
 
-
 print("finding max and min x points ")
 step_2=point_could_to_x_min_max.get_x_min_to_x_max(file_name_of_point_could)
 max_min_x=step_2.get_file_name()

@@ -467,7 +467,8 @@ class kinect_claibration():
 
 
 
-dir_to_look="D:/scan_notes/teast_2/"
+#dir_to_look="C:/Users/back up/Desktop/roation teast/30/"
+dir_to_look="./"
 count_frames=0
 file_list={}
 for files in os.listdir(dir_to_look):
