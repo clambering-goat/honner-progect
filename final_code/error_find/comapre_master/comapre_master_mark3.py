@@ -12,7 +12,7 @@ class main_class:
 
         # error margions
         self.z_axies_error_margion = 5
-        self.y_axies_margtion_for_error = 2
+        self.y_axies_margtion_for_error = 3
 
         self.start_scan_at = 5
         # loacation of where the numpy file will be saved
@@ -451,6 +451,8 @@ class main_class:
                     # print("name", name, "time_stamp", time_stamp)
                     hight_vaules_found.append((layer_hight, time_stamp))
 
+        if len(hight_vaules_found)<0:
+            return 0
         print("hight_vaules_found",hight_vaules_found[-1])
         return (hight_vaules_found[-1])
 
@@ -491,8 +493,9 @@ class main_class:
 
             layer_mm=self.z_point_from_model[layer_index]
             matching_points = []
+            print("layer_mm",layer_mm)
 
-            for y_scan_points in range(self.y_start_point_range[0],self.y_start_point_range[1]):
+            for y_scan_points in range(self.y_start_point_range[0]-50,self.y_start_point_range[1]):
                 left_data, right_data = self.comare_layers(layer_mm, y_scan_points)
 
 
@@ -511,10 +514,13 @@ class main_class:
                     matching_points.append(y_scan_points)
 
 
-
+            if len(matching_points)==0:
+                return 9999
             lowest_y_point = max(matching_points)
 
-
+            cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, lowest_y_point),
+                     (self.center_point_x_image + 10, lowest_y_point), (255, 0, 0), 2)
+            self.display_data("base_line",500)
             return lowest_y_point
 
         def compare_models(
@@ -530,15 +536,19 @@ class main_class:
 
             comapre_results = {}
 
+            for full_model in range(0,model_scan_range_stop):
+                model_layer = self.z_point_from_model[full_model]
+                comapre_results[model_layer] = [
+                    False, [
+                        True, True, True], [
+                        True, True, True]]
+
             for model_index in range(
                     model_scan_range_start,
                     model_scan_range_stop):
                 model_layer = self.z_point_from_model[model_index]
 
-                comapre_results[model_layer] = [
-                    False, [
-                        True, True, True], [
-                        True, True, True]]
+
 
                 for y_scan_point in range(
                         y_scan_range_start, y_scan_range_stop):
@@ -547,7 +557,7 @@ class main_class:
                         model_layer, y_scan_point)
 
                     distance_from_start_point_pixcels = y_scan_start_point - y_scan_point
-                    total_y_distance_mm = 0
+                    total_y_distance_mm =self.z_point_from_model[model_scan_range_start]
 
                     for y_range in range(distance_from_start_point_pixcels):
 
@@ -598,7 +608,7 @@ class main_class:
                                 comapre_results[model_layer] = [
                                     True,left_data,right_data]
 
-            self.display_data("aaa",50)
+            self.display_data("aaa",10)
             return comapre_results
 
         def count_index_blelow_vasule(hight):
@@ -635,8 +645,16 @@ class main_class:
                 load_scan_at_set_time(time_stamp)
                 current_hight = hight
 
-            y_start = find_layer_0(10)
-            print("y_start",y_start)
+            base_model_point = 0
+            while True:
+                print("base_model_point",base_model_point)
+                y_start = find_layer_0(base_model_point)
+                if y_start !=9999:
+                    start_hight=self.z_point_from_model[base_model_point]
+                    break
+                base_model_point=base_model_point+1
+
+            print("y_start", y_start)
 
             curent_distance=self.scan_data[y_start][self.center_point_x_image]
             curent_distance=curent_distance-5
@@ -647,9 +665,10 @@ class main_class:
 
 
 
-            model_range = 0, count_index_blelow_vasule(hight)
+            model_range = base_model_point, count_index_blelow_vasule(hight)
 # (y_scan_range,model_scan_range,y_scan_start_point,start_hight)
             out_data=compare_models(y_scan_range,model_range, y_start, start_hight)
+
             file_name="results "+self.current_file_name[0:-4]
             print("file_name",file_name)
             print("out_data",out_data)
@@ -660,10 +679,10 @@ class main_class:
 
                 file.write("layer_found"+str(out_data[data][0]) + "\n")
 
-                out="left results"+str(out_data[data][1][0])+str(out_data[data][1][1])+str(out_data[data][1][2])+"\n"
+                out="left results"+str(out_data[data][1][0])+" "+str(out_data[data][1][1])+" "+str(out_data[data][1][2])+"\n"
                 file.write(out)
 
-                out = "right results" +str(out_data[data][2][0])+str(out_data[data][2][1])+str(out_data[data][2][2])+"\n"
+                out = "right results" +str(out_data[data][2][0])+" "+str(out_data[data][2][1])+" "+str(out_data[data][2][2])+"\n"
                 file.write(out)
 
                 file.write("\n\n")
@@ -692,8 +711,9 @@ class main_class:
         couler_vesion_of_scan = couler_vesion_of_scan.astype(np.uint8)
         self.couler_vesion_of_scan = cv2.cvtColor(couler_vesion_of_scan, cv2.COLOR_GRAY2RGB)
 
-dir_of_scan_data="D:/scan_notes/full_teast/"
-dir_code_gcode="C:/Users/back up/Documents/GitHub/honner-progect/final_code/gcode_recve/time_layer_data"
+dir_of_scan_data="D:/scan_notes/square_teast_2/"
+#dir_code_gcode="C:/Users/back up/Documents/GitHub/honner-progect/final_code/gcode_recve/time_layer_data"
+dir_code_gcode="./time_layer_data"
 temp=main_class(dir_of_scan_data, dir_code_gcode)
 temp.load_in_perfect_model()
 temp.find_first_scan()
