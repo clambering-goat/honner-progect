@@ -4,21 +4,23 @@ import os
 import numpy as np
 import cv2
 import time
-
+teast_mode=False
 
 class main_class:
 
     def __init__(self, dir_of_scan_data, dir_code_gcode):
 
         # error margions
-        self.z_axies_error_margion = 5
-        self.y_axies_margtion_for_error = 3
+        self.z_axies_error_margion = 2
+        self.y_axies_margtion_for_error = 2
+
 
         self.start_scan_at = 5
         # loacation of where the numpy file will be saved
         self.dir_of_scan_data = dir_of_scan_data
 
-
+        self.ip_to_use="192.168.1.227"
+        self.aount_of_y_changes_to_misse=2
         # loaction of where the gcode transcipts will be sent
         self.gcode_tarnscrip_loaction = dir_code_gcode
 
@@ -26,9 +28,10 @@ class main_class:
         self.printer_center_x_mm = 105
 
         # vaule from the cailbation step
-        self.center_point_x_image = 274
-        self.center_point_y_image = 285
+        self.center_point_x_image = 310
+        self.center_point_y_image = 270
         self.distance_to_base_mm = 31.58
+
 
         self.max_distance_from_sensor = 1020
         self.min_distance_from_sensor = 610
@@ -192,6 +195,8 @@ class main_class:
     def load_in_numy_file(self, file_name):
         # laod the numpy file into memory and make a couler copy of it for
         # dispplay resions
+
+
         file_to_load=(self.dir_of_scan_data+file_name)
 
         self.scan_data = np.load(file_to_load)
@@ -200,6 +205,9 @@ class main_class:
         couler_vesion_of_scan = couler_vesion_of_scan.astype(np.uint8)
         self.couler_vesion_of_scan = cv2.cvtColor(
             couler_vesion_of_scan, cv2.COLOR_GRAY2RGB)
+        self.display_data("image",10)
+        print(" ")
+
 
     def is_point_in_vaild_z_range(self, point):
 
@@ -221,6 +229,8 @@ class main_class:
             # find all z changes above the 1/2 of the  error margion
 
             def count_z_changes(point_list):
+                if len(point_list)<2:
+                    return 0
                 old_vaule = point_list[0]
                 number_of_y_chanes = 0
                 for vaules in point_list[1:]:
@@ -248,10 +258,16 @@ class main_class:
                 if x <= self.printer_center_x_mm:
                     left_points.append(points)
 
+
+
+
             number_of_y_chanes_left = count_z_changes(left_points)
             number_of_y_chanes_right = count_z_changes(right_points)
 
             return (number_of_y_chanes_left, number_of_y_chanes_right)
+
+
+
 
         def z_change_compare(p1, p2, change_in_z_from_scan):
              # looks to see if a chane in the z axies form the scane occurs in
@@ -261,34 +277,37 @@ class main_class:
                 # matches the cloest point between the perfect models and the
                 # scan data
 
-                closest_match = 0
+                closest_match = []
                 z_vaule = 0
-                min_distance_between_points = 99999
-
                 for points in self.x_scan_across[model_layer]:
 
                     x, z = points
 
                     DITANCE_BETTWEN_POINTS = abs(x - point)
 
-                    if DITANCE_BETTWEN_POINTS < min_distance_between_points:
+                    if DITANCE_BETTWEN_POINTS < 10:
 
-                        min_distance_between_points = DITANCE_BETTWEN_POINTS
-                        closenst_match = x
-                        z_vaule = z
+                       closest_match.append((x,z))
 
-                return closenst_match, z_vaule
 
-            model_x1, model_z1 = findclosests_point(p1)
-            model_x2, model_z2 = findclosests_point(p2)
+                return closest_match
 
-            model_z_change = model_z2 - model_z1
+            matches_1= findclosests_point(p1)
 
-            if model_z_change > change_in_z_from_scan - \
-                    self.z_axies_error_margion and model_z_change < change_in_z_from_scan + self.z_axies_error_margion:
-                return True
-            else:
-                return False
+            matches_2 = findclosests_point(p2)
+            if teast_mode:
+                print("matches_1",matches_1)
+                print("matches_2",matches_2)
+            for loop1 in matches_1:
+                for loop2 in matches_2:
+
+                    model_z_change = loop1[1] - loop2[1]
+
+                    if model_z_change > change_in_z_from_scan - \
+                            self.z_axies_error_margion and model_z_change < change_in_z_from_scan + self.z_axies_error_margion:
+                        return True
+
+            return False
 
         def scan_across(
                 picels_error_margion,
@@ -304,6 +323,7 @@ class main_class:
             z_chage_no_match = 0
             scan_cuurent_point = self.center_point_x_image, y_pixel_scan_start_point, self.scan_data[
                 y_pixel_scan_start_point][self.center_point_x_image]
+            y_starts=scan_cuurent_point[2]
             current_x_mm = self.printer_center_x_mm
             under_size = True
             over_size = False
@@ -319,6 +339,9 @@ class main_class:
 
                 # end the loop if a invailed depth vaild is hit
                 if self.is_point_in_vaild_z_range(scan_cuurent_point)==False:
+                    if current_x_mm==self.printer_center_x_mm:
+                        return (True,True,True)
+
                     break
 
                 # deals with numpy scaler vaule and the problem with using them
@@ -346,14 +369,29 @@ class main_class:
 
 
                 if abs(change_in_z_from_scan) > self.z_axies_error_margion * 2:
+                    if teast_mode:
+                        cv2.line(self.couler_vesion_of_scan, (scan_cuurent_point[0], 300),
+                                 (scan_cuurent_point[0], 320), (255, 0, 0), 2)
+                        # print("z change found at ",current_x_mm)
+                        # print("change_in_z_from_scan",change_in_z_from_scan)
                     if z_change_compare(
                             old_x_in_mm,
                             current_x_mm,
                             change_in_z_from_scan):
+                        if teast_mode:
+                            cv2.line(self.couler_vesion_of_scan, (scan_cuurent_point[0], 300),
+                                      (scan_cuurent_point[0], 320), (0, 255, 0), 2)
                         z_change_match += 1
-                    else:
-                        z_chage_no_match += 1
+                       # print("macth")
 
+                    else:
+                        if teast_mode:
+                            cv2.line(self.couler_vesion_of_scan, (scan_cuurent_point[0], 300),
+                                      (scan_cuurent_point[0], 320), (0, 0, 255), 2)
+
+                        z_chage_no_match += 1
+                       # print("no match")
+                   # print("\n\n")
 
                 if current_x_mm > x_limt - \
                         picels_error_margion and current_x_mm < x_limt + picels_error_margion:
@@ -369,26 +407,48 @@ class main_class:
                     if current_x_mm < x_limt - picels_error_margion:
                         over_size = True
 
+            #(number_of_y_chanes_left, number_of_y_chanes_right,angle_l,angle_r)
             if direction > 0:
                 z_not_match = True
-                _, number_of_y_chanes_right = find_changes_in_z_axiex_from_perfect_models()
-                if z_change_match == number_of_y_chanes_right and z_chage_no_match == 0:
+                number_of_y_chanes_right,y_change_l = find_changes_in_z_axiex_from_perfect_models()
+                if teast_mode:
+                    print("except y chane ",number_of_y_chanes_right)
+                    print("got ")
+                    print("z_change_match",z_change_match)
+                    print("z_chage_no_match",z_chage_no_match)
+
+                if z_change_match > number_of_y_chanes_right - self.aount_of_y_changes_to_misse and z_change_match < number_of_y_chanes_right + self.aount_of_y_changes_to_misse and z_chage_no_match==0:#<self.aount_of_y_changes_to_misse:
                     z_not_match = False
+
 
             if direction < 0:
                 z_not_match = True
-                number_of_y_chanes_left, _ = find_changes_in_z_axiex_from_perfect_models()
-                if z_change_match == number_of_y_chanes_left and z_chage_no_match == 0:
+                number_of_y_chanes_left,y_change_R = find_changes_in_z_axiex_from_perfect_models()
+
+
+                if teast_mode:
+                    print("except y chane ",number_of_y_chanes_left)
+                    print("got ")
+                    print("z_change_match",z_change_match)
+                    print("z_chage_no_match",z_chage_no_match)
+
+                if z_change_match > number_of_y_chanes_left-self.aount_of_y_changes_to_misse and z_change_match < number_of_y_chanes_left+self.aount_of_y_changes_to_misse and  z_chage_no_match ==0:#<self.aount_of_y_changes_to_misse:
                     z_not_match = False
 
 
-            return (under_size, over_size, z_not_match)
 
+            if teast_mode:
+                self.display_data("conapere results",0)
+
+            return (under_size, over_size, False)
+            #return (under_size, over_size, False)
         max_x, min_x, x_center = self.model_size[model_layer]
 
         # scalible error margions depenting on the size of the layer the code is looking for
         # TODO: find good vasule for scalible error or remove constaer errpr
         # margion
+        if max_x - min_x > 800:
+            picels_error_margion = 5
         if max_x - min_x > 40:
             picels_error_margion = 7
 
@@ -401,7 +461,7 @@ class main_class:
         else:
             picels_error_margion = 10
 
-        picels_error_margion = 12
+        #picels_error_margion = 12
 
         # sacn left
 
@@ -452,8 +512,8 @@ class main_class:
                     hight_vaules_found.append((layer_hight, time_stamp))
 
         if len(hight_vaules_found)<0:
-            return 0
-        print("hight_vaules_found",hight_vaules_found[-1])
+            return [0]
+        #print("hight_vaules_found",hight_vaules_found[-1])
         return (hight_vaules_found[-1])
 
     def main_compare(self):
@@ -467,10 +527,11 @@ class main_class:
             for files in os.listdir(self.dir_of_scan_data ):
 
                 if files[-4:len(files)] == ".npy" and files[0] == "d":
-                    scna_number, current_time,_ = self.data_from_file_name(files)
-                    if scna_number == m_scan_number:
-                        self.current_file_name =  files
-                        break
+                    scna_number, current_time,ip = self.data_from_file_name(files)
+                    if self.ip_to_use==ip:
+                        if scna_number == m_scan_number:
+                            self.current_file_name =  files
+                            break
 
 
 
@@ -482,10 +543,11 @@ class main_class:
             for files in os.listdir(self.dir_of_scan_data):
 
                 if files[-4:len(files)] == ".npy" and files[0] == "d":
-                    scna_number, current_time,_ = self.data_from_file_name(files)
-                    if current_time > give_time and min_scan_vaile > scna_number:
-                        self.current_file_name =  files
-                        min_scan_vaile = scna_number
+                    scna_number, current_time,ip = self.data_from_file_name(files)
+                    if self.ip_to_use==ip:
+                        if current_time > give_time and min_scan_vaile > scna_number:
+                            self.current_file_name =  files
+                            min_scan_vaile = scna_number
 
             self.load_in_numy_file(self.current_file_name)
         def find_layer_0(layer_index):
@@ -493,11 +555,15 @@ class main_class:
 
             layer_mm=self.z_point_from_model[layer_index]
             matching_points = []
-            print("layer_mm",layer_mm)
+            #print("layer_mm",layer_mm)
 
-            for y_scan_points in range(self.y_start_point_range[0]-50,self.y_start_point_range[1]):
+            for y_scan_points in range(self.y_start_point_range[0],self.y_start_point_range[1]):
                 left_data, right_data = self.comare_layers(layer_mm, y_scan_points)
-
+                if teast_mode:
+                    print(left_data, right_data)
+                    cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, y_scan_points),
+                             (self.center_point_x_image + 10, y_scan_points), (255, 0, 0), 2)
+                    self.display_data("comapre", 0)
 
                 left_pass = True
                 for vaule in left_data:
@@ -517,31 +583,26 @@ class main_class:
             if len(matching_points)==0:
                 return 9999
             lowest_y_point = max(matching_points)
+            if teast_mode:
+                cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, y_scan_points),
+                         (self.center_point_x_image + 10, y_scan_points), (255, 0, 0), 2)
+                self.display_data("base", 0)
 
-            cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, lowest_y_point),
-                     (self.center_point_x_image + 10, lowest_y_point), (255, 0, 0), 2)
-            self.display_data("base_line",500)
             return lowest_y_point
 
         def compare_models(
                 y_scan_range,
                 model_scan_range,
                 y_scan_start_point,
-                start_hight):
+                start_hight_mm,comapre_results):
             y_scan_range_start = round(y_scan_range[0])
             y_scan_range_stop = int(y_scan_range[1])
 
             model_scan_range_start = model_scan_range[0]
             model_scan_range_stop = model_scan_range[1]
 
-            comapre_results = {}
 
-            for full_model in range(0,model_scan_range_stop):
-                model_layer = self.z_point_from_model[full_model]
-                comapre_results[model_layer] = [
-                    False, [
-                        True, True, True], [
-                        True, True, True]]
+
 
             for model_index in range(
                     model_scan_range_start,
@@ -557,7 +618,7 @@ class main_class:
                         model_layer, y_scan_point)
 
                     distance_from_start_point_pixcels = y_scan_start_point - y_scan_point
-                    total_y_distance_mm =self.z_point_from_model[model_scan_range_start]
+                    total_y_distance_mm =start_hight_mm
 
                     for y_range in range(distance_from_start_point_pixcels):
 
@@ -581,14 +642,14 @@ class main_class:
                     if total_y_distance_mm > layer_hight_mm - \
                             self.y_axies_margtion_for_error and total_y_distance_mm < layer_hight_mm + self.y_axies_margtion_for_error:
 
-                        cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, y_scan_point),
-                                              (self.center_point_x_image + 10, y_scan_point), (255,0,0), 1)
 
 
                         if  comapre_results[model_layer][0]==False:
                             comapre_results[model_layer] = [
                                 True,left_data, right_data]
-
+                            if teast_mode:
+                                cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, y_scan_point),
+                                         (self.center_point_x_image + 10, y_scan_point), (255, 0, 0), 1)
                         else:
                             current_postive_match = 0
                             for vaule in comapre_results[model_layer][1]:
@@ -607,8 +668,8 @@ class main_class:
                             if scan_match > current_postive_match:
                                 comapre_results[model_layer] = [
                                     True,left_data,right_data]
-
-            self.display_data("aaa",10)
+            if teast_mode:
+                self.display_data("aaa",0)
             return comapre_results
 
         def count_index_blelow_vasule(hight):
@@ -635,6 +696,12 @@ class main_class:
                 current_hight = hight
                 break
 
+        #jump to time
+
+       # load_scan_at_set_time(time.time()-10)
+       #  cv2.line(self.couler_vesion_of_scan, (self.center_point_x_image, 0),
+       #           (self.center_point_x_image, 300), (255, 0, 0), 2)
+       #  self.display_data("base_line", 0)
 
         while True:
 
@@ -645,29 +712,56 @@ class main_class:
                 load_scan_at_set_time(time_stamp)
                 current_hight = hight
 
-            base_model_point = 0
+
+            comapre_results={}
+            for full_model in range(0,count_index_blelow_vasule(hight)):
+                model_layer = self.z_point_from_model[full_model]
+                comapre_results[model_layer] = [
+                    False, [
+                        True, True, True], [
+                        True, True, True]]
+
+
+            base_model_point = 20
+            any_point_found=False
             while True:
-                print("base_model_point",base_model_point)
+                #print("base_model_point",base_model_point)
                 y_start = find_layer_0(base_model_point)
                 if y_start !=9999:
+                    print("start_hight",start_hight)
                     start_hight=self.z_point_from_model[base_model_point]
+
+
+                    any_point_found=True
                     break
                 base_model_point=base_model_point+1
-
-            print("y_start", y_start)
-
-            curent_distance=self.scan_data[y_start][self.center_point_x_image]
-            curent_distance=curent_distance-5
-            top_of_model_offste = self.y_mm_to_pixel(
-                curent_distance, hight)
-
-            y_scan_range = y_start - (top_of_model_offste), y_start
+                if base_model_point==len(self.z_point_from_model):
+                    break
+            print("base_model_point",base_model_point)
+            if any_point_found==True:
+                print("y_start", y_start)
 
 
 
-            model_range = base_model_point, count_index_blelow_vasule(hight)
-# (y_scan_range,model_scan_range,y_scan_start_point,start_hight)
-            out_data=compare_models(y_scan_range,model_range, y_start, start_hight)
+                curent_distance=self.scan_data[y_start][self.center_point_x_image]
+                curent_distance=curent_distance-5
+                top_of_model_offste = self.y_mm_to_pixel(
+                    curent_distance, hight)
+
+                y_scan_range = y_start - (top_of_model_offste), y_start
+
+
+
+                model_range = base_model_point, count_index_blelow_vasule(hight)
+    # (y_scan_range,model_scan_range,y_scan_start_point,start_hight)
+                out_data=compare_models(y_scan_range,model_range, y_start, start_hight,comapre_results)
+
+
+            if any_point_found==False:
+                print("full fail ")
+                out_data= comapre_results
+                model_range=0,count_index_blelow_vasule(hight)
+                y_scan_range=0,0
 
             file_name="results "+self.current_file_name[0:-4]
             print("file_name",file_name)
@@ -683,6 +777,12 @@ class main_class:
                 file.write(out)
 
                 out = "right results" +str(out_data[data][2][0])+" "+str(out_data[data][2][1])+" "+str(out_data[data][2][2])+"\n"
+                file.write(out)
+
+                out = "range_moele_results " +str(model_range[0])+" "+str(model_range[1])+"\n"
+                file.write(out)
+
+                out = "range_yscan_results " + str(y_scan_range[0]) + " " + str(y_scan_range[1]) + "\n"
                 file.write(out)
 
                 file.write("\n\n")
@@ -711,7 +811,7 @@ class main_class:
         couler_vesion_of_scan = couler_vesion_of_scan.astype(np.uint8)
         self.couler_vesion_of_scan = cv2.cvtColor(couler_vesion_of_scan, cv2.COLOR_GRAY2RGB)
 
-dir_of_scan_data="D:/scan_notes/square_teast_2/"
+dir_of_scan_data="D:/scan_notes/teast13/"
 #dir_code_gcode="C:/Users/back up/Documents/GitHub/honner-progect/final_code/gcode_recve/time_layer_data"
 dir_code_gcode="./time_layer_data"
 temp=main_class(dir_of_scan_data, dir_code_gcode)

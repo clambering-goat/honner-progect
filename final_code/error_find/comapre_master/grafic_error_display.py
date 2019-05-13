@@ -6,7 +6,8 @@ import cv2
 import numpy as np
 import time
 where_to_look="./"
-
+scan_data_dir="D:/scan_notes/teast10/"
+file_name_of_min_and_max="x_max_min_point_cloud_of_ball__.txt"
 
 def find_latest_scan(where_to_look):
     while True:
@@ -29,7 +30,23 @@ def find_latest_scan(where_to_look):
             time.sleep(10)
         else:
             return current_file
-    #current_file="results depth_carmea('192.168.1.227', 54462)_10391 1556836371.7497523"
+
+done_vauels=[]
+def full_scan(where_to_look):
+    while True:
+        current_file=""
+
+        for files in os.listdir(where_to_look):
+            if files[0:13] == "results depth":
+                if not files in done_vauels:
+
+                    done_vauels.append(files)
+
+                    return files
+
+        if current_file=="":
+            print("no fiile found")
+            time.sleep(1)
 
 
 
@@ -38,7 +55,6 @@ def load_scan_data(where_to_look,current_file):
     current_file=current_file[8:]
     current_file=current_file+".npy"
     print("current_file",current_file)
-
     file_to_load = (where_to_look + current_file)
 
     scan_data = np.load(file_to_load)
@@ -56,166 +72,200 @@ def displayer_results(file_name):
 
     print("opening file ",file_name,"\n")
 
-    image_data=load_scan_data("D:/scan_notes/square_teast_2/", file_name)
+    image_data=load_scan_data(scan_data_dir, file_name)
 
     blank_image=np.zeros((400,400,3),dtype=np.uint8)
-    file=open(file_name,"r")
+    file=open(("./teast10/"+file_name),"r")
     data=file.read()
     file.close()
-    reults=data.split("\n\n")
+    if data == "":
+        print('no data ')
+    if data !="":
+        reults=data.split("\n\n")
 
-    reults=reults[0:-1]
+        reults=reults[0:-1]
 
-    reulats_data={}
+        reulats_data={}
 
-    line_info=reults[0]
-    line_info=line_info.split("\n")
-    hight = line_info[0]
-
-    layer_found = line_info[1]
-    left_result = line_info[2]
-    right_results = line_info[3]
-
-
-    reulats_data[hight] = layer_found, left_result, right_results
-
-    for info in reults[1:]:
-        line_info = info.split("\n")
-        line_info=line_info[1:]
+        line_info=reults[0]
+        line_info=line_info.split("\n")
         hight = line_info[0]
 
         layer_found = line_info[1]
         left_result = line_info[2]
         right_results = line_info[3]
-        reulats_data[hight]=layer_found,left_result,right_results
+
+        model_range = line_info[4]
+        model_range = model_range.split(" ")
+        start_t=int(float(model_range[1])*0.2)
+        start_t=200-start_t
+        start_e = int(float(model_range[2]) * 0.2)
+        start_e=200-start_e
+
+        cv2.line(blank_image, (20, start_t), (20, start_e), (255, 255, 0), 4)
+
+        y_scan_range = line_info[5]
+        y_scan_range = y_scan_range.split(" ")
+
+        cv2.line(image_data, (100, int(y_scan_range[1])), (100, int(y_scan_range[2])), (255, 255, 0), 4)
+
+        reulats_data[hight] = layer_found, left_result, right_results
+
+        for info in reults[1:]:
+            line_info = info.split("\n")
+            line_info=line_info[1:]
+            hight = line_info[0]
+
+            layer_found = line_info[1]
+            left_result = line_info[2]
+            right_results = line_info[3]
+            reulats_data[hight]=layer_found,left_result,right_results
 
 
 
-    file=open("x_max_min_point_cloud_of_wall_teast__.txt","r")
+        file=open("./teast10/"+file_name_of_min_and_max,"r")
 
-    data=file.readlines()
-    file.close()
-
-
-
-    loop_counter=-1
-    start_point=200
-    for q in data:
-        loop_counter=loop_counter+1
-
-        split_data = q.split(" ")
-
-        start=float(split_data[0]),float(split_data[-1])
-        start=int(start[0]),start_point-int(start[1])
+        data=file.readlines()
+        file.close()
 
 
-        end = float(split_data[2]), float(split_data[-1])
-        end=int(end[0]),start_point-int(end[1])
 
-        center_point_temp=float(split_data[4]),float(split_data[-1])
+        loop_counter=-1
+        start_point=200
+        for q in data:
+            loop_counter=loop_counter+1
 
-        center_point=int(center_point_temp[0]),start_point-int(center_point_temp[1])
-        if center_point_temp[1]>40:
-            print()
-        if split_data[-1].strip() in reulats_data.keys():
-            info=reulats_data[split_data[-1].strip()]
+            split_data = q.split(" ")
 
-            if info[0]=="layer_foundTrue":
-
-                #left
-                sub_reuluts=info[1].split(" ")
-                if info[1]=="left resultsFalse False False":
-                    cv2.line(blank_image, end, center_point, (0, 255, 0), 1)
-
-                if sub_reuluts[1]=="resultsTrue":
-                    cv2.line(blank_image, end, center_point, (255, 0, 255), 1)
-
-                if sub_reuluts[2]=="True":
-                    cv2.line(blank_image, end, center_point, (255, 0, 0), 1)
-
-                if sub_reuluts[3]=="True":
-                    cv2.line(blank_image, end, center_point, (255, 255, 0), 1)
+            start=float(split_data[0]),float(split_data[-1])
+            start=int(start[0]),start_point-int(start[1])
 
 
-                #right
-                #full match
-                sub_reuluts = info[2].split(" ")
-                if info[2] == "right resultsFalse False False":
-                    cv2.line(blank_image, start,center_point, (0, 255, 0), 1)
-                if sub_reuluts[1]=="resultsTrue":
-                    cv2.line(blank_image, start, center_point, (255, 0, 255), 1)
+            end = float(split_data[2]), float(split_data[-1])
+            end=int(end[0]),start_point-int(end[1])
 
-                if sub_reuluts[2]=="True":
-                    cv2.line(blank_image, start, center_point, (255, 0, 0), 1)
+            center_point_temp=float(split_data[4]),float(split_data[-1])
 
-                if sub_reuluts[3]=="True":
-                    cv2.line(blank_image, start, center_point, (255, 255, 0), 1)
+            center_point=int(center_point_temp[0]),start_point-int(center_point_temp[1])
+            if center_point_temp[1]>40:
+                print()
+            if split_data[-1].strip() in reulats_data.keys():
+                info=reulats_data[split_data[-1].strip()]
 
-
-            if info[0]=="layer_foundFalse":
-                cv2.line(blank_image, start, end, (0, 0, 255), 1)
-
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            bottomLeftCornerOfText = (200, 100)
-            fontScale = 1
-            fontColor = (255, 0, 255)
-            lineType = 2
-
-            cv2.putText(blank_image, 'under_size',
-                        bottomLeftCornerOfText,
-                        font,
-                        fontScale,
-                        fontColor,
-                        lineType)
-
-            fontColor=(255, 0, 0)
-            bottomLeftCornerOfText = (200, 150)
-            cv2.putText(blank_image, 'over_size',
-                        bottomLeftCornerOfText,
-                        font,
-                        fontScale,
-                        fontColor,
-                        lineType)
-
-            fontColor=(255, 255, 0)
-            bottomLeftCornerOfText = (200, 200)
-            cv2.putText(blank_image, 'z_not_matching',
-                        bottomLeftCornerOfText,
-                        font,
-                        fontScale,
-                        fontColor,
-                        lineType)
+                if info[0]=="layer_foundTrue":
 
 
-            fontColor=(0, 0, 255)
-            bottomLeftCornerOfText = (200, 250)
-            cv2.putText(blank_image, 'no_match',
-                        bottomLeftCornerOfText,
-                        font,
-                        fontScale,
-                        fontColor,
-                        lineType)
+                    #left
+                    sub_reuluts=info[1].split(" ")
+                    if info[1]=="left resultsFalse False False":
+                        cv2.line(blank_image, end, center_point, (0, 255, 0), 1)
 
-            fontColor=(0, 255, 0)
-            bottomLeftCornerOfText = (200, 300)
-            cv2.putText(blank_image, 'full_match',
-                        bottomLeftCornerOfText,
-                        font,
-                        fontScale,
-                        fontColor,
-                        lineType)
+                    if sub_reuluts[1]=="resultsTrue":
+                        cv2.line(blank_image, end, center_point, (255, 0, 255), 1)
 
-    cv2.imshow("scan_image",image_data)
+                    if sub_reuluts[2]=="True":
+                        cv2.line(blank_image, end, center_point, (255, 0, 0), 1)
 
-    cv2.imshow("results ", blank_image)
-    file_Save_name="./results/grafice_of_results"+file_name+".png"
-    cv2.imwrite(file_Save_name,blank_image)
-    cv2.waitKey(500)
+                    if sub_reuluts[3]=="True":
+                        cv2.line(blank_image, end, center_point, (255, 255, 0), 1)
+
+                    if info[1]=="left resultsTrue True True":
+                        cv2.line(blank_image, start, end, (0, 0, 255), 1)
+                    #right
+                    #full match
+
+
+                    sub_reuluts = info[2].split(" ")
+                    if info[2] == "right resultsFalse False False":
+                        cv2.line(blank_image, start,center_point, (0, 255, 0), 1)
+                    if sub_reuluts[1]=="resultsTrue":
+                        cv2.line(blank_image, start, center_point, (255, 0, 255), 1)
+
+                    if sub_reuluts[2]=="True":
+                        cv2.line(blank_image, start, center_point, (255, 0, 0), 1)
+
+                    if sub_reuluts[3]=="True":
+                        cv2.line(blank_image, start, center_point, (255, 255, 0), 1)
+                    if info[2] == "right resultsTrue True True":
+                        cv2.line(blank_image, start, end, (0, 0, 255), 1)
+
+                if info[0]=="layer_foundFalse":
+                    cv2.line(blank_image, start, end, (0, 0, 255), 1)
+
+
+
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                bottomLeftCornerOfText = (200, 100)
+                fontScale = 1
+                fontColor = (255, 0, 255)
+                lineType = 2
+
+                cv2.putText(blank_image, 'under_size',
+                            bottomLeftCornerOfText,
+                            font,
+                            fontScale,
+                            fontColor,
+                            lineType)
+
+                fontColor=(255, 0, 0)
+                bottomLeftCornerOfText = (200, 150)
+                cv2.putText(blank_image, 'over_size',
+                            bottomLeftCornerOfText,
+                            font,
+                            fontScale,
+                            fontColor,
+                            lineType)
+
+                fontColor=(255, 255, 0)
+                bottomLeftCornerOfText = (200, 200)
+                cv2.putText(blank_image, 'z_not_matching',
+                            bottomLeftCornerOfText,
+                            font,
+                            fontScale,
+                            fontColor,
+                            lineType)
+
+
+                fontColor=(0, 0, 255)
+                bottomLeftCornerOfText = (200, 250)
+                cv2.putText(blank_image, 'no_match',
+                            bottomLeftCornerOfText,
+                            font,
+                            fontScale,
+                            fontColor,
+                            lineType)
+
+                fontColor=(0, 255, 0)
+                bottomLeftCornerOfText = (200, 300)
+                cv2.putText(blank_image, 'full_match',
+                            bottomLeftCornerOfText,
+                            font,
+                            fontScale,
+                            fontColor,
+                            lineType)
+
+
+
+
+        #cv2.imshow("scan_image",image_data)
+
+        file_Save_name = "./teast10/results/grafice_of_scan" + file_name + ".png"
+        cv2.imwrite(file_Save_name, image_data)
+
+
+
+        file_Save_name="./teast10/results/grafice_of_results"+file_name+".png"
+        cv2.imwrite(file_Save_name,blank_image)
+        #cv2.imshow("results ", blank_image)
+        #cv2.waitKey(500)
+
+
 
 
 
 
 while True:
-    current_scan=find_latest_scan("./")
+    current_scan=full_scan("./teast10/")
+    #current_scan=find_latest_scan("./")
 
     displayer_results(current_scan)

@@ -270,16 +270,41 @@ class kinect_claibration():
         print(" ")
 
 
-    def nump_data_to_use(self,file_list):
+    def nump_data_to_use(self,file_list,index=0):
 
         def pre_array(index):
             data=np.load(file_list[index])
             out_data=data.astype(np.uint8)
             return out_data
 
-        image_of_point_slection = pre_array(0)
+        def load_data(index):
+            self.file_name = file_list[index].split("/")
+            self.file_name = self.file_name[-1]
+            self.file_data = np.load(file_list[index])
 
-        index=0
+            print("file loaded ", file_list[index], "\n")
+
+            self.x_axies_size = len(self.file_data[0])
+            self.y_axies_size = len(self.file_data)
+
+            print("size of the x_axies is ", self.x_axies_size)
+            print("size of the y_axies is ", self.y_axies_size)
+            print(" ")
+
+            self.x_half_screen_size = int(self.x_axies_size / 2)
+            self.y_half_screen_size = int(self.y_axies_size / 2)
+
+            self.sacn_range_x = self.x_half_screen_size
+            self.sacn_range_y = self.y_half_screen_size
+            return ()
+
+
+        if index !=0:
+            image_of_point_slection = pre_array(index)
+            load_data(index)
+            return()
+
+        image_of_point_slection = pre_array(index)
         while 1:
 
             cv2.imshow('image', image_of_point_slection)
@@ -300,35 +325,15 @@ class kinect_claibration():
         cv2.destroyAllWindows()
 
         # laod the nmpy file into the code
-        self.file_name = file_list[index].split("/")
-        self.file_name =self.file_name[-1]
-        self.file_data = np.load(file_list[index])
 
-
-
-        print("file loaded ", file_list[index], "\n")
-
-        self.x_axies_size = len(self.file_data[0])
-        self.y_axies_size = len(self.file_data)
-
-        print("size of the x_axies is ", self.x_axies_size)
-        print("size of the y_axies is ", self.y_axies_size)
-        print(" ")
-
-        self.x_half_screen_size= int(self.x_axies_size / 2)
-        self.y_half_screen_size = int(self.y_axies_size / 2)
-
-        self.sacn_range_x = self.x_half_screen_size
-        self.sacn_range_y= self.y_half_screen_size
-        return ()
-
+        load_data(index)
 
 
 
     def point_selection(self,point_to_use="nothing"):
 
         if point_to_use !="nothing":
-            self.y_point_chosen,self.x_point_chosen, =point_to_use
+            self.x_point_chosen,self.y_point_chosen, =point_to_use
             return()
         print("start point select")
         print("double left clik to slect point")
@@ -420,7 +425,7 @@ class kinect_claibration():
         print("saving data")
         name=self.file_name[0:-4]
         #name=name[0]
-        file=open("calibration_"+name+".txt","w")
+        file=open(dir_to_save+"calibration_"+name+".txt","w")
         print("fiel name is ","calibration_" +name)
 
         data="y_rotation "+str(self.y_rotation)+"\n"
@@ -468,34 +473,40 @@ class kinect_claibration():
 
 
 #dir_to_look="C:/Users/back up/Desktop/roation teast/30/"
-dir_to_look="./"
+dir_to_look="D:/scan_notes/-60/"
+dir_to_save="-60"
 count_frames=0
-file_list={}
+ip_list={}
 for files in os.listdir(dir_to_look):
     if files[-4:len(files)]==".npy" and files[0]=="d":
         key_vaule=files.split("'")
         key_vaule=(key_vaule[1])
         file_loaction=dir_to_look+files
-        if key_vaule in file_list.keys():
-            file_list[key_vaule].append(file_loaction)
+        if key_vaule in ip_list.keys():
+            ip_list[key_vaule].append(file_loaction)
         else:
-            file_list[key_vaule]=[]
-            file_list[key_vaule].append(file_loaction)
+            ip_list[key_vaule]=[]
+            ip_list[key_vaule].append(file_loaction)
 
 
-for q in file_list:
-    print(q)
-    print(file_list[q])
+for q in ip_list:
 
-
-    temp=kinect_claibration()
-    temp.nump_data_to_use(file_list[q])
+    temp = kinect_claibration()
+    temp.nump_data_to_use(ip_list[q])
     temp.point_selection()
-    temp.scan_around_point()
-    temp.grafic_display_of_bonds()
-    temp.calulat_rotation()
-    temp.x_y_offset()
-    temp.save_config()
+
+    for w in range(len(ip_list[q])-1) :
+        temp=kinect_claibration()
+        temp.nump_data_to_use(ip_list[q],w)
+        #x  272 y  293
+        #        temp.point_selection((252,293))
+
+        temp.point_selection((258,288))
+        temp.scan_around_point()
+        temp.grafic_display_of_bonds()
+        temp.calulat_rotation()
+        temp.x_y_offset()
+        temp.save_config()
 
 
 
